@@ -39,9 +39,7 @@
 						<td>${vo.count}</td>			
 					</tr>
 					</c:forEach>
-					
 				</table>
-				Panel Content
 			</div>
 			<div class="panel-footer">스프링게시판 - 염다영</div>
 		</div>
