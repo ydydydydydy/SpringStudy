@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.entity.Board;
 import kr.spring.mapper.BoardMapper;
@@ -74,4 +75,20 @@ public class BoardController {
 //		board.setWriter(writer);
 //		board.setContent(content);
 	}
+	
+	@RequestMapping("/boardContent.do")
+	public String boardContent(@RequestParam("idx") int idx, Model model) {
+		System.out.println("게시글 상세보기 기능수행");
+		Board vo = mapper.boardContent(idx);
+		model.addAttribute("vo", vo);
+		return "boardContent";
+	}
+	
+	@RequestMapping("/boardDelete.do")
+	public String boardDelete(@RequestParam("idx") int idx) {
+		System.out.println("게시글 삭제 기능수행");
+		mapper.boardDelete(idx);
+		return "redirect:/boardList.do";
+	}
+	
 }

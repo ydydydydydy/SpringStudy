@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,14 +30,14 @@
 					</tr>
 					<!-- model 안에 있는 list를 jstl을 활영하여 출력하시오 -->
 					<!-- 그럼 model안에 값은 어떻게 가져오냐?! -->
-					<!-- model은 requst영역 안에 있다 -->
+					<!-- model은 request영역 안에 있다 -->
 					<c:forEach items="${list}" var="vo" varStatus="i">
       				<tr>
 						<td>${i.count}</td>
-						<td>${vo.title}</td>
+						<td><a href="boardContent.do?idx=${vo.idx}">${vo.title}</a></td>
 						<td>${vo.writer}</td>
-						<td>${vo.indate}</td>
-						<td>${vo.count}</td>			
+						<td>${fn:split( vo.indate, " ")[0]}</td> <!-- 작성 시간은 잘라내고 연도랑 날짜만 보여줌 -->
+						<td>${vo.count}</td>
 					</tr>
 					</c:forEach>
 				</table>

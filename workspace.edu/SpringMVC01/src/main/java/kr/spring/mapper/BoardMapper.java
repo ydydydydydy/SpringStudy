@@ -10,12 +10,17 @@ import kr.spring.entity.Board;
 
 @Mapper // MyBatis가 interface를 찾기위해 달아주는 부분
 public interface BoardMapper {
-
-	@Select("SELECT * FROM BOARD ORDER BY INDATE DESC")
+	
+//	@Select("SELECT * FROM BOARD ORDER BY INDATE DESC")
 	public List<Board> getLists(); // 게시글 전체보기 기능
 
-	@Insert("INSERT INTO BOARD(TITLE, CONTENT, WRITER) VALUES(#{title}, #{content},#{writer})")
-	public void boardInsert(Board board);
+//	@Insert("INSERT INTO BOARD(TITLE, CONTENT, WRITER) VALUES(#{title}, #{content},#{writer})")
+//	BoardMapper.xml 보다 유지보수가 어렵다
 	
+	public void boardInsert(Board board);
+
+	public Board boardContent(int idx);
+
+	public void boardDelete(int idx);
 	
 }

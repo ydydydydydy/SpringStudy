@@ -14,7 +14,7 @@ INSERT INTO BOARD(TITLE, CONTENT, WRITER)
 VALUES('[속보]명훈쌤 시내에서 미상의 여자와 걷는 모습 발견되어','힝 뻥인데!','준용쌤');
 
 INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-VALUES('[공지]다음주 13일 팀편성 합니다!','침장지원 하실 분들 말씀해주세요','명훈쌤');
+VALUES('[공지]다음주 13일 팀편성 합니다!','팀장지원 하실 분들 말씀해주세요','명훈쌤');
 
 INSERT INTO BOARD(TITLE, CONTENT, WRITER)
 VALUES('[알림]다음주부터 간식은 2일에 한번씩만 나갑니다','진짜 믿었어?','조미소');
