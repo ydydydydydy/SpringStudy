@@ -40,6 +40,9 @@
 					</tr>
 					</c:forEach>
 				</table>
+				
+				<a href="boardForm.do" class="btn btn-primary btn-sm">글쓰기</a>  <!-- 버튼, 버튼색, 버튼 크기 -->
+			
 			</div>
 			<div class="panel-footer">스프링게시판 - 염다영</div>
 		</div>
