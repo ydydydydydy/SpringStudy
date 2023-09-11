@@ -19,7 +19,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Board</div>
 			<div class="panel-body">
-			<form action="boardUpdate.do" method="post">
+			<form action="../boardUpdate.do" method="post">
 
 				<input type="hidden" name="idx" value="${vo.idx}"> <!-- 서버로 데이터를 보내는데 겉으로는 보여주지 않을 때 -->
 				<table class="table">
@@ -39,7 +39,7 @@
 						<td colspan="2" align="center">
 							<button class="btn btn-success btn-sm" type="submit">수정</button>
 							<button class="btn btn-warning btn-sm" type="reset">취소</button>
-							<a href="boardList.do" class="btn btn-info btn-sm">목록</a>
+							<a href="../boardList.do" class="btn btn-info btn-sm">목록</a>
 						</td>
 					</tr>					
 				</table>
