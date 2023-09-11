@@ -27,6 +27,7 @@ public class BoardController {
 	public String boardList(Model model) {   // 메서드 이름 -> 요청 url 앞 글자를 따와서 지어준다
 		System.out.println("게시판목록 보기 기능수행");
 		
+		
 		// 게시글 정보 가져오기
 		// 한 개의 게시글은 - 번호, 제목, 내용, 작성자, 작성일, 조회수
 		
@@ -79,6 +80,9 @@ public class BoardController {
 	@RequestMapping("/boardContent.do")
 	public String boardContent(@RequestParam("idx") int idx, Model model) {
 		System.out.println("게시글 상세보기 기능수행");
+		// 게시글 조회수 증가
+		mapper.boardCount(idx); //count = count + 1
+		
 		Board vo = mapper.boardContent(idx);
 		model.addAttribute("vo", vo);
 		return "boardContent";
@@ -88,6 +92,20 @@ public class BoardController {
 	public String boardDelete(@RequestParam("idx") int idx) {
 		System.out.println("게시글 삭제 기능수행");
 		mapper.boardDelete(idx);
+		return "redirect:/boardList.do";
+	}
+	
+	@RequestMapping("/boardUpdateForm.do")
+	public String boardUpdateForm(@RequestParam("idx") int idx, Model model) {
+		System.out.println("게시글 수정화면이동 기능수행");
+		Board vo = mapper.boardContent(idx);
+		model.addAttribute("vo", vo);
+		return "boardUpdateForm";
+	}
+	
+	@RequestMapping("/boardUpdate.do")
+	public String boardUpdate(Board vo) {
+		mapper.boardUpdate(vo);
 		return "redirect:/boardList.do";
 	}
 	
