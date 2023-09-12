@@ -100,12 +100,12 @@
 			$.each(data, function(index, obj) {
 				listHtml += "<tr>";
 				listHtml += "<td>" + (index + 1) + "</td>";
-				listHtml += "<td>";
+				listHtml += "<td id='t" + obj.idx + "'>";
 				listHtml += "<a href='javascript:goContent(" + obj.idx + ")'>"; // a태그 안에서 javascript 작동
 				listHtml += obj.title;
 				listHtml += "</a>";
 				listHtml += "</td>";
-				listHtml += "<td>" + obj.writer + "</td>";
+				listHtml += "<td id='w" + obj.idx + "'>" + obj.writer + "</td>";
 				listHtml += "<td>" + obj.indate + "</td>";
 				listHtml += "<td>" + obj.count + "</td>";
 				listHtml += "</tr>";
@@ -114,13 +114,14 @@
 				listHtml += "<tr id='c"	+ obj.idx +	"' style='display : none'>";
 				listHtml += "<td>내용</td>";
 				listHtml += "<td colspan='4'>";
-				listHtml += "<textarea readonly rows='7' class='form-control'>"; // readonly -읽기전용
+				listHtml += "<textarea id='ta" + obj.idx + "' readonly rows='7' class='form-control'>"; // readonly -읽기전용
 				listHtml += obj.content;
 				listHtml += "</textarea>";
 				
 				// 수정 삭제 화면
 				listHtml += "<br>";
-				listHtml += "<button class='btn btn-sm btn-success'>수정</button> &nbsp;";
+				listHtml += "<span id='ub"+ obj.idx + "'>";
+				listHtml += "<button onclick='goUpdateForm(" + obj.idx + ")' class='btn btn-sm btn-success'>수정화면</button></span> &nbsp;";
 				listHtml += "<button onclick='goDelete(" + obj.idx + ")' class='btn btn-sm btn-warning'>삭제</button> &nbsp;";
 				listHtml += "<td>";
 				listHtml += "</tr>";
@@ -165,23 +166,52 @@
 				$("#c" + idx).css("display","table-row");
 			}else{
 				$("#c" + idx).css("display", "none");
-			}
+			}	
+		}
+		
+		function goDelete(idx) {
+			$.ajax({
+				url : "boardDelete.do",
+				type : "get",
+				data : {"idx" : idx},
+				success : loadList,
+				error : function() { alert("error"); },
+			});
+		}
+		
+		function goUpdateForm(idx) {
+			
+			$("#ta" + idx).attr("readonly", false);
+			
+			var title = $("#t" + idx).text();  // 수정을 눌렀을 때 기존 제목이 남아있도록 -아래 value= '"+title+ "'까지
+			var newTitle = "<input id='nt"+idx+"' value='" +title+ "' type='text' class='form-control' >";
+			$("#t" + idx).html(newTitle);
+			
+			var writer = $("#w" + idx).text();  // 수정을 눌렀을 때 기존 제목이 남아있도록 -아래 value= '"+witle+ "'까지
+			var newWriter = "<input id= 'nw"+idx+"' value='" +writer+ "' type='text' class='form-control' >";
+			$("#w" + idx).html(newWriter);
+			
+			var newBtn = "<button onclick='goUpdate("+idx+")' class='btn btn-primary btn-sm'>수정</button>";
+			$("#ub" + idx).html(newBtn);
 			
 		}
 		
-
+		function goUpdate(idx) {
+			var title = $("#nt" + idx).val();
+			var content = $("#ta" + idx).val();
+			var writer = $("#nw" + idx).val();
+			
+			console.log(title + "/" + content + "/" + writer);
+			// boardUpdate.do로 요청을 통해 게시글을 수정하고
+			// 수정된 게시글 다시 불러와서 적용
+		
+		}
+		
+		
 	</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
