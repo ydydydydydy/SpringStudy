@@ -25,9 +25,18 @@ public class BoardController {
 		System.out.println("홈기능 수행");
 		return "main";
 	}
+	
 	@RequestMapping("/boardList.do")
 	public @ResponseBody List<Board> boardList() {
+		System.out.println("게시글 전체보기 기능수행");
 		List<Board> list = mapper.getLists();
 		return list;
 	}
+	
+	@RequestMapping("/boardInsert.do")
+	public @ResponseBody void boardInsert(Board board) {
+		System.out.println("게시글 작성 기능수행");
+		mapper.boardInsert(board);
+	}
+	
 }
