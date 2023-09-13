@@ -26,25 +26,34 @@ public class BoardController {
 		return "main";
 	}
 	
-	@RequestMapping("/boardList.do")
-	public @ResponseBody List<Board> boardList() {
-		System.out.println("게시글 전체보기 기능수행");
-		List<Board> list = mapper.getLists();
-		return list;
-	}
-	
-	@RequestMapping("/boardInsert.do")
-	public @ResponseBody void boardInsert(Board board) {
-		System.out.println("게시글 작성 기능수행");
-		mapper.boardInsert(board);
-	}
-	
-	@RequestMapping("/boardDelete.do")
-	public @ResponseBody void boardDelete(@RequestParam("idx") int idx) {
-		System.out.println("게시글 삭제 기능수행");
-		mapper.boardDelete(idx);
-	}
-	
-
+//	@RequestMapping("/boardList.do")
+//	public @ResponseBody List<Board> boardList() {
+//		System.out.println("게시글 전체보기 기능수행");
+//		List<Board> list = mapper.getLists();
+//		return list;
+//	}
+//	
+//	@RequestMapping("/boardInsert.do")
+//	public @ResponseBody void boardInsert(Board board) {
+//		System.out.println("게시글 작성 기능수행");
+//		mapper.boardInsert(board);
+//	}
+//	
+//	@RequestMapping("/boardDelete.do")
+//	public @ResponseBody void boardDelete(@RequestParam("idx") int idx) {
+//		System.out.println("게시글 삭제 기능수행");
+//		mapper.boardDelete(idx);
+//	}
+//	
+//	@RequestMapping("/boardUpdate.do")
+//	public @ResponseBody void boardUpdate(Board vo) {
+//		System.out.println("게시글 수정 기능수행");
+//		mapper.boardUpdate(vo);
+//	}
+//	
+//	@RequestMapping("/boardCount.do")
+//	public @ResponseBody void boardCount(@RequestParam("idx") int idx) {
+//		mapper.boardCount(idx);
+//	}
 	
 }

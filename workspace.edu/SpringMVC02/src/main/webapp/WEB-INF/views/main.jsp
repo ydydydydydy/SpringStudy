@@ -31,7 +31,7 @@
 					<tbody id="view">
 						<!-- 비동기 방식으로 가져온 게시글 나오게할 부분 -->
 					</tbody>
-					
+				
 					<tr>
 						<td colspan="5">
 							<button onclick="goForm()" class="btn btn-primary btn-sm">글쓰기</button>
@@ -41,7 +41,8 @@
 			</div>
 
 			<!-- 글쓰기 폼 -->
-			<div class="panel-body" id="wform" style="display : none"> <!-- display:none 눈에 안 보이게 하는 코드 -->
+			<div class="panel-body" id="wform" style="display: none">
+				<!-- display:none 눈에 안 보이게 하는 코드 -->
 				<form id="frm">
 					<table class="table">
 						<tr>
@@ -59,9 +60,11 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-								<button class="btn btn-success btn-sm" type="button" onclick="goInsert()">등록</button>
+								<button class="btn btn-success btn-sm" type="button"
+									onclick="goInsert()">등록</button>
 								<button class="btn btn-warning btn-sm" type="reset" id="fclear">취소</button>
-								<button onclick="goList()" href="boardList.do" class="btn btn-info btn-sm">목록</button>
+								<button onclick="goList()" href="boardList.do"
+									class="btn btn-info btn-sm">목록</button>
 							</td>
 						</tr>
 					</table>
@@ -84,7 +87,7 @@
 			// 비동기방식으로 게시글 리스트 가져오기 기능
 			// ajax - 요청 url, 어떻게 데이터 받을지, 요청방식 등... -> 객체
 			$.ajax({
-				url : "boardList.do",
+				url : "board/all",
 				type : "get",
 				dataType : "json",
 				success : makeView, // 콜백함수
@@ -97,38 +100,47 @@
 		function makeView(data) {
 
 			var listHtml = "";
-			$.each(data, function(index, obj) {
-				listHtml += "<tr>";
-				listHtml += "<td>" + (index + 1) + "</td>";
-				listHtml += "<td id='t" + obj.idx + "'>";
-				listHtml += "<a href='javascript:goContent(" + obj.idx + ")'>"; // a태그 안에서 javascript 작동
-				listHtml += obj.title;
-				listHtml += "</a>";
-				listHtml += "</td>";
-				listHtml += "<td id='w" + obj.idx + "'>" + obj.writer + "</td>";
-				listHtml += "<td>" + obj.indate + "</td>";
-				listHtml += "<td>" + obj.count + "</td>";
-				listHtml += "</tr>";
-				
-				// 상세보기 화면
-				listHtml += "<tr id='c"	+ obj.idx +	"' style='display : none'>";
-				listHtml += "<td>내용</td>";
-				listHtml += "<td colspan='4'>";
-				listHtml += "<textarea id='ta" + obj.idx + "' readonly rows='7' class='form-control'>"; // readonly -읽기전용
-				listHtml += obj.content;
-				listHtml += "</textarea>";
-				
-				// 수정 삭제 화면
-				listHtml += "<br>";
-				listHtml += "<span id='ub"+ obj.idx + "'>";
-				listHtml += "<button onclick='goUpdateForm(" + obj.idx + ")' class='btn btn-sm btn-success'>수정화면</button></span> &nbsp;";
-				listHtml += "<button onclick='goDelete(" + obj.idx + ")' class='btn btn-sm btn-warning'>삭제</button> &nbsp;";
-				listHtml += "<td>";
-				listHtml += "</tr>";
-			});
+			$
+					.each(
+							data,
+							function(index, obj) {
+								listHtml += "<tr>";
+								listHtml += "<td>" + (index + 1) + "</td>";
+								listHtml += "<td id='t" + obj.idx + "'>";
+								listHtml += "<a href='javascript:goContent("
+										+ obj.idx + ")'>"; // a태그 안에서 javascript 작동
+								listHtml += obj.title;
+								listHtml += "</a>";
+								listHtml += "</td>";
+								listHtml += "<td id='w" + obj.idx + "'>"
+										+ obj.writer + "</td>";
+								listHtml += "<td>" + obj.indate + "</td>";
+								listHtml += "<td>" + obj.count + "</td>";
+								listHtml += "</tr>";
+
+								// 상세보기 화면
+								listHtml += "<tr id='c"	+ obj.idx +	"' style='display : none'>";
+								listHtml += "<td>내용</td>";
+								listHtml += "<td colspan='4'>";
+								listHtml += "<textarea id='ta" + obj.idx + "' readonly rows='7' class='form-control'>"; // readonly -읽기전용
+								// listHtml += obj.content; 제목을 클릭하는 순간 보여주기 위해 주석처리
+								listHtml += "</textarea>";
+
+								// 수정 삭제 화면
+								listHtml += "<br>";
+								listHtml += "<span id='ub"+ obj.idx + "'>";
+								listHtml += "<button onclick='goUpdateForm("
+										+ obj.idx
+										+ ")' class='btn btn-sm btn-success'>수정화면</button></span> &nbsp;";
+								listHtml += "<button onclick='goDelete("
+										+ obj.idx
+										+ ")' class='btn btn-sm btn-warning'>삭제</button> &nbsp;";
+								listHtml += "<td>";
+								listHtml += "</tr>";
+							});
 
 			$("#view").html(listHtml);
-			
+
 			goList();
 
 		}
@@ -138,75 +150,112 @@
 			$("#boardList").css("display", "none");
 			$("#wform").css("display", "block");
 		}
-		
+
 		function goList() {
-			$("#boardList").css("display", "block");
+			$("#boardList").css("display", "table-row");
 			$("#wform").css("display", "none");
 		}
-		
+
 		function goInsert() {
 			// 게시글 등록기능 - 비동기
 			// title="안녕"&content"반가워"&writer="호두아빠"
 			var fData = $("#frm").serialize();
-			
+
 			$.ajax({
-				url : "boardInsert.do",
+				url : "board/new",
 				type : "post",
 				data : fData,
 				success : loadList,
-				error : function() { alert("error") }
+				error : function() {
+					alert("error")
+				}
 			});
-			
+
 			$("#fclear").trigger("click");
 		}
-		
+
 		function goContent(idx) {
-			
-			if($("#c" + idx).css("display") == "none"){
-				$("#c" + idx).css("display","table-row");
-			}else{
+
+			if ($("#c" + idx).css("display") == "none") {
+				
+				$.ajax({
+					url : "board/" + idx,
+					type : "get",
+					dataType : "json",
+					success : function(data) {
+						$("#ta" + idx).val(data.content);
+					},
+					error: function() { alert("error"); }
+				});
+				
+				$("#c" + idx).css("display", "table-row");
+			} else {
 				$("#c" + idx).css("display", "none");
-			}	
-		}
-		
-		function goDelete(idx) {
+				
+				// boardCount.do 요청해서 조회수를 1 올리고
+				// 게시글을 다시 불러와 적용시키기
 			$.ajax({
-				url : "boardDelete.do",
+				url : "boardCount.do",
 				type : "get",
 				data : {"idx" : idx},
 				success : loadList,
-				error : function() { alert("error"); },
+				error : function() { alert("error") }
+				});
+				
+			}
+		}
+
+		function goDelete(idx) {
+			$.ajax({
+				url : "board/" + idx,
+				type : "delete",
+				data : {"idx" : idx},
+				success : loadList,
+				error : function() {
+					alert("error");
+				},
 			});
 		}
-		
+
 		function goUpdateForm(idx) {
-			
+
 			$("#ta" + idx).attr("readonly", false);
-			
-			var title = $("#t" + idx).text();  // 수정을 눌렀을 때 기존 제목이 남아있도록 -아래 value= '"+title+ "'까지
+
+			var title = $("#t" + idx).text(); // 수정을 눌렀을 때 기존 제목이 남아있도록 -아래 value= '"+title+ "'까지
 			var newTitle = "<input id='nt"+idx+"' value='" +title+ "' type='text' class='form-control' >";
 			$("#t" + idx).html(newTitle);
-			
-			var writer = $("#w" + idx).text();  // 수정을 눌렀을 때 기존 제목이 남아있도록 -아래 value= '"+witle+ "'까지
+
+			var writer = $("#w" + idx).text(); // 수정을 눌렀을 때 기존 제목이 남아있도록 -아래 value= '"+witle+ "'까지
 			var newWriter = "<input id= 'nw"+idx+"' value='" +writer+ "' type='text' class='form-control' >";
 			$("#w" + idx).html(newWriter);
-			
-			var newBtn = "<button onclick='goUpdate("+idx+")' class='btn btn-primary btn-sm'>수정</button>";
+
+			var newBtn = "<button onclick='goUpdate(" + idx
+					+ ")' class='btn btn-primary btn-sm'>수정</button>";
 			$("#ub" + idx).html(newBtn);
-			
+
 		}
-		
+
 		function goUpdate(idx) {
 			var title = $("#nt" + idx).val();
 			var content = $("#ta" + idx).val();
 			var writer = $("#nw" + idx).val();
-			
-			console.log(title + "/" + content + "/" + writer);
-			// boardUpdate.do로 요청을 통해 게시글을 수정하고
-			// 수정된 게시글 다시 불러와서 적용
-		
+
+			$.ajax({
+				url : "boardUpdate.do",
+				type : "post",
+				data : {
+					"idx" : idx,
+					"title" : title,
+					"content" : content,
+					"writer" : writer
+				},
+				success : loadList,
+				error : function() {
+					alert("error")
+				}
+			});
+
 		}
-		
 		
 	</script>
 
