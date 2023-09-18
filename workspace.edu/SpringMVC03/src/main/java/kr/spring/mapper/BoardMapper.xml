@@ -3,15 +3,14 @@
 <mapper namespace="kr.spring.mapper.BoardMapper">
 
 	<select id="getLists" resultType="kr.spring.entity.Board">
-		SELECT * FROM BOARD ORDER BY
-		INDATE DESC
+		SELECT * FROM BOARD ORDER BY INDATE DESC
 	</select>
-
+	
 	<insert id="boardInsert" parameterType="kr.spring.entity.Board">
-		INSERT INTO BOARD(TITLE, CONTENT, WRITER)
-		VALUES(#{title}, #{content}, #{writer})
+		INSERT INTO BOARD(TITLE, CONTENT, WRITER) 
+		VALUES(#{title},#{content},#{writer})
 	</insert>
-
+	
 	<select id="boardContent" parameterType="int" resultType="kr.spring.entity.Board">
 		SELECT * FROM BOARD WHERE IDX = #{idx}
 	</select>
@@ -19,13 +18,20 @@
 	<delete id="boardDelete" parameterType="int">
 		DELETE FROM BOARD WHERE IDX = #{idx}
 	</delete>
-
+	
 	<update id="boardUpdate" parameterType="kr.spring.entity.Board">
-		UPDATE BOARD SET TITLE=#{title}, CONTENT=#{content}, WRITER=#{writer}
+		UPDATE BOARD SET TITLE=#{title}, CONTENT=#{content}, WRITER = #{writer}
 		WHERE IDX=#{idx}
 	</update>
 	
 	<update id="boardCount" parameterType="int">
 		UPDATE BOARD SET COUNT = COUNT + 1 WHERE IDX = #{idx}
 	</update>
+
+
+	
+
 </mapper>
+
+
+

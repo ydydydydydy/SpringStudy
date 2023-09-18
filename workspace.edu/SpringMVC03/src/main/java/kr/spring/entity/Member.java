@@ -7,10 +7,10 @@ import lombok.ToString;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor // 기본생성자
+@NoArgsConstructor
 @ToString
 public class Member {
-	// vo 필드명 = 컬럼 이름이 같아야 가져올 수 있다
+	
 	private int memIdx;
 	private String memID;
 	private String memPassword;
@@ -19,5 +19,7 @@ public class Member {
 	private String memGender;
 	private String memEmail;
 	private String memProfile;
+	
+	
 	
 }

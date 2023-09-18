@@ -3,8 +3,18 @@
 <mapper namespace="kr.spring.mapper.MemberMapper">
 
 	<select id="registerCheck" parameterType="String" resultType="kr.spring.entity.Member">
-		SELECT * FROM MEMBER WHERE MEMID = #{memID}
+		SELECT * FROM MEMBER WHERE MEMID = #{memID}	
 	</select>
 	
+	<insert id="join" parameterType="kr.spring.entity.Member">
+		INSERT INTO MEMBER(MEMID, MEMPASSWORD, MEMNAME, MEMAGE, MEMGENDER,
+		MEMEMAIL, MEMPROFILE)
+		VALUES(#{memID}, #{memPassword}, #{memName}, #{memAge},
+		#{memGender}, #{memEmail}, #{memProfile})
+	</insert>
+
 
 </mapper>
+
+
+
