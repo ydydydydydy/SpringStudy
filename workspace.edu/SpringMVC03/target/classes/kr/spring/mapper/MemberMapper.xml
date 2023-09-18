@@ -13,7 +13,10 @@
 		#{memGender}, #{memEmail}, #{memProfile})
 	</insert>
 
-
+	<select id="login" resultType= "kr.spring.entity.Member" parameterType="kr.spring.entity.Member">
+		SELECT * FROM MEMBER
+		WHERE MEMID = #{memID} AND MEMPASSWORD = #{memPassword}
+	</select>
 </mapper>
 
 
