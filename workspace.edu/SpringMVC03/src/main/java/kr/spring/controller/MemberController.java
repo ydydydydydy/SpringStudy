@@ -78,7 +78,6 @@ public class MemberController {
          }
       }
       
-      
    }
 
    @RequestMapping("/logout.do")
@@ -111,4 +110,47 @@ public class MemberController {
          return "redirect:/loginForm.do";
       }
    }
+   
+   @RequestMapping("/updateForm.do")
+   public String updateForm() {
+	   return "member/updateForm";
+   }
+   
+   @RequestMapping("/update.do")
+   public String update(Member m, RedirectAttributes rttr, HttpSession session) {
+      
+      if(m.getMemID() == null || m.getMemID().equals("") ||
+            m.getMemPassword() == null || m.getMemPassword().equals("") ||
+            m.getMemName() == null || m.getMemName().equals("") ||
+            m.getMemAge() == 0 ||
+            m.getMemEmail() == null || m.getMemEmail().equals("")
+            ) {
+         
+         rttr.addFlashAttribute("msgType", "실패메세지");
+         rttr.addFlashAttribute("msg", "모든 내용을 입력하세요.");
+         
+         return "redirect:/updateForm.do";
+         
+      }else {
+         
+         m.setMemProfile("");
+         int cnt = mapper.update(m);
+         
+         if(cnt == 1) {
+            rttr.addFlashAttribute("msgType", "성공메세지");
+            rttr.addFlashAttribute("msg", "회원정보수정에 성공했습니다.");
+            session.setAttribute("mvo", m);
+            return "redirect:/";
+         }else {
+            rttr.addFlashAttribute("msgType", "실패메세지");
+            rttr.addFlashAttribute("msg", "회원정보수정에 실패했습니다.");
+            
+            return "redirect:/updateForm.do";
+         }
+         
+      }
+      
+   }
+   
+   
 }
