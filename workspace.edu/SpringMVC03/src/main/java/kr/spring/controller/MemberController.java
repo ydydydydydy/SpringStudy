@@ -1,5 +1,8 @@
 package kr.spring.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.spring.entity.Member;
 import kr.spring.mapper.MemberMapper;
@@ -150,6 +156,47 @@ public class MemberController {
          
       }
       
+   }
+   @RequestMapping("/imageForm.do")
+   public String imageForm() {
+	   return "member/imageForm";
+	   
+   }
+   
+   @RequestMapping("/imageUpdate.do")
+   public String imageUpdate(HttpServletRequest request, HttpSession session) {
+	   
+	   // 파일업로드를 할 수 있게 도와주는 객체 (cos.jar)
+	   // 파일업로드를 할 수 있게 도와주는 MultipartRequest 객체를 생성하기 위해서는
+	   // 5개의 정보가 필요하다
+	   // 요청데이터, 저장경로, 최대크기, 인코딩, 파일명 중복제거
+	   MultipartRequest multi = null;
+	   // 저장경로
+	   String savePath = request.getRealPath("resources/upload");
+	   //이미지 최대크기
+	   int fileMaxSize = 10 * 1024 * 1024 * 10; 
+	   
+	   try {
+		multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   
+	String memID = ((Member)session.getAttribute("mvo")).getMemID();
+	   
+	// 업로드한 파일의 이름을 가져오는 코드
+	String newProfile = multi.getFilesystemName("memProfile");
+	   
+	Member mvo = new Member();
+	mvo.setMemID(memID);
+	mvo.setMemProfile(newProfile);
+	
+	mapper.profileUpdate(mvo);
+	   
+	
+	
+	   return null;
    }
    
    

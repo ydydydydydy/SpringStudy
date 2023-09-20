@@ -173,7 +173,15 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.9.8</version>
 		</dependency>
-		       
+		
+		<!-- 파일업로드를 하기위한 COS API 추가 -->       
+		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
+		<dependency>
+		    <groupId>servlets.com</groupId>
+		    <artifactId>cos</artifactId>
+		    <version>05Nov2002</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>
