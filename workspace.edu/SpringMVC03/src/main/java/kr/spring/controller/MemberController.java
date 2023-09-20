@@ -1,5 +1,6 @@
 package kr.spring.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -164,7 +165,7 @@ public class MemberController {
    }
    
    @RequestMapping("/imageUpdate.do")
-   public String imageUpdate(HttpServletRequest request, HttpSession session) {
+   public String imageUpdate(HttpServletRequest request, HttpSession session, RedirectAttributes rttr) {
 	   
 	   // 파일업로드를 할 수 있게 도와주는 객체 (cos.jar)
 	   // 파일업로드를 할 수 있게 도와주는 MultipartRequest 객체를 생성하기 위해서는
@@ -176,6 +177,19 @@ public class MemberController {
 	   //이미지 최대크기
 	   int fileMaxSize = 10 * 1024 * 1024 * 10; 
 	   
+	   // 이전 프로필 이미지 삭제
+	   // - 로그인한 사람의 프로필값을 가져와야 한다
+	   String memID = ((Member)session.getAttribute("mvo")).getMemID();
+	   
+	   // getMember 메소드는 memID와 일치하는 회원의 정보(Member)를 가져온다
+	   String oldImg = mapper.getMember(memID).getMemProfile();
+	   
+	   // 기존의 프로필 사진 삭제
+	   File oldFile = new File(savePath+"/"+oldImg);
+	   if(oldFile.exists()) {
+		   oldFile.delete();
+	   }	   
+	   
 	   try {
 		multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
 	} catch (IOException e) {
@@ -183,8 +197,24 @@ public class MemberController {
 		e.printStackTrace();
 	}
 	   
-	String memID = ((Member)session.getAttribute("mvo")).getMemID();
-	   
+	// 내가 업로드한 파일 가져오기
+	File file = multi.getFile("memProfile");
+	
+	if(file != null) { // (어느 파일이든)업로드가 된 상태
+		// System.out.println(file.getName());
+		String ext = file.getName().substring(file.getName().lastIndexOf(".") + 1);
+		// lastIndexOf 파일이름의 마지막 점(".")을 의미 파일 이름에 점이 여러개일때를 대비
+		ext = ext.toUpperCase(); // 소문자를 모두 대문자로 바꿔줌
+		if(!(ext.equals("PNG") || ext.equals("GIF") || ext.equals("JPG"))) {
+			
+			if(file.exists()) {
+				file.delete();
+	            rttr.addFlashAttribute("msgType", "실패메세지");
+	            rttr.addFlashAttribute("msg", "이미지 파일만 가능합니다. (PNG, JPG, GIF)");
+	            return "redirect:/imageForm.do";
+			}
+		}		
+	}
 	// 업로드한 파일의 이름을 가져오는 코드
 	String newProfile = multi.getFilesystemName("memProfile");
 	   
@@ -193,10 +223,14 @@ public class MemberController {
 	mvo.setMemProfile(newProfile);
 	
 	mapper.profileUpdate(mvo);
-	   
 	
+	// 사진 업데이트 후 수정된 회원정보를 다시 가져와서 세션에 담기
+	Member m = mapper.getMember(memID);
+	session.setAttribute("mvo", m);
 	
-	   return null;
+    rttr.addFlashAttribute("msgType", "성공메세지");
+    rttr.addFlashAttribute("msg", "이미지 변경을 성공했습니다.");
+    return "redirect:/imageForm.do";
    }
    
    

@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <nav class="navbar navbar-inverse">
+   <nav class="navbar navbar-default">
      <div class="container-fluid">
        <div class="navbar-header">
          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -28,7 +28,7 @@
            <li><a href="boardMain.do">게시판</a></li>
          </ul>
          
-         <c:if test="${empty mvo }">
+         <c:if test="${empty mvo}">
          <ul class="nav navbar-nav navbar-right">
              <li><a href="${contextPath }/loginForm.do"><span class="	glyphicon glyphicon-log-in"> 로그인</span></a></li>
              <li><a href="${contextPath }/joinForm.do"><span class="glyphicon glyphicon-check"> 회원가입</span></a></li>
@@ -37,9 +37,23 @@
          
          <c:if test="${not empty mvo}">
          <ul class="nav navbar-nav navbar-right">
-             <li><a href="${contextPath}/updateForm.do"><span class="glyphicon glyphicon-refresh"> 회원정보수정</span></a></li>
-             <li><a href="${contextPath}/imageForm.do"><span class="glyphicon glyphicon-picture"> 프로필사진등록</span></a></li>
-             <li><a href="${contextPath}/logout.do"><span class="glyphicon glyphicon-log-out"> 로그아웃</span></a></li>
+         
+         
+         	<li>
+       		
+         		<c:if test="${mvo.memProfile ne '' }">
+         			<img class="img-circle" style="width: 50px; height: 50px;" src="${contextPath}/resources/upload/${mvo.memProfile}">
+         			${mvo.memName} 님 Welcome.
+         		</c:if>
+         		<c:if test="${mvo.memProfile eq '' }">
+         			<img class="img-circle" style="width: 50px; height: 50px;" src="${contextPath}/resources/images/default.png">
+         			${mvo.memName} 님 Welcome.
+         		</c:if>
+         		
+         	</li>
+            <li><a href="${contextPath}/updateForm.do"><span class="glyphicon glyphicon-refresh"> 회원정보수정</span></a></li>
+            <li><a href="${contextPath}/imageForm.do"><span class="glyphicon glyphicon-picture"> 프로필사진등록</span></a></li>
+            <li><a href="${contextPath}/logout.do"><span class="glyphicon glyphicon-log-out"> 로그아웃</span></a></li>
          </ul>
          </c:if>
          

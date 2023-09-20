@@ -26,6 +26,16 @@
        WHERE MEMID = #{memID}
    </update>
 	
+	
+	<update id="profileUpdate" parameterType="kr.spring.entity.Member">
+		UPDATE MEMBER SET MEMPROFILE = #{memProfile}
+		WHERE MEMID = #{memID}
+	</update>
+	
+	<select id="getMember" parameterType="String" resultType= "kr.spring.entity.Member">
+		SELECT * FROM MEMBER WHERE MEMID = #{memID} 
+	</select>
+	
 </mapper>
 
 

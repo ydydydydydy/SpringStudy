@@ -28,7 +28,6 @@
 		UPDATE BOARD SET COUNT = COUNT + 1 WHERE IDX = #{idx}
 	</update>
 
-
 	
 
 </mapper>
