@@ -125,7 +125,7 @@ public class MemberController {
    
    @RequestMapping("/update.do")
    public String update(Member m, RedirectAttributes rttr, HttpSession session) {
-      
+	   
       if(m.getMemID() == null || m.getMemID().equals("") ||
             m.getMemPassword() == null || m.getMemPassword().equals("") ||
             m.getMemName() == null || m.getMemName().equals("") ||
@@ -140,7 +140,9 @@ public class MemberController {
          
       }else {
          
-         m.setMemProfile("");
+    	 Member mvo = (Member)session.getAttribute("mvo"); // 회원정보 수정 후 기존 프로필 사진을 가져오는 법
+    	  
+         m.setMemProfile(mvo.getMemProfile()); // 로그인한 mvo의 기존 Profile값을 가져온다
          int cnt = mapper.update(m);
          
          if(cnt == 1) {

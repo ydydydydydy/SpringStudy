@@ -7,8 +7,8 @@
 	</select>
 	
 	<insert id="boardInsert" parameterType="kr.spring.entity.Board">
-		INSERT INTO BOARD(TITLE, CONTENT, WRITER) 
-		VALUES(#{title},#{content},#{writer})
+		INSERT INTO BOARD(MEMID, TITLE, CONTENT, WRITER) 
+		VALUES(#{memID},#{title},#{content},#{writer})
 	</insert>
 	
 	<select id="boardContent" parameterType="int" resultType="kr.spring.entity.Board">

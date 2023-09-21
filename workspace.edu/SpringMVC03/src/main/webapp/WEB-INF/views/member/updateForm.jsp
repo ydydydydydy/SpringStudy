@@ -26,6 +26,8 @@
 		
 			<input type="hidden" name="memPassword" id="memPassword" value="" >
 			<input type="hidden" name="memID" id="memID" value="${mvo.memID}"> 
+			<!-- <input type="hidden" name="memProfile" value="${mvo.memProfile}"> 회원정보 수정 후 기존 프로필 사진을 가져오는 법 -->
+			
 			<table style="text-align: center; border : 1px solid #dddddd" class="table table-bordered">
 				<tr>
 					<td style="width: 110px; vertical-align: middle;">아이디</td>
