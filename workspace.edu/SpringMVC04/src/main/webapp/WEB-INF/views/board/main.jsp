@@ -117,7 +117,7 @@
 				
 				// 수정 삭제 화면
 				// 조건문 안에서 EL식을 쓰고 싶다면 문자열로 감싸줘야 한다
-				if("${mvo.memID}" == obj.memID){  // 로그인id = 작성자id일 때만 수정 삭제 버튼이 보이도록				
+				if("${mvo.memID}" == obj.memID){	// 로그인id = 작성자id일 때만 수정 삭제 버튼이 보이도록				
 					listHtml += "<br>";
 					listHtml += "<span id='ub"+ obj.idx +"'>";
 					listHtml += "<button onclick='goUpdateForm(" + obj.idx + ")' class='btn btn-sm btn-success'>수정화면</button></span> &nbsp;"

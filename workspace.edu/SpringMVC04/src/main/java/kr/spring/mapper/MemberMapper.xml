@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.spring.mapper.MemberMapper">
+
+	<select id="registerCheck" parameterType="String" resultType="kr.spring.entity.Member">
+		SELECT * FROM MEMBER WHERE MEMID = #{memID}	
+	</select>
+	
+	<insert id="join" parameterType="kr.spring.entity.Member">
+		INSERT INTO MEMBER(MEMID, MEMPASSWORD, MEMNAME, MEMAGE, MEMGENDER,
+		MEMEMAIL, MEMPROFILE)
+		VALUES(#{memID}, #{memPassword}, #{memName}, #{memAge},
+		#{memGender}, #{memEmail}, #{memProfile})
+	</insert>
+
+	<select id="login" resultType= "kr.spring.entity.Member" parameterType="kr.spring.entity.Member">
+		SELECT * FROM MEMBER
+		WHERE MEMID = #{memID} AND MEMPASSWORD = #{memPassword}
+	</select>
+	
+
+	<update id="update" parameterType="kr.spring.entity.Member">
+       UPDATE MEMBER SET MEMPASSWORD = #{memPassword}, 
+       MEMNAME = #{memName}, MEMAGE = #{memAge}, MEMGENDER = #{memGender},
+       MEMEMAIL = #{memEmail}
+       WHERE MEMID = #{memID}
+   </update>
+	
+	
+	<update id="profileUpdate" parameterType="kr.spring.entity.Member">
+		UPDATE MEMBER SET MEMPROFILE = #{memProfile}
+		WHERE MEMID = #{memID}
+	</update>
+	
+	<select id="getMember" parameterType="String" resultType= "kr.spring.entity.Member">
+		SELECT * FROM MEMBER WHERE MEMID = #{memID} 
+	</select>
+	
+</mapper>
+
+
+
