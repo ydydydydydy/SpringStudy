@@ -1,5 +1,7 @@
 package kr.spring.entity;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,8 @@ public class Member {
 	private String memGender;
 	private String memEmail;
 	private String memProfile;
-	
-	
+	// 자신의 권한 정보를 저장할 변수 
+	// Why List<Auth>? 권한은 여러개가 될 수도 있기 때문에
+	private List<Auth> authList;
 	
 }

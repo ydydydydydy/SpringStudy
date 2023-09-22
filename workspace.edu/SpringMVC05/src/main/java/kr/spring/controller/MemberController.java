@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,8 @@ public class MemberController {
    @Autowired
    private MemberMapper mapper;
    
+   @Autowired // 내가 만들어 놓은 비밀번호 암호화 객체를 주입받아 사용하겠다
+   private PasswordEncoder pwEncoder; 
    
    @RequestMapping("/joinForm.do")
    public String joinForm() {
@@ -53,7 +56,8 @@ public class MemberController {
          m.getMemPassword() == null || m.getMemPassword().equals("") ||
          m.getMemName() == null || m.getMemName().equals("") ||
          m.getMemAge() == 0 ||
-         m.getMemEmail() == null || m.getMemEmail().equals("")
+         m.getMemEmail() == null || m.getMemEmail().equals("") ||
+         m.getAuthList().size() == 0
          ) {
          // 하나라도 누락되어 있어 회원가입을 할 수 없는 상태. 
          
@@ -65,8 +69,12 @@ public class MemberController {
          
          return "redirect:/joinForm.do";
       }else {
-         // 회원가입을 시도할 수 있는 상태
+         // 회원가입을 시도할 수 있는 부분
          m.setMemProfile("");
+         // 추가: 비밀번호를 암호화하기
+         String encyPw = pwEncoder.encode(m.getMemPassword());
+         m.setMemPassword(encyPw);
+         
          int cnt = mapper.join(m);
          
          if(cnt == 1) {
