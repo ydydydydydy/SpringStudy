@@ -17,14 +17,13 @@
 <body>
 	<div class="container">
 	  <jsp:include page="../common/header.jsp"></jsp:include>
-	  <h2>Spring MVC03</h2>
+	  <h2>Spring MVC04</h2>
 	  <div class="panel panel-default">
 	    <div class="panel-heading">Board</div>
 	    <div class="panel-body">
 
 		<form action="${contextPath}/login.do" method="post">
-		
-		
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">		
 			<table style="text-align: center; border : 1px solid #dddddd" class="table table-bordered">
 				<tr>
 					<td style="width: 110px; vertical-align: middle;">아이디</td>

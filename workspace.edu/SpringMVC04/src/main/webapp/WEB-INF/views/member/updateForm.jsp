@@ -17,13 +17,13 @@
 <body>
 	<div class="container">
 	  <jsp:include page="../common/header.jsp"></jsp:include>
-	  <h2>Spring MVC03</h2>
+	  <h2>Spring MVC04</h2>
 	  <div class="panel panel-default">
 	    <div class="panel-heading">Board</div>
 	    <div class="panel-body">
 
 		<form action="${contextPath}/update.do" method="post">
-		
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<input type="hidden" name="memPassword" id="memPassword" value="" >
 			<input type="hidden" name="memID" id="memID" value="${mvo.memID}"> 
 			<!-- <input type="hidden" name="memProfile" value="${mvo.memProfile}"> 회원정보 수정 후 기존 프로필 사진을 가져오는 법 -->
