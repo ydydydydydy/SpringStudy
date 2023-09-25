@@ -42,7 +42,7 @@
          	<li>
        		
          		<c:if test="${mvo.memProfile ne '' }">
-         			<img class="img-circle" style="width: 50px; height: 50px;" src="${contextPath}/resources/upload/${mvo.memProfile}"
+         			<img class="img-circle" style="width: 50px; height: 50px;" src="${contextPath}/resources/upload/${mvo.memProfile}">
          		</c:if>
          		<c:if test="${mvo.memProfile eq '' }">
          			<img class="img-circle" style="width: 50px; height: 50px;" src="${contextPath}/resources/images/default.png">
@@ -64,10 +64,7 @@
          						A
          					</c:when>
          				</c:choose>
-         			</c:forEach>
-        
-         			
-         			
+         			</c:forEach>	
          		]
          		
          	</li>

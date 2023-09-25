@@ -14,9 +14,9 @@
 		#{memGender}, #{memEmail}, #{memProfile})
 	</insert>
 	
-	<select id="login" resultType= "kr.spring.entity.Member" parameterType="kr.spring.entity.Member">
-		SELECT * FROM MEMBER
-		WHERE MEMID = #{memID} AND MEMPASSWORD = #{memPassword}
+	<select id="login" resultMap="memberMap" parameterType="kr.spring.entity.Member">
+		SELECT * FROM MEMBER mem LEFT OUTER JOIN Auth auth on
+		mem.MEMID = auth.MEMID WHERE mem.MEMID = #{memID}
 	</select>
 	
 
@@ -59,6 +59,10 @@
 	<insert id="authInsert" parameterType="kr.spring.entity.Auth">
 		INSERT INTO AUTH(MEMID, AUTH) VALUES (#{memID}, #{auth})
 	</insert>
+	
+	<delete id="authDelete" parameterType="String">
+		DELETE FROM AUTH WHERE MEMID = #{memID} 
+	</delete>
 	
 </mapper>
 

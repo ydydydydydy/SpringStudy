@@ -128,15 +128,17 @@ public class MemberController {
       // mapper에 login이라는 메소드 이름으로 로그인 기능을 수행하시오
       // 로그인 성공 시 -> index.jsp 이동 후 로그인에 성공했습니다 modal창 띄우기
       // 로그인 실패 시 -> login.jsp 이동 후 로그인에 실패했습니다 modal창 띄우기
+	   
       Member mvo = mapper.login(m);
-      if( mvo != null) {
-         System.out.println("로그인 성공!");
-         rttr.addFlashAttribute("msgType", "성공메세지");
-         rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
-         session.setAttribute("mvo", mvo);
-         return "redirect:/";
+ 	 // 추가 비밀번호 일치여부 체크 
+      if( mvo != null &&  pwEncoder.matches(m.getMemPassword(), mvo.getMemPassword())) {
+    	  								// (내가 입력한 password, 저장되어 있는 password)
+    		 rttr.addFlashAttribute("msgType", "성공메세지");
+    		 rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
+    		 session.setAttribute("mvo", mvo);
+    		 return "redirect:/";
+    		      
       }else {
-         System.out.println("로그인 실패");
          rttr.addFlashAttribute("msgType", "실패메세지");
          rttr.addFlashAttribute("msg", "로그인에 실패했습니다.");
          return "redirect:/loginForm.do";
@@ -155,7 +157,8 @@ public class MemberController {
             m.getMemPassword() == null || m.getMemPassword().equals("") ||
             m.getMemName() == null || m.getMemName().equals("") ||
             m.getMemAge() == 0 ||
-            m.getMemEmail() == null || m.getMemEmail().equals("")
+            m.getMemEmail() == null || m.getMemEmail().equals("") ||
+            m.getAuthList().size() == 0
             ) {
          
          rttr.addFlashAttribute("msgType", "실패메세지");
@@ -166,9 +169,31 @@ public class MemberController {
       }else {
          
     	 Member mvo = (Member)session.getAttribute("mvo"); // 회원정보 수정 후 기존 프로필 사진을 가져오는 법
-    	  
-         m.setMemProfile(mvo.getMemProfile()); // 로그인한 mvo의 기존 Profile값을 가져온다
-         int cnt = mapper.update(m);
+    	 m.setMemProfile(mvo.getMemProfile()); // 로그인한 mvo의 기존 Profile값을 가져온다
+         
+    	 // 비밀번호 암호화
+    	 String encyPw = pwEncoder.encode(m.getMemPassword());
+    	 m.setMemPassword(encyPw);
+    	 
+    	 // 권한 삭제
+    	 mapper.authDelete(m.getMemID());
+    	 
+    	 // 권한 입력
+    	 // 추가 : 권한테이블에 회원의 권한을 저장하기
+         List<Auth> list = m.getAuthList();
+         for(Auth auth : list) {
+        	 System.out.println(auth.getAuth());
+        	 if(auth.getAuth() != null) {
+        		 // 권한값이 있을때만 권한테이블에 값 넣기
+        		 Auth saveVO =  new Auth();
+        		 saveVO.setMemID(m.getMemID()); // 회원아이디 넣기
+        		 saveVO.setAuth(auth.getAuth()); // 권한 넣기
+        		 // 권한 저장
+        		 mapper.authInsert(saveVO);
+        	 }
+         }
+    	 
+    	 int cnt = mapper.update(m);
          
          if(cnt == 1) {
             rttr.addFlashAttribute("msgType", "성공메세지");

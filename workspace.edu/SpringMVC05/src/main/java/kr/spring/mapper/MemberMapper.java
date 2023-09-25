@@ -31,6 +31,8 @@ public interface MemberMapper {
 
 	public void authInsert(Auth saveVO);
 
+	public void authDelete(String memID);
+
 	
 
 }
