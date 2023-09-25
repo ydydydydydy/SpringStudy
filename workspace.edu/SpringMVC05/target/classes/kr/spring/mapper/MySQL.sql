@@ -43,6 +43,7 @@ CREATE TABLE MEMBER(
 	MEMPROFILE VARCHAR(50),
 	PRIMARY KEY(MEMID)
 );
+
 -- 권한 테이블
 -- Spring Security에서는 member테이블 안에 반드시 권한이 있어야 한다
 -- 사용하지 않더라도 넣어주자
@@ -62,11 +63,11 @@ SELECT * FROM MEMBER;
 
 SELECT * FROM BOARD;
 
-SELECT * FORM AUTH;
+SELECT * FROM AUTH;
 
 DELETE FROM MEMBER;
 
-
+ROLLBACK;
 
 
 

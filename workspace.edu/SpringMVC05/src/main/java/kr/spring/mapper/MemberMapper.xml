@@ -13,7 +13,7 @@
 		#{memID}, #{memPassword}, #{memName}, #{memAge},
 		#{memGender}, #{memEmail}, #{memProfile})
 	</insert>
-
+	
 	<select id="login" resultType= "kr.spring.entity.Member" parameterType="kr.spring.entity.Member">
 		SELECT * FROM MEMBER
 		WHERE MEMID = #{memID} AND MEMPASSWORD = #{memPassword}
@@ -33,9 +33,32 @@
 		WHERE MEMID = #{memID}
 	</update>
 	
-	<select id="getMember" parameterType="String" resultType= "kr.spring.entity.Member">
-		SELECT * FROM MEMBER WHERE MEMID = #{memID} 
+	<select id="getMember" parameterType="String" resultMap="memberMap">
+		SELECT * FROM MEMBER mem LEFT OUTER JOIN Auth auth on
+		mem.MEMID = auth.MEMID WHERE mem.MEMID = #{memID}
 	</select>
+	
+	<resultMap type="kr.spring.entity.Auth" id="authMap">
+		<id property="no" column="no "/>
+		<result property="memID" column="memID" />
+		<result property="auth" column="auth" />
+	</resultMap>
+	
+	<resultMap type="kr.spring.entity.Member" id="memberMap">
+		<id property="memIdx" column="memIdx" />
+		<result property="memID" column="memID" />
+		<result property="memPassword" column="memPassword" />
+		<result property="memName" column="memName" />
+		<result property="memAge" column="memAge" />
+		<result property="memGender" column="memGender" />
+		<result property="memEmail" column="memEmail" />
+		<result property="memProfile" column="memProfile" />
+		<collection property="authList" resultMap="authMap" />  <!-- collection : 배열 -->
+	</resultMap>
+	
+	<insert id="authInsert" parameterType="kr.spring.entity.Auth">
+		INSERT INTO AUTH(MEMID, AUTH) VALUES (#{memID}, #{auth})
+	</insert>
 	
 </mapper>
 

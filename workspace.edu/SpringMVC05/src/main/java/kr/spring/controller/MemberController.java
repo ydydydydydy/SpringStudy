@@ -2,6 +2,7 @@ package kr.spring.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import kr.spring.entity.Auth;
 import kr.spring.entity.Member;
 import kr.spring.mapper.MemberMapper;
 
@@ -77,12 +79,27 @@ public class MemberController {
          
          int cnt = mapper.join(m);
          
+         // 추가 : 권한테이블에 회원의 권한을 저장하기
+         List<Auth> list = m.getAuthList();
+         for(Auth auth : list) {
+        	 if(auth.getAuth() != null) {
+        		 // 권한값이 있을때만 권한테이블에 값 넣기
+        		 Auth saveVO =  new Auth();
+        		 saveVO.setMemID(m.getMemID()); // 회원아이디 넣기
+        		 saveVO.setAuth(auth.getAuth()); // 권한 넣기
+        		 // 권한 저장
+        		 mapper.authInsert(saveVO);
+        	 }
+         }
+         
          if(cnt == 1) {
             System.out.println("회원가입 성공!");
             rttr.addFlashAttribute("msgType", "성공메세지");
             rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
             // 회원가입 성공 시 로그인 처리까지 시키기
-            session.setAttribute("mvo", m);
+            // 회원가입 성공 시 회원정보 + 권한정보까지 가져오기
+            Member mvo = mapper.getMember(m.getMemID());
+            session.setAttribute("mvo", mvo);
             return "redirect:/";
          }else {
             System.out.println("회원가입 실패...");
