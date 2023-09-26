@@ -129,6 +129,7 @@ public class MemberController {
       return "member/loginForm";
    }
    
+/* 
    @RequestMapping("/login.do")
    public String login(Member m,RedirectAttributes rttr, HttpSession session) {
       // mapper에 login이라는 메소드 이름으로 로그인 기능을 수행하시오
@@ -149,7 +150,9 @@ public class MemberController {
          rttr.addFlashAttribute("msg", "로그인에 실패했습니다.");
          return "redirect:/loginForm.do";
       }
+      
    }
+*/
    
    @RequestMapping("/updateForm.do")
    public String updateForm() {

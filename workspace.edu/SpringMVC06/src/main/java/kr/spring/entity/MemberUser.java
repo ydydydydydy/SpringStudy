@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 
-public class MemberUser extends User{
+public class MemberUser extends User{  // User 클래스는 -> UserDetails 클래스를 상속받음
 	// Spring Security에 Member 객체를 담을 수 있게 해주는 클래스
 	
 	private Member member;
@@ -35,6 +35,6 @@ public class MemberUser extends User{
 				.collect(Collectors.toList())
 				/* 최종 컬렉션 리스트로 변경 */
 				);
-		this.member = member;
+		this.member = mvo;
 	}
 }

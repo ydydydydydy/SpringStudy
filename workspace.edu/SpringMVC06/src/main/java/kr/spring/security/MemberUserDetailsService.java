@@ -12,7 +12,6 @@ import kr.spring.mapper.MemberMapper;
 public class MemberUserDetailsService implements UserDetailsService{
 	// Spring Security에서 Mapper를 사용하기 위한 연결 클래스 -> Service
 	
-	
 	@Autowired
 	private MemberMapper mapper;
 	
@@ -32,17 +31,10 @@ public class MemberUserDetailsService implements UserDetailsService{
 
 		if(mvo != null) {
 			// 해당 사용자 존재
-			return new MemberUser(mvo);
-			
+			return new MemberUser(mvo);			
 		}else {
 			// 해당 사용자 없음
 			throw new UsernameNotFoundException("user with username" + username + "does not exist");
 		}
-		
-		
-		
-		
-		
-		return null;
 	}
 }
