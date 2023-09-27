@@ -20,7 +20,7 @@
 
 	<div class="container">
 		<jsp:include page="common/header.jsp"></jsp:include>
-		<h3>Spring MVC03</h3>
+		<h3>Spring MVC04</h3>
 		<div class="panel panel-default">
 			<div>
 				<img style="width: 100%; height: 400px;"

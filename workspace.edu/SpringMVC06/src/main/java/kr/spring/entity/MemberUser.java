@@ -35,6 +35,6 @@ public class MemberUser extends User{  // User 클래스는 -> UserDetails 클�
 				.collect(Collectors.toList())
 				/* 최종 컬렉션 리스트로 변경 */
 				);
-		this.member = mvo;
+		this.member = mvo;  // 나머지 계정 정보(나이, 성별..)을 member에 넣어줌
 	}
 }

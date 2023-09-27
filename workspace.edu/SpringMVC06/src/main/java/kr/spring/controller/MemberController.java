@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.spring.entity.Auth;
 import kr.spring.entity.Member;
+import kr.spring.entity.MemberUser;
 import kr.spring.mapper.MemberMapper;
+import kr.spring.security.MemberUserDetailsService;
 
 @Controller
 public class MemberController {
@@ -30,7 +34,14 @@ public class MemberController {
    private MemberMapper mapper;
    
    @Autowired // 내가 만들어 놓은 비밀번호 암호화 객체를 주입받아 사용하겠다
-   private PasswordEncoder pwEncoder; 
+   private PasswordEncoder pwEncoder;
+   
+   @Autowired
+   private MemberUserDetailsService MemberUserDetailsService;
+   // 회원 정보 수정 후 Spring Security Context에 접근하기 위한 객체
+   
+   
+   
    
    @GetMapping("/access-denied")  // 로그인 하지 않고 특정페이지를 요청했을 때 요청되는 url
    public String showAccessDenied() {
@@ -104,9 +115,9 @@ public class MemberController {
             rttr.addFlashAttribute("msg", "회원가입에 성공했습니다.");
             // 회원가입 성공 시 로그인 처리까지 시키기
             // 회원가입 성공 시 회원정보 + 권한정보까지 가져오기
-            Member mvo = mapper.getMember(m.getMemID());
-            session.setAttribute("mvo", mvo);
-            return "redirect:/";
+//            Member mvo = mapper.getMember(m.getMemID());
+//            session.setAttribute("mvo", mvo);
+            return "redirect:/loginForm.do";
          }else {
             System.out.println("회원가입 실패...");
             rttr.addFlashAttribute("msgType", "실패메세지");
@@ -118,11 +129,12 @@ public class MemberController {
       
    }
 
-   @RequestMapping("/logout.do")
-   public String logout(HttpSession session) {
-      session.invalidate();
-      return "redirect:/";
-   }
+//   @RequestMapping("/logout.do")
+//   public String logout(HttpSession session) {
+//      session.invalidate();
+//      System.out.println("로그아웃 실행");
+//      return "redirect:/";
+//   }
    
    @RequestMapping("/loginForm.do")
    public String loginForm() {
@@ -210,7 +222,17 @@ public class MemberController {
             
             Member info = mapper.getMember(m.getMemID());
             
-            session.setAttribute("mvo", info);
+            // session.setAttribute("mvo", info);
+            
+            // 회원정보 수정 성공시 Spring Security Context에 회원정보 다시 넣기
+            // 실제 Spring Security 기능을 실행하는 Authentication 객체 가져오기
+            // Authentication 객체는 내가 만든 MemberUserDetailsService를 통해
+            // DB안에 값을 넣는 일도 하지만
+            // ContextHolder 아래 Context 안에 있는 회원의 값을 가져올 수도 있다
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            // 기존 Context 회원정보 가져오기
+            MemberUser userAccount = (MemberUser)authentication.getPrincipal();
+            
             return "redirect:/";
          }else {
             rttr.addFlashAttribute("msgType", "실패메세지");
