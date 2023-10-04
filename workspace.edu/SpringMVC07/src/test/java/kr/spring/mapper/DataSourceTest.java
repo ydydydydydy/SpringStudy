@@ -1,6 +1,7 @@
 package kr.spring.mapper;
 
 import java.sql.Connection;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kr.spring.entity.Board;
 import lombok.extern.log4j.Log4j;
 
 @Log4j // 테스트 실행결과를 콘솔창에 나오게 하기위함
@@ -24,15 +26,26 @@ public class DataSourceTest {
 	@Autowired // root-context.xml에 있는 id가 dataSource인 녀석을 사용하겠다
 	private DataSource dataSource;
 
-	@Test // 메서드 이름 상관x
-	public void testConnection() {
-
-		try (Connection conn = dataSource.getConnection()) {
-			log.info(conn);
-		} catch (Exception e) {
-			e.printStackTrace();
+	@Autowired
+	private BoardMapper mapper;
+	
+	@Test
+	public void testGetList() {
+		List<Board> list = mapper.getList();
+		for(Board vo : list) {
+			System.out.println(vo.toString());
 		}
-
 	}
+	
+//	@Test // 메서드 이름 상관x
+//	public void testConnection() {
+//
+//		try (Connection conn = dataSource.getConnection()) {
+//			log.info(conn);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//	}
 
 }
