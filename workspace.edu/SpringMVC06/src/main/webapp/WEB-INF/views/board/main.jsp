@@ -8,7 +8,7 @@
 <!-- Spring Security에서 제공하는 계정정보 (SecurityContext 안에 계정정보 가져오기) -->
 <!-- 로그인한 계정정보 -->
 <c:set var="mvo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}" /> <!-- context안에 들어간 MemberUser를 가져옴 -->
-<!-- 권한정보 -->
+<!-- 권한정보!! -->
 <c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}" />
 
 <!DOCTYPE html>
