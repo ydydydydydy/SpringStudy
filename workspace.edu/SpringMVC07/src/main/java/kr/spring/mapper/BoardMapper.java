@@ -18,6 +18,8 @@ public interface BoardMapper {
 
 	public Member login(Member vo);
 
+	public Board read(int idx);
+
 }
 
 

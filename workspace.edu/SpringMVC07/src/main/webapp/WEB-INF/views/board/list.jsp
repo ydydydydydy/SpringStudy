@@ -63,7 +63,12 @@
                 <c:forEach items="${list}" var="vo" varStatus="i">
                    <tr>
                       <td>${i.count}</td>
-                      <td>${vo.title}</td>
+                      
+                      <td>
+                      <a href="${cpath}/board/get?idx=${vo.idx}">
+                      ${vo.title}
+                      </a>
+                      </td>
                       <td>${vo.writer}</td>
                       <td>
                          <fmt:formatDate value="${vo.indate}" pattern="yyyy-MM-dd"/>
@@ -86,15 +91,47 @@
      </div>
    </div>
    
+   	<!-- Modal -->
+	<div class="modal fade" id="myMessage" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div id="messageType" class="modal-content">
+				<div class="modal-header panel-heading">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+   
    <script type="text/javascript">
       $(document).ready(function(){
          
+    	  var result = "${result}";
+    	  checkModal(result);
+    	  
          $("#regBtn").click(function(){
             location.href="${cpath}/board/register";
          });
          
       });
-   
+      
+      function checkModal(result){
+    	  if(result == ''){
+    		  return;
+    	  }
+    	  if(parseInt(result) > 0){
+    		  $(".modal-body").text("게시글" + result + "번이 등록되었습니다.");
+    		  $("#myMessage").modal("show");
+    	  }
+    		  
+    		  
+      }
    
    </script>
    

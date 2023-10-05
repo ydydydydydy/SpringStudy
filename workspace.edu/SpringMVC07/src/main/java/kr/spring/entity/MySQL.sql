@@ -59,6 +59,8 @@ VALUES('jjy', '1234', '준용대디', '010-3333-4444');
 
 SELECT * FROM TBLMEMBER;
 
+SELECT * FROM TBLBOARD;
+
 
 
 

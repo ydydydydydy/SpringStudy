@@ -35,6 +35,12 @@ public class BoardServiceImpl implements BoardService{
 		mapper.insertSelectKey(vo);
 	}
 
+	@Override
+	public Board get(int idx) {
+		// TODO Auto-generated method stub
+		Board vo = mapper.read(idx);
+		return vo;
+	}
 
 
 }

@@ -30,6 +30,9 @@
 		SELECT * FROM TBLMEMBER WHERE MEMID = #{memID} AND MEMPWD = #{memPwd}		
 	</select>
 	
+	<select id="read" parameterType="int" resultType="kr.spring.entity.Board">
+		SELECT * FROM TBLBOARD WHERE IDX = #{idx}
+	</select>	
 </mapper>
 
 

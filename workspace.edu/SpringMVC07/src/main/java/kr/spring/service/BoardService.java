@@ -15,4 +15,6 @@ public interface BoardService {
 
 	public void register(Board vo);
 
+	public Board get(int idx);
+
 }
