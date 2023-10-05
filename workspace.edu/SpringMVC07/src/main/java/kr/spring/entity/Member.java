@@ -10,7 +10,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Member {
-
 	
 	private String memID;
 	private String memPwd;
@@ -19,4 +18,5 @@ public class Member {
 	private String memAddr;
 	private String latitude;
 	private String longitude;
+	
 }

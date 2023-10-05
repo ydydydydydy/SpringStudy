@@ -40,6 +40,7 @@
 		</dependency>
 		
 		
+				
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -122,9 +123,9 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> 
 		
-				<!-- lombok API 추가 -->
+		<!-- lombok API 추가 -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -172,7 +173,9 @@
 		    <artifactId>mybatis-spring</artifactId>
 		    <version>1.3.2</version>
 		</dependency>
-		   
+		
+		
+		       
 	</dependencies>
     <build>
         <plugins>
