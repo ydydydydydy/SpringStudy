@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 
 import kr.spring.entity.Board;
 
-@Mapper // MyBatis가 interface를 찾기위해 달아주는 부분
+@Mapper // MyBatis가 interface를 찾기위해 달아주는 부분(root-context.xml)
 public interface BoardMapper {
 	
 //	@Select("SELECT * FROM BOARD ORDER BY INDATE DESC")

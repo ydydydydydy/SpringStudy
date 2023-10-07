@@ -16,9 +16,9 @@ import kr.spring.mapper.BoardMapper;
 @Controller // 현재 클래스를 핸들러맵핑이 찾기 위해 컨트롤러로 등록하는 부분
 public class BoardController {
 	
-	@Autowired
-	private BoardMapper mapper; // MyBatis한테 JDBC를 실행하게 요청하는 객체
-
+	@Autowired // Autowired가 BoardMapper를 통해 SqlSessionFactoryBean을 가져옴(BoardMapper의 자식 class)
+	private BoardMapper mapper; // MyBatis한테 JDBC를 실행하게 요청하는 객체(중간다리 역할)
+								// SqlSessionFactoryBean BoardMapper의 타입으로 업캐스팅 됨
 	@RequestMapping("/") // 요청 url로 들어왔을 때 아래 기능을 수행하겠다
 	public String home() {
 		System.out.println("홈기능 수행");

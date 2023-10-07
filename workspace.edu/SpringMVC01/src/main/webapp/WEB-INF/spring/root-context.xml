@@ -16,16 +16,16 @@ xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/
 
    <!-- HikariDataSource(Connection POOL을 만드는 역할을 한다) -->
    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-   	destroy-method="close" lazy-init="true">
-      <constructor-arg ref="hikariConfig" />
+   	destroy-method="close" lazy-init="true"> <!-- dataSource 참조 -->
+      <constructor-arg ref="hikariConfig" /> <!-- connection하기 위한 정보(url driver id pw)를 가지고 있음 -->
    </bean>
 
    <!-- Mapper interface들을 메모리에 올리는 방법(scan) -->
-   <mybatis-spring:scan base-package="kr.spring.mapper"/>
+   <mybatis-spring:scan base-package="kr.spring.mapper"/> <!-- mybatis가 kr.spring. 안에 있는 mapper 패키지를 찾아오게 함 -->
    
    <!-- BoardMapper interface의 구현클래스 생성
    SqlSessionFactoryBean(SQL을 실행하는 API) -->
-   <bean class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource" />
+   <bean class="org.mybatis.spring.SqlSessionFactoryBean"> <!-- SqlSessionFactoryBean : 인터페이스를 가져가 getConnection, jdbc 실행하고 close까지 다 해줌 -->
+      <property name="dataSource" ref="dataSource" /> <!-- datasource : connection 연결하고 관리(정보를 가지고 있음) -->
    </bean>
 </beans>
