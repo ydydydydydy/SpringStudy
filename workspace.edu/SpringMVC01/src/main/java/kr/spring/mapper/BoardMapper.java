@@ -1,4 +1,4 @@
-package kr.spring.mapper;
+package kr.spring.mapper; 
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import kr.spring.entity.Board;
 
 @Mapper // MyBatis가 interface를 찾기위해 달아주는 부분(root-context.xml)
 public interface BoardMapper {
+// BoardMapper interface -> Spring과 MyBatis를 연결
 	
 //	@Select("SELECT * FROM BOARD ORDER BY INDATE DESC")
 	public List<Board> getLists(); // 게시글 전체보기 기능

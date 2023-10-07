@@ -18,7 +18,7 @@ public class BoardController {
 	
 	@Autowired // Autowired가 BoardMapper를 통해 SqlSessionFactoryBean을 가져옴(BoardMapper의 자식 class)
 	private BoardMapper mapper; // MyBatis한테 JDBC를 실행하게 요청하는 객체(중간다리 역할)
-								// SqlSessionFactoryBean BoardMapper의 타입으로 업캐스팅 됨
+								// SqlSessionFactoryBean가 BoardMapper의 타입으로 업캐스팅 됨
 	@RequestMapping("/") // 요청 url로 들어왔을 때 아래 기능을 수행하겠다
 	public String home() {
 		System.out.println("홈기능 수행");
@@ -33,7 +33,7 @@ public class BoardController {
 		// 한 개의 게시글은 - 번호, 제목, 내용, 작성자, 작성일, 조회수
 		
 		// 전체 게시글 조회기능
-		List<Board> list = mapper.getLists();
+		List<Board> list = mapper.getLists(); // 부모타입 -> List (하나의 게시글을 board 데이터 타입 받아옴)
 		
 //		Board b1 = new Board(1, "오늘 점심 추천 받는다", "짜장면 말고,,", "중국집매니아", "2023-09-05", 5);
 //		Board b2 = new Board(2, "어제 마지막에 나간 사람 누구임?", "정말 대단하네!", "준용쌤", "2023-09-05", 8);

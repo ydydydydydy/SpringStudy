@@ -16,7 +16,7 @@ xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/
 
    <!-- HikariDataSource(Connection POOL을 만드는 역할을 한다) -->
    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
-   	destroy-method="close" lazy-init="true"> <!-- dataSource 참조 -->
+   	destroy-method="close" lazy-init="true"> <!-- dataSource 를 참조 -->
       <constructor-arg ref="hikariConfig" /> <!-- connection하기 위한 정보(url driver id pw)를 가지고 있음 -->
    </bean>
 
