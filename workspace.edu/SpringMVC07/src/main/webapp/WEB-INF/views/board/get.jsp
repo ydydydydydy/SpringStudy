@@ -28,12 +28,12 @@
 	    		</tr>
 	    		<tr>
 	    			<td>제목</td>
-	    			<td>${vo.title}</td>
+	    			<td><c:out value="${vo.title}" /></td>
 	    		</tr>
 	    		<tr>
 	    			<td>내용</td>
 	    			<td>
-	    				<textarea class="form-control" readonly="readonly" rows="10" cols"" >${vo.content}</textarea>
+	    				<textarea class="form-control" readonly="readonly" rows="10" cols"" ><c:out value="${vo.content}" /></textarea>
 	    			</td>
 	    		</tr>
 	    		<tr>
@@ -45,28 +45,53 @@
 	    			<td colspan="2" style="text-align: center;">
 	    			
 	    				<c:if test="${not empty mvo}">  <!-- 로그인을 한 상황 -->
-	    					<button onclick="location.href='${cpath}/board/reply?idx=${vo.idx}'" class="btn btn-sm btn-primary">답글</button>
-	    					<button onclick="location.href='${cpath}/board/modify?idx=${vo.idx}'" class="btn btn-sm btn-success">수정</button>
+	    					<button data-btn="reply" class="btn btn-sm btn-primary">답글</button>
+	    					<button data-btn="modify" class="btn btn-sm btn-success">수정</button>
 	    				</c:if>
 	    				<c:if test="${empty mvo}">
-	    					<button disabled="disabled" class="btn btn-sm btn-primary">답글</button>
-	    					<button disabled="disabled" onclick="location.href='${cpath}/board/modify?idx=${vo.idx}'" class="btn btn-sm btn-success">수정</button>
+	    					<button  disabled="disabled" class="btn btn-sm btn-primary">답글</button>
+	    					<button disabled="disabled" class="btn btn-sm btn-success">수정</button>
+	    					<!-- data- 뒤에는 어떤 이름이 와도 상관X (하이픈 뒤는 꼬리표로 달아주는 이름) -->
 	    				</c:if>
 	    				
-	    				
-	    				<button onclick="location.href='${cpath}/board/list'" class="btn btn-sm btn-warning">목록</button>
+	    				<button data-btn="list" class="btn btn-sm btn-warning">목록</button>
 	    			</td>
 	    		</tr>
 	    		
 	    		
 	    	</table>
+	    	
+	    	<form id="frm" method="get" action="">
+	    		<input id="idx" type="hidden" name="idx" value="${vo.idx}">
+	    	</form>
+	    	
 	    </div>
 	    <div class="panel-footer">스프링게시판 - 박병관</div>
 	  </div>
 	</div>
 	
 	<script type="text/javascript">
-	
+		// 링크처리x
+		$(document).ready(function(){
+			$("button").on("click", function(e){
+				var formData = $("#frm");
+				var btn = $(this).data("btn");
+				
+				if(btn == "reply"){
+					formData.attr("action","${cpath}/board/reply");
+				}else if(btn == "modify"){
+					formData.attr("action","${cpath}/board/modify");
+				}else if(btn == "list"){
+					formData.attr("action","${cpath}/board/list");
+					formData.find("#idx").remove();
+				}
+				
+				formData.submit();
+				
+			});
+		});
+		
+		
 	</script>
 	
 </body>

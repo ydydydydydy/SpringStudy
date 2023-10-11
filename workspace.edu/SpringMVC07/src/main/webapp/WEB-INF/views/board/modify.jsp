@@ -29,12 +29,12 @@
 	    		</tr>
 	    		<tr>
 	    			<td>제목</td>
-	    			<td><input value="${vo.title}" class="form-control" name="title" type="text"></td>
+	    			<td><input value="<c:out value='${vo.title}'/>" class="form-control" name="title" type="text"></td>
 	    		</tr>
 	    		<tr>
 	    			<td>내용</td>
 	    			<td>
-	    				<textarea name="content" class="form-control" rows="10" cols"" >${vo.content}</textarea>
+	    				<textarea name="content" class="form-control" rows="10" cols"" ><c:out value="${vo.content}" />${vo.content}</textarea>
 	    			</td>
 	    		</tr>
 	    		
@@ -48,31 +48,51 @@
 	    			
 	    				<c:if test="${not empty mvo && mvo.memID eq vo.memID }">
 	    					<button type="submit" class="btn btn-sm btn-primary">수정</button>
-	    					<button type="button" onclick="location.href='${cpath}/board/remove?idx=${vo.idx}'" class="btn btn-sm btn-success">삭제</button>
+	    					<button data-btn="remove" type="button" class="btn btn-sm btn-success">삭제</button>
 	    				</c:if>
 	    				
 	    				<c:if test="${empty mvo or mvo.memID ne vo.memID }">  <!-- 로그인을 하지 않거나 작성자가 아닐 때-->
 	    					<button disabled="disabled" type="submit" class="btn btn-sm btn-primary">수정</button>
-	    					<button disabled="disabled" type="button" onclick="location.href='${cpath}/board/remove?idx=${vo.idx}'" class="btn btn-sm btn-success">삭제</button>
+	    					<button disabled="disabled" type="button" class="btn btn-sm btn-success">삭제</button>
 	    				</c:if>
 	    				
-	    				<button type="button" onclick="location.href='${cpath}/board/list'" class="btn btn-sm btn-warning">목록</button>
+	    				<button data-btn="list" type="button" class="btn btn-sm btn-warning">목록</button>
 	    			</td>
 	    		</tr>
 	    	</table>
 	    	</form>
+	    	
+	    	<form id="frm" method="get" action="">  <!-- form 태그 안에 form 태그를 -->
+	    		<input id="idx" type="hidden" name="idx" value="${vo.idx}">
+	    	</form>
+	    	
 	    </div>
 	    <div class="panel-footer">스프링게시판 - 박병관</div>
 	  </div>
 	</div>
 	
 	<script type="text/javascript">
-	
+		// 링크처리
+		$(document).ready(function(){
+			$("button").on("click", function(e){
+				var formData = $("#frm");
+				var btn = $(this).data("btn");
+				
+				if(btn == "remove"){
+					formData.attr("action","${cpath}/board/remove");
+				}else if(btn == "list"){E
+					formData.attr("action","${cpath}/board/list");
+					formData.find("#idx").remove();
+				}
+				
+				formData.submit();
+				
+			});
+		});
 	</script>
 	
 </body>
 </html>
-
 
 
 

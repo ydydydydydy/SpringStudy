@@ -41,7 +41,9 @@
 	</update>
 	
 	<delete id="delete" parameterType="int">
-		DELETE FROM TBLBOARD WHERE IDX = #{idx}
+		UPDATE TBLBOARD
+		SET BOARDAVAILABLE = 0
+		WHERE IDX = #{idx}
 	</delete>
 	
 	<update id="replySeqUpdate" parameterType="kr.spring.entity.Board">
