@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Data
+@Data // getter, setter가 필요한 경우 @Data 어노테이션을 달아준다
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
