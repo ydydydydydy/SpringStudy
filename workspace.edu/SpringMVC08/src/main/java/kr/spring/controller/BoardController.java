@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,8 +58,8 @@ public class BoardController {
 		return "board/modify";
 	}
 	
-	@GetMapping("/get")
-	public String get(@RequestParam("idx") int idx, Model model) {
+	@GetMapping("/get")											 // model.addAttribute(cri)와 같은 역할
+	public String get(@RequestParam("idx") int idx, Model model, @ModelAttribute("cri") Criteria cri) {
 		Board vo = service.get(idx);
 		model.addAttribute("vo", vo);
 		return "board/get";

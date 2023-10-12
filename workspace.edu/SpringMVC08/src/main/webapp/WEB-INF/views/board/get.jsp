@@ -58,11 +58,12 @@
 	    			</td>
 	    		</tr>
 	    		
-	    		
 	    	</table>
 	    	
 	    	<form id="frm" method="get" action="">
 	    		<input id="idx" type="hidden" name="idx" value="${vo.idx}">
+	    		<input type="hidden" name="page" value="${cri.page}">
+	    		<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
 	    	</form>
 	    	
 	    </div>

@@ -19,7 +19,7 @@ public class PageMaker { // 페이징 처리 클래스
 	
 	private boolean next; // 다음 버튼
 	
-	private int displayPageNum = 10; // 하단에 몇 개의 페이지를 보여줄 것인지
+	private int displayPageNum = 5; // 하단에 몇 개의 페이지를 보여줄 것인지
 	// 1 2 3 4 5 6 7 8 9 10
 	
 	// 총 게시글의 수를 구하는 메소드
