@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.spring.entity.Board;
+import kr.spring.entity.Criteria;
+import kr.spring.entity.PageMaker;
 import kr.spring.service.BoardService;
 
 @Controller
@@ -78,9 +80,17 @@ public class BoardController {
 	}
 
 	@GetMapping("/list")
-	public String boardList(Model model) {
-		List<Board> list = service.getList();
+	public String boardList(Model model, Criteria cri) {
+		// 이제는 페이지 정보를 알고있는 Criteria 객체를 Service에게 전달
+		// 페이징 처리에 필요한 pageMaker 객체도 생성
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri); // pageMaker가 페이징 기법을 하기위한 cri객체 전달
+		pageMaker.setTotalCount(service.totalCount()); // 페이징 기법을 하려면 전체 게시글 개수를 알려줘야함
+		
+		List<Board> list = service.getList(cri);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pageMaker", pageMaker);
 		return "board/list";
 	}
 	

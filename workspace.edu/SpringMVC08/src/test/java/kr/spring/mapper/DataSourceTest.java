@@ -20,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 import kr.spring.entity.Board;
+import kr.spring.entity.Criteria;
 import kr.spring.service.BoardServiceImpl;
 import lombok.extern.log4j.Log4j;
 
@@ -64,23 +65,27 @@ public class DataSourceTest {
 //	}
 	
 	
-	@Test
-	public void testController() throws Exception{
-		
-		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/board/modify?idx=3")) // perform -> 요청하다
-				.andReturn() // return 값을 받아오겠다
-				.getModelAndView() // controoler의 model 값과 view경로를 다 받아오겠다
-				);
-	}
-	
 //	@Test
-//	public void testGetList() {
-//		List<Board> list = service.getList();
-//		for(Board vo : list) {
-//			System.out.println(vo.toString());
-//		}
+//	public void testController() throws Exception{
+//		
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.get("/board/modify?idx=3")) // perform -> 요청하다
+//				.andReturn() // return 값을 받아오겠다
+//				.getModelAndView() // controoler의 model 값과 view경로를 다 받아오겠다
+//				);
 //	}
+	
+	
+	@Test
+	public void testGetList() {
+		Criteria cri = new Criteria();
+		cri.setPage(2);
+		cri.setPerPageNum(5);
+		List<Board> list = service.getList(cri);
+		for(Board vo : list) {
+			System.out.println(vo.toString());
+		}
+	}
 	
 	// service 클래스 안에 getList가 잘 되는지 테스트해보시오
 	

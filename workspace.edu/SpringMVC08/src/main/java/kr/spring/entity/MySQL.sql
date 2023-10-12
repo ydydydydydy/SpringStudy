@@ -17,19 +17,19 @@ CREATE TABLE TBLBOARD(
 
 INSERT INTO TBLBOARD
 SELECT IFNULL(MAX(IDX + 1), 1),
-'aischool', '공지사항입니다.', '다음주 월요일 정상 등원하겠습니다', '교육운영부',
+'aischool', '안녕안녕안녕', '다음주 월요일 정상 등원하겠습니다', '교육운영부',
 NOW(), 0, IFNULL(MAX(BOARDGROUP + 1), 1), 0, 0, 1
 FROM TBLBOARD;
 
 INSERT INTO TBLBOARD
 SELECT IFNULL(MAX(IDX + 1), 1),
-'pbk', 'Spring반 친구들은 들으라', '맛있는 간식 또 사줄께요 ^^*', '병관쌤',
+'pbk', 'ㅂㅂㅂㅂㅂ', '맛있는 간식 또 사줄께요 ^^*', '병관쌤',
 NOW(), 0, IFNULL(MAX(BOARDGROUP + 1), 1), 0, 0, 1
 FROM TBLBOARD;
 
 INSERT INTO TBLBOARD
 SELECT IFNULL(MAX(IDX + 1), 1),
-'jjy', '준용쌤 입니다! 여러분 제발 늦지마세요', '아침마다 연락 자주받는 친구들 알겠지?', '준용대디',
+'jjy', '안녕하세용', '아침마다 연락 자주받는 친구들 알겠지?', '준용대디',
 NOW(), 0, IFNULL(MAX(BOARDGROUP + 1), 1), 0, 0, 1
 FROM TBLBOARD;
 

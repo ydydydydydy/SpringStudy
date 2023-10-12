@@ -110,6 +110,23 @@
              </tr>
              </c:if>
           </table>
+          
+          <div class="pull-right">
+			  <ul class="pagination">
+				<!-- 페이지번호 처리 -->
+				<c:forEach var="pageNum" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+					
+					<c:if test="${pageMaker.cri.page == pageNum}">
+						<li class="active"><a href="${cpath}/board/list?page=${pageNum}">${pageNum}</a></li>
+					</c:if>
+					
+					<c:if test="${pageMaker.cri.page != pageNum}">
+						<li><a href="${cpath}/board/list?page=${pageNum}">${pageNum}</a></li>
+					</c:if>
+					
+				</c:forEach>
+			  </ul>
+		  </div>
        </div>
        <div class="panel-footer">스프링게시판 - 박병관</div>
      </div>

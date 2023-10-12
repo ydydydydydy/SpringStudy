@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.spring.entity.Board;
+import kr.spring.entity.Criteria;
 import kr.spring.entity.Member;
 import kr.spring.mapper.BoardMapper;
 
@@ -16,9 +17,9 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 
 	@Override
-	public List<Board> getList() {
+	public List<Board> getList(Criteria cri) {
 		// 게시글 전체목록 가져오기 기능
-		List<Board> list = mapper.getList();
+		List<Board> list = mapper.getList(cri);
 		return list;
 	}
 
@@ -73,6 +74,12 @@ public class BoardServiceImpl implements BoardService{
 		// 답변 저장 기능
 		mapper.replyInsert(vo);
 		
+	}
+
+	@Override
+	public int totalCount() {
+		// TODO Auto-generated method stub
+		return mapper.totalCount();
 	}
 
 

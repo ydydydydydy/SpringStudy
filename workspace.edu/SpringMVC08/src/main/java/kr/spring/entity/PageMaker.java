@@ -46,5 +46,21 @@ public class PageMaker { // 페이징 처리 클래스
 			startPage = 1; // 혹시라도 startPage가 0보다 작거나 같다면 1부터 시작할 수 있게
 		}
 		
+		// 3. 최종페이지가 맞는지 유효성 검사
+		// 예) 실제로 글이 101개라면 10개 페이지 + 1페이지만 더 만들어줘야 한다
+		// 마지막 페이지 계산
+		int tempEndPage = (int)(Math.ceil(totalCount / (double)cri.getPerPageNum()));
+		
+		// 4. 화면에 보여질 마지막 페이지 유효성 체크
+		if (tempEndPage < endPage) {
+			endPage = tempEndPage; // 마지막 페이지가 진짜로 구한 페이지 숫자보다 높으면 치환
+		}
+		
+		// 5. 이전, 다음 페이지 버튼 존재여부
+		prev = (startPage == 1) ? false : true;
+		next = (endPage < tempEndPage) ? true : false;
+		
 	}
+	
+	
 }
