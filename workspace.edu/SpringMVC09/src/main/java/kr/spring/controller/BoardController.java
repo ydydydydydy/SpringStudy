@@ -31,6 +31,10 @@ public class BoardController {
 		service.reply(vo);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		return "redirect:/board/list";
 	}
 	
@@ -46,6 +50,10 @@ public class BoardController {
 		service.remove(idx);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		return "redirect:/board/list";
 	}
 	
@@ -54,6 +62,10 @@ public class BoardController {
 		service.modify(vo);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
 		return "redirect:/board/list";
 	}
 	
@@ -89,8 +101,8 @@ public class BoardController {
 	@RequestMapping("/list")
 	public String boardList(Model model, Criteria cri) {
 		// 이제는 페이지 정보를 알고있는 Criteria 객체를 Service에게 전달
-		// 페이징 처리에 필요한 pageMaker 객체도 생성
 		PageMaker pageMaker = new PageMaker();
+		// 페이징 처리에 필요한 pageMaker 객체도 생성
 		pageMaker.setCri(cri); // pageMaker가 페이징 기법을 하기위한 cri객체 전달
 		pageMaker.setTotalCount(service.totalCount(cri)); // 페이징 기법을 하려면 전체 게시글 개수를 알려줘야함
 		

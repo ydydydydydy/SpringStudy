@@ -62,9 +62,12 @@
 	    			</td>
 	    		</tr>
 	    	</table>
-	    	
 	    		<input type="hidden" name="page" value="${cri.page}">
 	    		<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+	    		
+	    		<!-- type과 keyword를 넘기기위한 부분 추가 -->
+                <input type="hidden" name="type" value="${cri.type}">
+                <input type="hidden" name="keyword" value="${cri.keyword}">
 	    	</form>
 	    	
 	    </div>

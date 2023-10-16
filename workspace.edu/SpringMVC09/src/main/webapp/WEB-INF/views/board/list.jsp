@@ -113,13 +113,13 @@
           	  <form class="form-inline" action="${cpath}/board/list" method="post">
           	  	<div class="form-group">
           	  		<select name="type" class="form-control">
-          	  			<option value="writer">이름</option>
-          	  			<option value="title">제목</option>
-          	  			<option value="content">내용</option>
+          	  			<option value="writer" ${pageMaker.cri.type=='writer' ? 'selected' : ''} >이름</option>
+          	  			<option value="title" ${pageMaker.cri.type=='title' ? 'selected' : ''} >제목</option>
+          	  			<option value="content" ${pageMaker.cri.type=='content' ? 'selected' : ''} >내용</option>
           	  		</select>
           	  	</div>
           	  	<div class="form-group">
-          	  		<input type="text" class="form-control" name="keyword">
+          	  		<input type="text" value="${pageMaker.cri.keyword}" class="form-control" name="keyword">
           	  	</div>
           	  	<button type="submit" class="btn btn-success">검색</button>
           	  </form>
@@ -156,7 +156,10 @@
            
            <form action="${cpath}/board/list" id="pageFrm">
               <input type="hidden" id="page" name="page" value="${pageMaker.cri.page}">           
-              <input type="hidden" id="perPageNum" name="perPageNum" value="${pageMaker.cri.perPageNum}">           
+              <input type="hidden" id="perPageNum" name="perPageNum" value="${pageMaker.cri.perPageNum}"> 
+              <!-- type과 keyword를 넘기기위한 부분 추가 -->
+              <input type="hidden" name="type" value="${pageMaker.cri.type}">
+              <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
            </form>
            
          </div>
@@ -192,7 +195,7 @@
          // li태그 안에 a태그 값 가져와서 form태그에 적용시켜 페이지이동
          
          $(".paginate_button a").on("click", function(e){  // 부모가 paginate button을 가진 a태그를 클릭했을 때 작동(function)
-            // e -> 현재 클릭한 a태크 요소 자체
+            // e -> 현재 클릭한 a태그 요소 자체
             e.preventDefault(); // a태그의 href속성 작동 막기
             var page = $(this).attr("href"); // 클릭한 a태그의 href값 가져오기
             pageFrm.find("#page").val(page);

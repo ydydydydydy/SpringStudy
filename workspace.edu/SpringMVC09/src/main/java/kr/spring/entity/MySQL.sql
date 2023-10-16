@@ -17,7 +17,7 @@ CREATE TABLE TBLBOARD(
 
 INSERT INTO TBLBOARD
 SELECT IFNULL(MAX(IDX + 1), 1),
-'aischool', 'ㅂㅂㅂ', '다음주 월요일 정상 등원하겠습니다', '교육운영부',
+'aischool', '공지11', '다음주 월요일 정상 등원하겠습니다', '교육운영부',
 NOW(), 0, IFNULL(MAX(BOARDGROUP + 1), 1), 0, 0, 1
 FROM TBLBOARD;
 
