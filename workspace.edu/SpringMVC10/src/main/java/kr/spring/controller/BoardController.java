@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.entity.Board;
 import kr.spring.service.BoardService;
@@ -22,6 +26,17 @@ public class BoardController {
 		List<Board> list = boardService.getList();
 		model.addAttribute("list", list);
 		return "list";
+	}
+	@PostMapping("/register")
+	public String register(Board vo) {
+		boardService.register(vo);
+		return "redirect:/list";
+	}
+	
+	@GetMapping("/get") // list.jsp에서 ajax를 통해 비동기 방식으로 요청 -> ResponseBody
+	public @ResponseBody Board get(@RequestParam("idx") Long idx) {
+		Board vo = boardService.get(idx);
+		return vo;
 	}
 	
 	
