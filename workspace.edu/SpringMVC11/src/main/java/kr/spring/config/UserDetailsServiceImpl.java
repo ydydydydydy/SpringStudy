@@ -27,6 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		}
 		
 		return new CustomUser(member);
+		
 	}
 
 }

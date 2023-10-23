@@ -8,3 +8,10 @@ VALUES('안녕하세요','손석구입니다','석구');
 
 INSERT INTO BOARD(TITLE, CONTENT, WRITER)
 VALUES('나는요 SPRING 좋은걸','아이쿠','아이유');
+
+SELECT * FROM MEMBER;
+
+DROP TABLE AUTH;
+
+DROP TABLE MEMBER;
+

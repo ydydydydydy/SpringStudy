@@ -6,6 +6,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
+import lombok.Data;
+
+@Data
 public class CustomUser  extends User{
 	// 우리가 만든 회원정보 Member를 
 	// Spring Context Holder에 저장하기 위해서는
