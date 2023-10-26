@@ -19,8 +19,7 @@
    <div class="container">
      <h2>Spring MVC09</h2>
      <div class="panel panel-default">
-       <div class="panel-heading">
-       
+       <div class="panel-heading">      
        <c:if test="${empty mvo}">
          <form class="form-inline" action="${cpath}/login/loginProcess" method="post">
             <div class="form-group">

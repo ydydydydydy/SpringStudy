@@ -10,6 +10,7 @@
 
 <c:set var="cpath" value="${pageContext.request.contextPath}" />    
     
+    
 <!-- 로그인한 계정정보 -->
 <c:set var="user" value="${SPRING_SECURITY_CONTEXT.authentication.principal}" />
 <!-- 권한정보 -->
@@ -76,6 +77,8 @@
              			<button class="btn btn-warning form-control">개인정보수정</button>
              		</sec:authorize>
              		
+             		
+             		
              	</div>
              </div>
           </div>
@@ -110,6 +113,7 @@
              		<form id="regForm" action="${cpath}/board/register" method="post">
              		
              			<input type="hidden" id="idx" name="idx" value="">
+             			
              			<div class="form-group">
              				<label for="title">제목</label>
              				<input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">
@@ -141,8 +145,9 @@
           </div>
        </div>
     </div> 
-    <div class="card-footer">스프링 - 박병관</div>
+    <div class="card-footer">스프링 - 염다영</div>
   </div>
+  
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
@@ -207,7 +212,6 @@
 				$("button[data-oper='updateForm']").attr("disabled", true);
 				$("button[data-oper='updateForm']").attr("disabled", true);
 			}
-			
 			
 		}
 		

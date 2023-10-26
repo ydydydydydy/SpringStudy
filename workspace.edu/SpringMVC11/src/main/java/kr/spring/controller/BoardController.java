@@ -23,11 +23,11 @@ public class BoardController {
 	
 	@RequestMapping("/list")
 	public String list(Model model) { // 게시글 전체 조회
-		
 		List<Board> list = boardService.getList();
 		model.addAttribute("list", list);
 		return "board/list";
 	}
+	
 	@PostMapping("/register")
 	public String register(Board vo) {
 		boardService.register(vo);
@@ -51,4 +51,5 @@ public class BoardController {
 		boardService.update(vo);
 		return "redirect:/board/list";
 	}
+	
 }

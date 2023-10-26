@@ -15,10 +15,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
 	private MemberRepository memberRepository;
-	
+	// 로그인 성공한 사람의 id가 넘어옴	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// 로그인 성공한 사람의 id가 넘어옴
+
 		
 		Member member = memberRepository.findById(username).get();
 		
