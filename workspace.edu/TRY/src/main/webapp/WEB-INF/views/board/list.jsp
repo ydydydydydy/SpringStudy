@@ -207,7 +207,6 @@
          var result = "${result}";
          checkModal(result);
          
-         
          $("#regBtn").click(function(){
             location.href="${cpath}/board/register";
          });
