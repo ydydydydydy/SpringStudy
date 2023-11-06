@@ -20,7 +20,9 @@ import kr.spring.service.BoardService;
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
-	// BoardSerivice
+	
+	
+	// sss
 	@Autowired
 	private BoardService service;
 	// BoardService -> interface
