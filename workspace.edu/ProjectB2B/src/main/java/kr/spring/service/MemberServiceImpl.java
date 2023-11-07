@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.spring.entity.Board;
 import kr.spring.entity.Member;
+import kr.spring.entity.Role;
 import kr.spring.repository.BoardRepository;
 import kr.spring.repository.MemberRepository;
 
@@ -25,6 +26,7 @@ public class MemberServiceImpl implements MemberService{
 	public void join(Member vo) {
 		String encPw = vo.getPassword();
 		vo.setPassword(passwordEncoder.encode(encPw));
+		vo.setRole(Role.MEMBER);
 		memberRepository.save(vo);
 	}
 	

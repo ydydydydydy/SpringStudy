@@ -23,7 +23,21 @@ public class Member {
 	
 	private String name;  // 이름
 	
-	private boolean ebled; // 계정 활성화/비활성화 부분
+//	private boolean ebled; // 계정 활성화/비활성화 부분
+	
+	private String businessNumber;//사업자번호
+	
+	private String industry1; //업종1차
+	
+	private String industry2; //업종2차
+	
+	private String company; //회사이름
+	
+	private String email;
+	
+	private String phone;
+	
+	
 	
 }
 

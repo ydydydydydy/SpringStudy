@@ -10,7 +10,7 @@ import kr.spring.entity.Role;
 import kr.spring.repository.MemberRepository;
 
 @SpringBootTest
-class SpringMvc11ApplicationTests {
+class SpringMvc12ApplicationTests {
 	
 	@Autowired
 	private MemberRepository memberRepository;
@@ -20,13 +20,12 @@ class SpringMvc11ApplicationTests {
 
 	@Test
 	void contextLoads() {
-		// 회원가입테이스
+		// 회원가입테스트
 		Member m = new Member();
 		m.setUsername("pcw");
 		m.setPassword(passwordEncoder.encode("1234"));
 		m.setName("박치우");
 		m.setRole(Role.MEMBER);
-		m.setEbled(true);
 		memberRepository.save(m);
 		
 	}

@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.spring.entity.Member;
+import kr.spring.repository.MemberRepository;
 import kr.spring.service.MemberService;
 
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
+	
+	@Autowired
+	private MemberRepository memberRepository;
 	
 	@Autowired
 	private MemberService memberService;
@@ -23,10 +27,16 @@ public class MemberController {
 	}
 	
 	@GetMapping("/login")
-	public String login(Member vo) {
+	public String login() {
 		return "member/login";
 	}
 	
+	
+//	@PostMapping("/login")
+//	public String login(Member vo) {
+//		return "member/login";
+//	}
+
 	@GetMapping("/join")
 	public String join() {
 		return "member/join";

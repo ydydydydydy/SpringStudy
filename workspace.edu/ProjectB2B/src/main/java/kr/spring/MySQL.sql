@@ -6,6 +6,8 @@ SELECT * FROM MEMBER;
 
 SELECT * FROM BOARD;
 
+
+
 INSERT INTO BOARD(TITLE, CONTENT, WRITER)
 VALUES('오늘 저녁에 하늘마당에서 보실 분','내가 치킨 쏜다','명훈쌤');
 
