@@ -22,11 +22,11 @@ import kr.spring.service.BoardService;
 public class BoardController {
 	
 	
-	// sss
 	@Autowired
 	private BoardService service;
 	// BoardService -> interface
 	// BoardServiceImpl -> BoardService로 업캐스팅 된다
+	
 	
 	@PostMapping("/reply")
 	public String reply(Board vo, Criteria cri, RedirectAttributes rttr) { // 부모글 번호, 작성 ID, 제목, 답글, 작성자 이름
