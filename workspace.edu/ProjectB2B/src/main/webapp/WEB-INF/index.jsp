@@ -57,7 +57,7 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge To Be</h1>
+                    <h1 class="m-0">Bridge2B</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -65,7 +65,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <a href="project.html" class="nav-item nav-link">Project</a>
@@ -80,11 +80,11 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <c:if test="${empty user}">
-                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
+                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block shadow-button" id="UserButton">Login / Join</a>
                     </c:if>
                     <c:if test="${not empty user}">
 	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
+	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block shadow-button" id="UserButton">Log out</button>
 	    				</form>
 	    			</c:if>
                 </div>
@@ -94,8 +94,8 @@
                 <div class="container px-lg-5">
                     <div class="row g-5 align-items-end">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated slideInDown">A Digital Agency Of Inteligents & Creative People</h1>
-                            <p class="text-white pb-3 animated slideInDown">Tempor rebum no at dolore lorem clita rebum rebum ipsum rebum stet dolor sed justo kasd. Ut dolor sed magna dolor sea diam. Sit diam sit justo amet ipsum vero ipsum clita lorem</p>
+                            <h1 class="text-white mb-4 animated slideInDown">Promotion Platform Technology.</h1>
+                            <p class="text-white pb-3 animated slideInDown font ">We create optimized matching and create performance. </p>
                             <a href="" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Read More</a>
                             <a href="" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contact Us</a>
                         </div>
@@ -178,7 +178,7 @@
                         <a href="" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3">Read More</a>
                     </div>
                     <div class="col-lg-6">
-                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="resources/img/about.png">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="resources/img/business1.png">
                     </div>
                 </div>
             </div>

@@ -86,6 +86,11 @@ h6,
     border-radius: 50px;
 }
 
+#UserButton:hover {
+  background-color: #FFA500; /* 예시로 주황색 배경색을 사용합니다. */
+  color: #000000; /* 예시로 흰색 텍스트 색상을 사용합니다. */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가할 수도 있습니다. */
+}
 
 /*** Navbar ***/
 .navbar .dropdown-toggle::after {
@@ -588,4 +593,23 @@ h6,
 .footer .copyright a:hover,
 .footer .footer-menu a:hover {
     color: var(--secondary);
+}
+
+.shadow-button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #3498db;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	/* 그림자 설정 */
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.font {
+	font-size: 20px;
 }

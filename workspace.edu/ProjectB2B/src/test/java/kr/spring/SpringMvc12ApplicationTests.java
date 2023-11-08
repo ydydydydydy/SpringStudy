@@ -24,7 +24,7 @@ class SpringMvc12ApplicationTests {
 		Member m = new Member();
 		m.setUsername("pcw");
 		m.setPassword(passwordEncoder.encode("1234"));
-		m.setName("박치우");
+
 		m.setRole(Role.MEMBER);
 		memberRepository.save(m);
 		

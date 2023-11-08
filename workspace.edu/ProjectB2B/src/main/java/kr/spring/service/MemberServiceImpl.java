@@ -29,6 +29,11 @@ public class MemberServiceImpl implements MemberService{
 		vo.setRole(Role.MEMBER);
 		memberRepository.save(vo);
 	}
+
+	@Override
+	public boolean select(String username) {
+		return memberRepository.existsById(username);
+	}
 	
 	
 

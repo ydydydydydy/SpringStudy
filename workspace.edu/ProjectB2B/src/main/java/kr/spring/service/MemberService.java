@@ -8,6 +8,8 @@ import kr.spring.entity.Member;
 public interface MemberService {
 	
 	public void join(Member vo);
+
+	public boolean select(String username);
 }
 
 

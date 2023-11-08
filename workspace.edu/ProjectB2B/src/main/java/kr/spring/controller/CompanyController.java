@@ -12,46 +12,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.entity.Board;
+import kr.spring.entity.Company;
 import kr.spring.service.BoardService;
+import kr.spring.service.CompanyService;
 
 @Controller
-@RequestMapping("/board/*")
-public class BoardController {
+@RequestMapping("/company/*")
+public class CompanyController {
 	
 	@Autowired
-	private BoardService boardService;
+	private CompanyService companyService;
 	
 	@RequestMapping("/list")
 	public String list(Model model) { // 게시글 전체조회 
-		List<Board> list = boardService.getList();
+		List<Company> list = companyService.getList();
 		model.addAttribute("list", list);
-		return "board/list";
+		System.out.println(list);
+		return "company/list";
 	}
 	
-	@PostMapping("/register")
-	public String register(Board vo) {
-		boardService.register(vo);
-		return "redirect:/board/list";
-	}
+
 	
 	@GetMapping("/get")
-	public @ResponseBody Board get(@RequestParam("idx") Long idx) {
-		Board vo = boardService.get(idx);
+	public @ResponseBody Company get(@RequestParam("idx") String idx) {
+		Company vo = companyService.get(idx);
 		return vo;
 	}
 	
-	@GetMapping("/remove")
-	public String remove(@RequestParam("idx") Long idx) {
-		boardService.delete(idx);
-		return "redirect:/board/list";
-	}
-	
-	@PostMapping("/modify")
-	public String modify(Board vo) {
-		boardService.update(vo);
-		return "redirect:/board/list";
-	}
 
+	
 	
 }
 

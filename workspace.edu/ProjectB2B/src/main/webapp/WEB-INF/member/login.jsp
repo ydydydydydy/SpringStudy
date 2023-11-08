@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/css/style.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <style >
@@ -80,9 +81,30 @@ button:focus {
 }
 
 button.ghost {
-  background-color: transparent;
-  border-color: #FFFFFF;
+  background-color: #fc9a07;
+  border: 2px solid #FFFFFF;
+  color: #000000;
 }
+
+button.ghost:hover {
+  background-color: #FF8000;
+  border: 2px solid #FFFFFF;
+  color: #000000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#UserButton {
+  background-color: #0B0B3B;
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#UserButton:hover {
+  background-color: #FFA500; /* 예시로 주황색 배경색을 사용합니다. */
+  color: #000000; /* 예시로 흰색 텍스트 색상을 사용합니다. */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가할 수도 있습니다. */
+}
+
 
 form {
   background-color: #FFFFFF;
@@ -96,23 +118,32 @@ form {
 }
 
 input {
-  background-color: #eee;
-  border: none;
+  background-color: #F2F2F2;
+  border: 1px solid #BDBDBD;
+  border-radius: 5px;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  
 }
+
+input:hover {
+  background-color: #D8D8D8;
+  color: #000000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 
 .container {
   background-color: #fff;
   border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
       0 10px 10px rgba(0,0,0,0.22);
   position: relative;
   overflow: hidden;
-  width: 768px;
+  width: 1000px;
   max-width: 100%;
-  min-height: 600px;
+  min-height: 750px;
 }
 
 .form-container {
@@ -176,7 +207,7 @@ input {
 .overlay {
   background: #FF416C;
   background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+  background: linear-gradient(to right, #A4A4A4, #0B0B3B);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -265,80 +296,196 @@ footer a {
     text-decoration: none;
 }
 
+.fadeIn.fourth {
+  border: none;
+  background-color: #fc9a07;
+  border-radius: 20px;
+  border: 3px solid #0B2161;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+.fadeIn.fourth:hover {
+  background-color: #FF8000;
+  color: #000000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.modal-dialog {
+  display: flex;
+  justify-content: center; /* 가로로 가운데 정렬 */
+  align-items: center; /* 세로로 가운데 정렬 */
+  height: 80vh; /* 화면 높이만큼 모달을 중앙에 배치합니다. */
+}
+
+.modal-title {
+  background: linear-gradient(to bottom, rgba(11, 11, 59, 0.9), rgba(11, 11, 59, 0.7)); /* 그라데이션과 투명도 조절 */
+  color: #FFFFFF; /* 텍스트 색상 설정 */
+  padding: 10px; /* 내부 여백 설정 */
+  font-size: 17px;
+}
 
 
 </style>
 <title>Insert title here</title>
 </head>
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="../" class="navbar-brand p-0">
+                    <h1 class="m-0">Bridge2B</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="../" class="nav-item nav-link active">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="service.html" class="nav-item nav-link">Service</a>
+                        <a href="project.html" class="nav-item nav-link">Project</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <c:if test="${empty user}">
+                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block shadow-button" id="UserButton">Login / Join</a>
+                    </c:if>
+                    <c:if test="${not empty user}">
+	                    <form action="${cpath}/member/logout">
+	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block shadow-button" id="UserButton">Log out</button>
+	    				</form>
+	    			</c:if>
+                </div>
+            </nav>
+        </div>
 <body>
-   <h2>집가고</h2>
+   <h2 style="font-size:25px; font-family:sans-serife; "></h2>
    <div class="container" id="container">
      <div class="form-container sign-up-container">
-       <form action="${cpath}/member/join" method="post">
+         <form action="${cpath}/member/join" method="post" class="was-validated">
          <h1>Create Account</h1>
-         <input type="text" placeholder="아이디" name="username"/>
+        
+         <input type="email" placeholder="업무용 이메일" name="username" id="username"required/>
+         <div class="valid-feedback"></div>
+         <div class="invalid-feedback"></div>
+         <button type="button" onclick="registerCheck()">중복확인</button>
+        
+         <input type="password" placeholder="비밀번호" name="password" id="password" onkeyup="passwordCheck()" required/>
+         <div class="valid-feedback"></div>
+         <div class="invalid-feedback"></div>
+         <input type="password" placeholder="비밀번호확인" name="passwordConfrim" id="passwordConfrim" onkeyup="passwordCheck()" required/>
+         <div class="valid-feedback"></div>
+         <div class="invalid-feedback"></div>
+         <span id="passMessage" style="color:red;"></span>
+           
          
-         <input type="password" placeholder="비밀번호" name="password" id="password"/>
-         
-         <!-- <input type="password" placeholder="비밀번호확인" name="password2" id="password2"/> -->
-         <input type="text" placeholder="이름" name="name"/>
-         <input type="tel" placeholder="휴대전화번호" name="phone" />
-         
-         <div class="form-group">
-            <label for="sel1">업종 1차:</label>
-            <select class="form-control" id="sel1" name="industry1">
-             <option>1</option>
-             <option>2</option>
-             <option>3</option>
-             <option>4</option>
-           </select>
-         
-         
-         
-            <label for="sel2">업종 2차:</label>
-            <select class="form-control" id="sel2" name="industry2">
-             <option>1</option>
-             <option>2</option>
-             <option>3</option>
-             <option>4</option>
-           </select>
-         </div>
+         <label for="sel1" class="form-label">업종:</label>
+          <select class="form-select" id="sel1" name="industry">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
          
          
-         <input type="text" placeholder="회사명" name="company"/>
-         <input type="email" placeholder="업무용 이메일" name="email" />
-         <input type="text" placeholder="사업자번호" name="businessNumber" />
-         <button>Sign Up</button>
+         <input type="text" placeholder="사업자번호" name="businessNumber"  required/>
+         <div class="valid-feedback"></div>
+         <div class="invalid-feedback"></div>
+         <input type="text" placeholder="회사명" name="company" required/>
+         <div class="valid-feedback"></div>
+         <div class="invalid-feedback"></div>
+         <button id="join">Sign Up</button>
        </form>
+
      </div>
      <div class="form-container sign-in-container">
      
      
        <form action="${cpath}/member/login" method="post">
        
-         <h1>Sign in</h1>
-         <input id="username" name="username" type="text" placeholder="Email" />
+         <h1 style="color:#1E274D;">Login</h1>
+         <br>
+         <input id="username" name="username" type="email" placeholder="Email" />
          <input id="password" name="password" type="password" placeholder="Password" />
          <a href="#">Forgot your password?</a>
-         <input type="submit" class="fadeIn fourth" value="Log In">
+         <input type="submit" class="fadeIn fourth" value="Log In" />
          
        </form>
        
      </div>
+     <!-- 회원가입 성공시 Modal -->
+     
+ 	<div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">${msgType }</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+              ${msg}
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
 
-    <div class="modal" id="myModal">
+    <div class="modal" id="myModal1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header" id="checkType">
+              <h4 class="modal-title">로그인 실패</h4>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button>  -->
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" >
+              <p id="checkMessage1"> <h6 class="modal-body">아이디 또는 비밀번호를 잘못 입력하셨습니다.</h6></p>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>    
+      
+      
+      
+    <div class="modal" id="checkModal">
         <div class="modal-dialog">
           <div class="modal-content">
       
             <!-- Modal Header -->
             <div class="modal-header" id="checkType">
               <h4 class="modal-title">메세지 확인</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
       
             <!-- Modal body -->
             <div class="modal-body" >
-              <p id="checkMessage"> <h6 class="modal-body">아이디, 비밀번호를 다시 입력해주세요</h6></p>
+              <p id="checkMessage"></p>
             </div>
       
             <!-- Modal footer -->
@@ -355,10 +502,10 @@ footer a {
          <div class="overlay-panel overlay-left">
            <h1>Welcome Back!</h1>
            <p>To keep connected with us please login with your personal info</p>
-           <button class="ghost" id="signIn">Sign In</button>
+		   <button class="ghost" id="signIn">Log In</button>
          </div>
          <div class="overlay-panel overlay-right">
-           <h1>Hello, Friend!</h1>
+           <h1>Bridge to we</h1>
            <p>Enter your personal details and start journey with us</p>
            <button class="ghost" id="signUp">Sign Up</button>
          </div>
@@ -384,19 +531,77 @@ footer a {
       
       $(document).ready(function(){
           if(${not empty msgType}){
+             //회원가입성공
              if(${msgType eq "성공메세지"}){
                 $("#messageType").attr("class", "modal-content panel-success");
              }
              $("#myModal").modal("show");
           }
+          //로그인실패
           if (window.location.href.endsWith("login?error")) {
                // URL이 "localhost:8080/boot/login?error"와 같은 패턴인 경우
                // 로그인 실패 모달 창을 띄우는 코드를 여기에 작성합니다.
-             $("#myModal").modal("show");
+                 $("#checkMessage").text("이미 사용중인 이메일 입니다.");
+                   $("#checkType").attr("class","modal-content panel-warning");
+             $("#myModal1").modal("show");
              }
 
        });
       
+      function registerCheck(){
+          var username = $("#username").val();
+          
+          $.ajax({
+             url : "${cpath}/member/registerCheck",
+             type : "get",
+             data : {"username" : username},
+             success : function(data){
+                // 중복유무 확인 -> (data=1 사용가능 data=0 사용불가능)
+                if(data){
+                   $("#checkMessage").text("이미 사용중인 이메일 입니다.");
+                   $("#checkType").attr("class","modal-content panel-warning");
+                   $("#join").prop("disabled", true);
+                   $("#join").css("border", "1px solid");
+                   $("#join").css("background-color", "gray");
+                }else{
+                   $("#checkMessage").text("사용할 수 있는 이메일 입니다.");
+                   $("#checkType").attr("class","modal-content panel-success");
+                   $("#join").prop("disabled", false);
+                   $("#join").css("border", "1px solid #FF4B2B");
+                   $("#join").css("background-color", "#FF4B2B");
+                }
+                
+                $("#checkModal").modal("show");
+                
+             },
+             
+             error : function(){alert("error");}
+             
+          });
+
+          
+       }
+       
+       
+       function passwordCheck(){
+          var password = $("#password").val();
+          var passwordConfrim = $("#passwordConfrim").val();
+          
+          
+          if(password != passwordConfrim){
+             $("#passMessage").html("비밀번호가 서로 일치하지 않습니다.");
+             $("#join").prop("disabled", true);
+             $("#join").css("border", "1px solid");
+             $("#join").css("background-color", "gray");
+          }else{
+             $("#passMessage").html("");
+             $("#join").prop("disabled", false);
+             $("#join").css("border", "1px solid #FF4B2B");
+             $("#join").css("background-color", "#FF4B2B");
+          }
+       }
+       
+
    </script>
 
 
