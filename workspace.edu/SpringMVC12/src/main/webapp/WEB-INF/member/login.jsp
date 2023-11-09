@@ -333,8 +333,8 @@ footer a {
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="../" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge2B</h1>
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0">Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -342,10 +342,9 @@ footer a {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="../" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="project.html" class="nav-item nav-link">Project</a>
+                        <a href="../home" class="nav-item nav-link active">Home</a>
+                        <a href="../about" class="nav-item nav-link">About</a>
+                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -354,18 +353,19 @@ footer a {
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="${cpath }/collaboration/request" class="nav-item nav-link">Contact</a>
                     </div>
                     <c:if test="${empty user}">
-                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block shadow-button" id="UserButton">Login / Join</a>
+                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
                     </c:if>
                     <c:if test="${not empty user}">
 	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block shadow-button" id="UserButton">Log out</button>
+	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
 	    				</form>
 	    			</c:if>
                 </div>
             </nav>
+
         </div>
 <body>
    <h2 style="font-size:25px; font-family:sans-serife; ">H22</h2>
