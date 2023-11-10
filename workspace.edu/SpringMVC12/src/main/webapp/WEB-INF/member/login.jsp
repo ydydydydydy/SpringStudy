@@ -302,13 +302,13 @@ footer a {
           </select>
          
          
-         <input type="text" placeholder="사업자번호" name="businessNumber" id="businessNumber" required/>
+         <input type="text" placeholder="사업자번호" name="bno" id="bno" required/>
          <button type="button" onclick="check()">진위여부</button>
          <div class="valid-feedback"></div>
          <div class="invalid-feedback"></div>
          
          
-         <input type="text" placeholder="회사명" name="company" required/>
+         <input type="text" placeholder="회사명" name="com_name" required/>
          <div class="valid-feedback"></div>
          <div class="invalid-feedback"></div>
          <button id="join">Sign Up</button>

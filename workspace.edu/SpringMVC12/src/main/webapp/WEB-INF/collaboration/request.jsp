@@ -93,6 +93,7 @@
             <div class="container-xxl bg-primary hero-header">
                 <div class="container px-lg-5">
                     <div class="row g-5 align-items-end">
+                        <div class="col-lg-6 text-center text-lg-start">
                             <h1 class="text-white mb-4 animated slideInDown">A Digital Agency Of Inteligents & Creative People</h1>
                             <p class="text-white pb-3 animated slideInDown">Tempor rebum no at dolore lorem clita rebum rebum ipsum rebum stet dolor sed justo kasd. Ut dolor sed magna dolor sea diam. Sit diam sit justo amet ipsum vero ipsum clita lorem</p>
                             <a href="" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Read More</a>
@@ -124,10 +125,8 @@
                                 <div class="requestForm">
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <input readonly="readonly" class="form-control" id="username" placeholder="Your Name" value="<sec:authentication property='principal.member.name'/>" >
                                             
-                                            
-                                            type="text" class="form-control" id="writer" name="writer" placeholder="Enter writer">
+                                            <input type="text" class="form-control" id="writer" placeholder="Enter writer">
                                             <label for="writer">username</label>
                                         </div>
                                     </div>

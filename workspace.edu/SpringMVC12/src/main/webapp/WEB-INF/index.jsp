@@ -76,7 +76,7 @@
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="contact" class="nav-item nav-link">Contact</a>
+                        <a href="${cpath}/collaboration/request" class="nav-item nav-link">Contact</a>
                     </div>
                     <c:if test="${empty user}">
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
