@@ -1,7 +1,9 @@
 SELECT * FROM member;
 select * from company;
-INSERT INTO company values("41345","광주 북구","북구청","공공기관","2021","허연지");
-commit;
+select * from tb_user;
+-- show full processlist;
+-- kill 13480;
+show tables;
 
 -- url : jdbc:mysql://project-db-stu3.smhrd.com:3307/Insa4_Spring_final_1
 -- id : Insa4_Spring_final_1

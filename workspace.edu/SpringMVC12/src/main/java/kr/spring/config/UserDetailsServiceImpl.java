@@ -7,19 +7,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import kr.spring.entity.CustomUser;
-import kr.spring.entity.Member;
-import kr.spring.repository.MemberRepository;
+import kr.spring.entity.tb_user;
+import kr.spring.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
-	private MemberRepository memberRepository;
+	private UserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Member member = memberRepository.findById(username).get();
+		tb_user member = userRepository.findById(username).get();
 		
 		if(member == null) {
 			throw new UsernameNotFoundException(username + "없음");

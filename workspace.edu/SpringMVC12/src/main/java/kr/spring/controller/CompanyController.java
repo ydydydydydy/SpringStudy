@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.spring.entity.Board;
-import kr.spring.entity.Company;
-import kr.spring.service.BoardService;
+import kr.spring.entity.tb_company;
 import kr.spring.service.CompanyService;
 
 @Controller
@@ -25,10 +23,13 @@ public class CompanyController {
 	
 	@RequestMapping("/list")
 	public String list(Model model) { // 게시글 전체조회 
-		List<Company> list = companyService.getList();
+		List<tb_company> list = companyService.getList();
 		model.addAttribute("list", list);
 		return "company/list";
 	}
+	
+
+	
 
 	
 

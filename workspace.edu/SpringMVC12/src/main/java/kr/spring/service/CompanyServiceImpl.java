@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.spring.entity.Board;
-import kr.spring.entity.Company;
-import kr.spring.repository.BoardRepository;
+import kr.spring.entity.tb_company;
 import kr.spring.repository.CompanyRepository;
 
 @Service
@@ -18,8 +16,8 @@ public class CompanyServiceImpl implements CompanyService{
 	private CompanyRepository companyRepository;
 
 	@Override
-	public List<Company> getList() {
-		List<Company> list = companyRepository.findAll();
+	public List<tb_company> getList() {
+		List<tb_company> list = companyRepository.findAll();
 		return list;
 	}
 

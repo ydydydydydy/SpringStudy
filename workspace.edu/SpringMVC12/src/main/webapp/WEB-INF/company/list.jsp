@@ -85,10 +85,10 @@
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
                     </c:if>
                     <c:if test="${not empty user}">
-	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-	    				</form>
-	    			</c:if>
+                       <form action="${cpath}/member/logout">
+                      <button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
+                   </form>
+                </c:if>
                 </div>
             </nav>
 
@@ -120,13 +120,21 @@
                     <p class="section-title text-secondary justify-content-center"><span></span>Our Enterprise<span></span></p>
                     <h1 class="text-center mb-5">Enterprise</h1>
                 </div>
-                <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="col-12 text-center">
                         <ul class="list-inline mb-5" id="portfolio-flters">
                             <li class="mx-2 active" data-filter="*">All</li>
-                            <li class="mx-2" data-filter=".first">교육</li>
-                            <li class="mx-2" data-filter=".second">공공기관</li>
-                            <li class="mx-2" data-filter=".third">other</li>
+                            <li class="mx-2" data-filter=".first">제조</li>
+                            <li class="mx-2" data-filter=".second">전문·과학및기술서비스</li>
+                            <li class="mx-2" data-filter=".third">금융·보험</li>
+                            <li class="mx-2" data-filter=".four">교육서비스</li>
+                            <li class="mx-2" data-filter=".five">도매·소매</li>
+                            <br>
+                            <li class="mx-2" data-filter=".six">숙박·음식점</li>
+                            <li class="mx-2" data-filter=".seven">사업시설관리·사업지원및임대서비스</li>
+                            <li class="mx-2" data-filter=".eight">정보통신</li>
+                            <li class="mx-2" data-filter=".nine">광업</li>
+                            <li class="mx-2" data-filter=".ten">운수·창고</li>
                             
                         </ul>
                     </div>
@@ -136,17 +144,17 @@
                 
                 
                 <div class="row g-4 portfolio-container">
-                <!-- 
+                
                  <c:forEach var="vo" items="${list}" varStatus="i">
-                  <c:if test="${i.index < 10}">
-                   <c:if test="${vo.industry == '교육'}">
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-info='{"companyName": "${vo.companyName}", "businessNumber": "${vo.businessNumber}", "industry": "${vo.industry}"}' data-wow-delay="0.1s">
+                   <c:if test="${vo.industry == '제조'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-1.jpg" alt="">
                                 <div class="portfolio-overlay">
                                     <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-1.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href=""data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
                             
@@ -158,14 +166,15 @@
                     </div>
                     </c:if>
                     
-                      <c:if test="${vo.industry == '공공기관'}">
+                      <c:if test="${vo.industry == '전문·과학및기술서비스'}">
                     <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-2.jpg" alt="">
                                 <div class="portfolio-overlay">
                                     <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-2.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
                             
@@ -177,14 +186,16 @@
                     </div>
                     </c:if>
                     
-                    <c:if test="${empty vo.industry}">
+                    
+                    <c:if test="${vo.industry == '금융·보험'}">
                     <div class="col-lg-4 col-md-6 portfolio-item third wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
                                 <div class="portfolio-overlay">
                                     <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
                             
@@ -197,116 +208,214 @@
                     </c:if>
                     
                     
-                    
-                     </c:if>
-                      </c:forEach>
-                      </div>
-                       -->
-                   <%--  <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="rounded overflow-hidden">
-                            <div class="position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-2.jpg" alt="">
-                                <div class="portfolio-overlay">
-                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-2.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
-                                </div>
-                            </div>
-                            <div class="bg-light p-4">
-                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
-                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development2</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+                    <c:if test="${vo.industry == '교육서비스'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item four wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
                                 <div class="portfolio-overlay">
                                     <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
+                            
                             <div class="bg-light p-4">
-                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
-                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                                <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                <h5 class="lh-base mb-0">${vo.companyName}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
+                       </c:if>
+                       
+                       
+                     <c:if test="${vo.industry == '도매·소매'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item five wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-4.jpg" alt="">
+                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
                                 <div class="portfolio-overlay">
-                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-4.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
+                            
                             <div class="bg-light p-4">
-                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
-                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                                <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                <h5 class="lh-base mb-0">${vo.companyName}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
+                    </c:if>
+                    
+                     
+                          
+                           
+                    
+                    <c:if test="${vo.industry == '숙박·음식점'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item six wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-5.jpg" alt="">
+                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
                                 <div class="portfolio-overlay">
-                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-5.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
+                            
                             <div class="bg-light p-4">
-                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
-                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                                <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                <h5 class="lh-base mb-0">${vo.companyName}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                    </c:if>
+                    
+    
+
+                          
+                    <c:if test="${vo.industry == '사업시설관리·사업지원및임대서비스'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item seven wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-6.jpg" alt="">
+                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
                                 <div class="portfolio-overlay">
-                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-6.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
                                 </div>
                             </div>
+                            
                             <div class="bg-light p-4">
-                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
-                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                                <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                <h5 class="lh-base mb-0">${vo.companyName}</a>
                             </div>
                         </div>
-                    </div> 
-                </div>--%>
+                    </div>
+                    </c:if>
+
+                        
+                    
+                    <c:if test="${vo.industry == '정보통신'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item eight wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                <h5 class="lh-base mb-0">${vo.companyName}</a>
+                            </div>
+                        </div>
+                    </div>
+                    </c:if>
+                    
+                        
+                    <c:if test="${vo.industry == '광업'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item nine wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                <h5 class="lh-base mb-0">${vo.companyName}</a>
+                            </div>
+                        </div>
+                    </div>
+                    </c:if>
+                    
+
+                    <c:if test="${vo.industry == '운수·창고'}">
+                    <div class="col-lg-4 col-md-6 portfolio-item ten wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="${cpath}/resources/img/portfolio-3.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="${cpath}/resources/img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href="" data-industry="${vo.industry}" data-company="${vo.companyName}" data-addr="${vo.addr}"
+   data-scale="${vo.scale}"><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                <h5 class="lh-base mb-0">${vo.companyName}</a>
+                            </div>
+                        </div>
+                    </div>
+                    </c:if>
+                    
+                      </c:forEach>
+                      </div>
+                      
+                 
+                 
+                 
                 
                 
+         <%--                        <table class="table table-bordered table-hover">
+            <c:forEach var="vo" items="${list}" varStatus="i">
+               <tr>
+                  <td>${i.count}</td>
+                  <td><a href="#">${vo.addr}</a></td>
+                  <td>${vo.companyName}</td>
+                  <td>${vo.industry}</td>
+                  <td>${vo.scale}</td>
+               </tr>
+            </c:forEach>
+       </table>
                 
-                
-                
+                 --%>
                 
                 
                 
             </div>
         </div>
+        <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
       
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">${msgType}</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+              ${msg}
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+<!--       </div> -->
         
         
         
         
         
         <!-- Projects End -->
-                <table class="table table-bordered table-hover">
-            <c:forEach var="vo" items="${list}" varStatus="i">
-               <tr>
-                  <td>${i.count}</td>
-                  <td><a href="#">${vo.addr}</a></td>
-                  <td>${vo.companyName}</td>
-                  <td>${vo.num}</td>
-                  <td>${vo.industry}</td>
-                  <td>${vo.scale}</td>
-               </tr>
-            </c:forEach>
-       </table>
+
 
 
 
@@ -408,34 +517,49 @@
     <script src="${cpath}/resources/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="${cpath}/resources/lib/isotope/isotope.pkgd.min.js"></script>
     <script src="${cpath}/resources/lib/lightbox/js/lightbox.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script>
-$(document).ready(function() {
-    // 아이콘을 클릭할 때 모달 열기
-    $(".fa-link").click(function() {
-        var portfolioItem = $(this).closest(".portfolio-item"); // 해당 포트폴리오 항목 찾기
-        var info = portfolioItem.data("info"); // 정보 가져오기
-
-        // 정보를 모달에 표시
-        if (info) {
-            $("#portfolioModal .modal-body").html(`
-                <p>Company Name: ${info.companyName}</p>
-                <p>Business Number: ${info.businessNumber}</p>
-                <p>Industry: ${info.industry}</p>
-                <!-- 다른 정보도 추가 -->
-            `);
-
-            // 모달 열기
-            $("#portfolioModal").modal("show");
-        }
-    });
-});
-</script>
-
-    
     <!-- Template Javascript -->
     <script src="${cpath}/resources/js/main.js"></script>
+    <script>
+    $(document).ready(function() {
+        // 클릭 가능한 아이콘에 대한 클릭 이벤트 처리
+        $('.btn-square').on('click', function(e) {
+            e.preventDefault(); // 기본 클릭 동작 방지
+
+            // 클릭한 아이콘의 데이터 얻기
+            var industry = $(this).data('industry');
+            var companyName = $(this).data('company');
+            var addr = $(this).data('addr');
+            var scale = $(this).data('scale');
+            
+            
+            // 정보를 모달 또는 다른 요소에 표시 (예: 모달 사용)
+            $('#myModal .modal-title').text(companyName);
+             $('#myModal .modal-body').html(
+            	    "<p><strong>Industry:</strong> "+industry+" </p>"+
+            	    "<p><strong>Addr:</strong> "+addr+" </p>"+
+            	    "<p><strong>Scale:</strong> "+scale+" </p>"
+            	 
+            	); 
+            
+            
+     
+        /*     // 정보를 모달 또는 다른 요소에 표시 (예: 모달 사용)
+            $('#myModal .modal-title').text(companyName);
+            $('#myModal .modal-body').text(industry);
+             $('#myModal .modal-body').html(`
+            	    <p><strong>Industry:</strong>${industry}</p>
+            	    <p><strong>Company Name:</strong> ${companyName}</p>
+            	    <p><strong>Address:</strong> ${addr}</p>
+            	    <p><strong>Scale:</strong> ${scale}</p>
+            	`);  */
+
+
+            // 모달 열기
+            $('#myModal').modal('show');
+        });
+    });
+
+    </script>
 </body>
 
 </html>
