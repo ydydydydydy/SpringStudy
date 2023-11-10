@@ -125,8 +125,8 @@
                                 <div class="requestForm">
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            
-                                            <input type="text" class="form-control" id="writer" placeholder="Enter writer">
+                                             <!-- <input readonly="readonly" class="form-control" id="username" placeholder="Your Name" value="<sec:authentication property='principal.member.name'/>" -->
+                                             <input type="text" class="form-control" id="writer" placeholder="username">
                                             <label for="writer">username</label>
                                         </div>
                                     </div>
