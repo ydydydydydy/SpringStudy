@@ -83,10 +83,10 @@
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
                     </c:if>
                     <c:if test="${not empty user}">
-	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-	    				</form>
-	    			</c:if>
+                       <form action="${cpath}/member/logout">
+                      <button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
+                   </form>
+                </c:if>
                 </div>
             </nav>
 
@@ -124,25 +124,24 @@
                             
                                 <div class="requestForm">
                                     <div class="col-12">
-                                        <div class="form-floating">
-                                             <!-- <input readonly="readonly" class="form-control" id="username" placeholder="Your Name" value="<sec:authentication property='principal.member.name'/>" -->
-                                             <input type="text" class="form-control" id="writer" placeholder="username">
-                                            <label for="writer">username</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                            <label for="subject">의뢰제목</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
-                                            <label for="message">상담요청내용</label>
-                                        </div>
-                                    </div>
+                              <div class="form-floating">
+                                 <input type="text" class="form-control" id="writer" name="username" placeholder="username">
+                                 <label for="writer">Username</label> <!-- 수정: label을 "Username"으로 변경 -->
+                              </div>
+                           </div>
+                           
+                           <div class="col-12">
+                              <div class="form-floating">
+                                 <input type="text" class="form-control" id="subject" name="req_keyword" placeholder="Subject">
+                                 <label for="subject">의뢰제목</label>
+                              </div>
+                           </div>
+                           <div class="col-12">
+                              <div class="form-floating">
+                                 <textarea class="form-control" name="req_content" placeholder="Leave a message here" id="content" style="height: 500px"></textarea>
+                                 <label for="content">상담요청내용</label> <!-- 수정: label을 "content"로 변경 -->
+                              </div>
+                           </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100 py-3" type="submit" id="send">Send Message</button>
                                     </div>
@@ -218,9 +217,9 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
+                     
+                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
                             Distributed By a <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
@@ -257,19 +256,26 @@
     <script src="${cpath }/resources/js/main.js"></script>
     
     <script type="text/javascript">
-    	const sendButton = document.getElementById('send');
+    const sendButton = document.getElementById('send');
     
-    function sendMessage(){
-    	var username = $("#username").val();
-    	
-    	$.ajax({
-    		url : "",
-    		type : "get",
-    		data : {"request" : request],
-    		success : function(data)
-    	})
+    function sendMessage() {
+       var username = $("#writer").val();
+       var subject = $("#subject").val();
+       var content = $("#content").val();
+
+       $.ajax({
+          url: "${cpath}/collaboration/request", // 수정: 실제 컨트롤러의 URL로 변경
+          type: "post",
+          data: {
+             "username": username,
+             "req_content": content, // 수정: 요청 내용은 req_content로 변경
+             "req_keyword": subject // 수정: 제목은 키워드로 변경
+          },
+          success: function(data) {
+             // 성공 시의 동작
+          }
+       });
     }
-    
     </script>
     
 </body>

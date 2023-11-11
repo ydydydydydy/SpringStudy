@@ -14,26 +14,14 @@ import kr.spring.repository.CollaborationRepository;
 @Service
 public class CollaborationServiceImpl implements CollaborationService{
 
-	@Autowired
-	private CollaborationRepository collaborationRepository;
+   @Autowired
+   private CollaborationRepository collaborationRepository;
 
-	@Override
-	public void request(tb_request vo) {
-		// TODO Auto-generated method stub
-		collaborationRepository.save(vo);
-		
-	}
-
-	
+   @Override
+   public void request(tb_request vo) {
+      // TODO Auto-generated method stub
+      collaborationRepository.save(vo);
+      
+   }
+   
 }
-
-
-
-
-
-
-
-
-
-
-

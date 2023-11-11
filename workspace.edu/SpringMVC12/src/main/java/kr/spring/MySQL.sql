@@ -21,3 +21,9 @@ select
     from
         company company0_
 
+SHOW TABLES;
+
+select * from tb_request;
+
+
+describe tb_request;

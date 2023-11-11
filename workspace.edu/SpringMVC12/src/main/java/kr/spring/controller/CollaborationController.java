@@ -11,18 +11,18 @@ import kr.spring.service.CollaborationService;
 @Controller
 @RequestMapping("/collaboration/*")
 public class CollaborationController {
-	
-	@Autowired
-	private CollaborationService collaborationService;
-	   
-	@RequestMapping("/request")
-	public String request() {
-		return "collaboration/request";
-	}
+   
+   @Autowired
+   private CollaborationService collaborationService;
+      
+   @RequestMapping("/request")
+   public String request() {
+      return "collaboration/request";
+   }
 
-	@PostMapping("/request")
-	public String request(tb_request vo) {
-		collaborationService.request(vo);
-		return "collation/request";
-	}
+   @PostMapping("/request")
+   public String request(tb_request vo) {
+      collaborationService.request(vo);
+      return "collation/request";
+   }
 }
