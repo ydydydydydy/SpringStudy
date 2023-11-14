@@ -37,6 +37,7 @@ public class SecurityConfiguration {
 			.logout() // Spring Security에서 제공하는 기본 로그아웃을 사용하겠다
 			.logoutUrl("/member/logout") // 로그아웃 실행하고 싶다면 member/logout으로 요청하겠다
 			.logoutSuccessUrl("/"); // 로그아웃하고 /로 이동하겠다
+			
 		
 		
 		http.userDetailsService(userService);

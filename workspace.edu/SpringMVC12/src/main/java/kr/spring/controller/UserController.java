@@ -1,9 +1,14 @@
 package kr.spring.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +48,21 @@ public class UserController {
    public @ResponseBody boolean registerCheck(String username) {
       return userService.select(username);
    
-      
+   }
+   
+   @GetMapping("/mypage")
+   public String mypage(tb_user vo) {
+	   return "member/mypage";
+   }
+   
+   @RequestMapping("/list")
+   public String getList(Model model) {
+	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	   String username = authentication.getName(); // 현재 로그인한 사용자의 username
+	   
+	   List<tb_user> list = userService.getList(username);
+	   model.addAttribute("list", list);
+	   model.addAttribute("username", username);
+	   return "member/mypage";
    }
 }

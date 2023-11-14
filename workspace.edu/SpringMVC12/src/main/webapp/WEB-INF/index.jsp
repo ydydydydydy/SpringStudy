@@ -12,6 +12,7 @@
 <c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}" />  
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>DGital - Digital Agency HTML Template</title>
@@ -77,7 +78,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="${cpath}/member/mypage" class="dropdown-item">Our Team</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>

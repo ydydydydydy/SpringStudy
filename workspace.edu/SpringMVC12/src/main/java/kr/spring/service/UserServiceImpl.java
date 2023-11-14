@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService{
 		return userRepository.existsById(username);
 	}
 
+	@Override
+	public List<tb_user> getList(String username) {
+		return userRepository.findByUsername(username);
+	}
+
 	
 	
 
