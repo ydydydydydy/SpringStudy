@@ -23,5 +23,9 @@ public class CollaborationServiceImpl implements CollaborationService{
       collaborationRepository.save(vo);
       
    }
-   
+   @Override
+   public List<tb_request> getList(String username) {
+      List<tb_request> list = collaborationRepository.findByUsernameUsername(username);
+      return list;
+   }
 }

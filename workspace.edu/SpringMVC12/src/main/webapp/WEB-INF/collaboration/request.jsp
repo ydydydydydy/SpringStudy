@@ -57,7 +57,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="${cpath}/home" class="navbar-brand p-0">
                     <h1 class="m-0">Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -125,8 +125,7 @@
                                 <div class="requestForm">
                                     <div class="col-12">
                               <div class="form-floating">
-                                 <input type="text" class="form-control" id="writer" name="username" placeholder="username">
-                                 <label for="writer">Username</label> <!-- 수정: label을 "Username"으로 변경 -->
+                                  <input type="hidden" class="form-control" id="writer" name="username" placeholder="username" value="${user.username}">
                               </div>
                            </div>
                            
@@ -143,7 +142,7 @@
                               </div>
                            </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit" id="send">Send Message</button>
+                                        <button onclick="sendMessage()" class="btn btn-primary w-100 py-3" type="button" id="send">Send Message</button>
                                     </div>
                                 </div>
                             </form>
@@ -240,6 +239,35 @@
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+    
+    
+    
+    <div class="modal" id="checkModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header" id="checkType">
+              <h4 class="modal-title">확인 메세지</h4>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body" >
+              <p id="checkMessage">요청서 작성 성공</p>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+    
+    
+    
+    
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -273,9 +301,15 @@
           },
           success: function(data) {
              // 성공 시의 동작
+          },
+          error : function(error){
+        	  
           }
        });
+       
+        $("#checkModal").modal("show");
     }
+    
     </script>
     
 </body>
