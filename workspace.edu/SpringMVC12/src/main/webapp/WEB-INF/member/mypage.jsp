@@ -227,7 +227,7 @@
                 </div>
             </div>
         </div>
-        <!-- Team End -->
+        <!-- mypage End -->
         
 
         <!-- Footer Start -->

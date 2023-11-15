@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.spring.entity.CustomUser;
 import kr.spring.entity.tb_user;
 import kr.spring.service.UserService;
 
@@ -64,5 +65,24 @@ public class UserController {
      userService.update(vo);
       return "redirect:/member/update";
    }
+   
+   @GetMapping("/update")
+   public String updateForm(Model model) {
+       tb_user authenticatedUser = getAuthenticatedUser();
+       model.addAttribute("userVo", authenticatedUser);
+       return "member/update";
+   }
+   
+   private tb_user getAuthenticatedUser() {
+       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       if (authentication != null && authentication.getPrincipal() instanceof CustomUser) {
+           CustomUser customUser = (CustomUser) authentication.getPrincipal();
+           return customUser.getMember();
+       }
+       return null;
+   }
 
+   
+   
+   
 }
