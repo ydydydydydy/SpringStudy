@@ -7,12 +7,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.spring.entity.tb_request;
+import kr.spring.entity.tb_solution;
 import kr.spring.service.CollaborationService;
 
 @Controller
@@ -30,7 +30,7 @@ public class CollaborationController {
    @PostMapping("/request")
    public String request(tb_request vo) {
       collaborationService.request(vo);
-      return "index";
+      return "collation/request";
    }
    
    @RequestMapping("/list")
@@ -42,8 +42,13 @@ public class CollaborationController {
       model.addAttribute("req_list", list);
       return "collaboration/req_list";
    }
-   
-   
-
-   
+   @RequestMapping("/result")
+   public String result(@RequestParam("req_num") tb_request req_num, Model model) {
+      List<tb_solution> list = collaborationService.getSolList(req_num);
+      tb_request req_content = collaborationService.getReqContent(req_num.getReq_num());
+      
+      model.addAttribute("result_list", list);
+      model.addAttribute("req_content", req_content);
+      return "collaboration/result";
+   }
 }

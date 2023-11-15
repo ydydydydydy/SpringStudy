@@ -33,13 +33,6 @@ body {
   margin: -20px 0 50px;
 }
 
-h {
-  font-weight:bold;
-  color: #0B2161;
-  font-size: 35px;
-}
-
-
 h1 {
   font-weight: bold;
   margin: 0;
@@ -47,7 +40,6 @@ h1 {
 
 h2 {
   text-align: center;
-  
 }
 
 p {
@@ -149,9 +141,9 @@ input:hover {
       0 10px 10px rgba(0,0,0,0.22);
   position: relative;
   overflow: hidden;
-  width: 1000px;
+  width: 950px;
   max-width: 100%;
-  min-height: 610px;
+  min-height: 640px;
 }
 
 .form-container {
@@ -338,39 +330,45 @@ footer a {
 </style>
 <title>Insert title here</title>
 </head>
+
+<body>
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h class="m-0" >Bridge2B</h>
+                    <h1 class="m-0">Bridge2B</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+               <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="../" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="project.html" class="nav-item nav-link">Project</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
+                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
+                            </div>
+                        </div>
+                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="${cpath}/collaboration" class="nav-item nav-link">Contact</a>
+                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
                     </div>
-                    
+                   
                 </div>
             </nav>
         </div>
 
 
-<body>
+
    <div class="container" id="container">
      <div class="form-container sign-up-container">
          <form action="${cpath}/member/join" method="post" class="was-validated">
@@ -428,7 +426,7 @@ footer a {
        
      </div>
      <!-- 회원가입 성공시 Modal -->
- 	<div class="modal" id="myModal">
+ <div class="modal" id="myModal">
         <div class="modal-dialog">
           <div class="modal-content">
       

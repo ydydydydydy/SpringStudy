@@ -15,14 +15,9 @@ public class HomeController {
 		return "about";
 	}
 	
-	@RequestMapping("/contact")
-	public String contact() {
-		return "contact";
-	}
 	@RequestMapping("/home")
 	public String home() {
 		return "index";
 	}
 
-	
 }

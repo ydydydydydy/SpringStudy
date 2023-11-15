@@ -12,11 +12,11 @@ import kr.spring.entity.tb_user;
 import kr.spring.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -34,12 +34,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<tb_user> getList(String username) {
-		return userRepository.findByUsername(username);
+	public tb_user getList(String username) {
+		return userRepository.findById(username).get();
 	}
 
-	
-	
+	@Override
+	public tb_user update(tb_user vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
-

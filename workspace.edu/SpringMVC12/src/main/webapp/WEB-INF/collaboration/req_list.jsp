@@ -56,7 +56,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="${cpath}" class="navbar-brand p-0">
+                <a href="${cpath}/home" class="navbar-brand p-0">
                     <h1 class="m-0">Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -65,7 +65,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="home" class="nav-item nav-link active">Home</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
                             <div class="dropdown-menu m-0">
@@ -77,12 +76,12 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="${cpath}/collaboration/request" class="nav-item nav-link">Contact</a>
+                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
                     </div>
                     <c:if test="${empty user}">
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
@@ -119,7 +118,7 @@
             <div class="container py-5 px-lg-5">
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
                     <p class="section-title text-secondary justify-content-center"><span></span>Our Services<span></span></p>
-                    <h1 class="text-center mb-5">What Solutions We Provide</h1>
+                    <h1 class="text-center mb-5">나의 의뢰 내역</h1>
                 </div>
                 
 
@@ -137,7 +136,7 @@
                             <p class="m-0"><fmt:formatDate value="${vo.req_at}" pattern="yyyy-MM-dd"/></p>
                             <p class="m-0">${vo.req_satisfaction }</p>
                             <p class="m-0">${vo.req_keyword }</p>
-                            <a class="btn btn-square" href="${cpath}/collaboration/request"><i class="fa fa-arrow-right"></i></a>
+                            <a class="btn btn-square" href="${cpath}/collaboration/result?req_num=${vo.req_num}"><i class="fa fa-arrow-right"></i></a>
                         </div>
                     	</div>
 	                

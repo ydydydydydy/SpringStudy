@@ -14,7 +14,6 @@ public class Criteria { // 기준이라는 뜻
 		this.page = 1;
 		this.perPageNum = 15;
 	}
-	
 	// 생성자 추가
     public Criteria(int page, int perPageNum) {
         this.page = page;

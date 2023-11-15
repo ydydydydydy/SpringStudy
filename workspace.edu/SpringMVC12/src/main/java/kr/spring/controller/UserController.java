@@ -1,7 +1,5 @@
 package kr.spring.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,20 +47,22 @@ public class UserController {
       return userService.select(username);
    
    }
-   
    @GetMapping("/mypage")
-   public String mypage(tb_user vo) {
-	   return "member/mypage";
+   public String mypage(tb_user vo, Model model) {
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      String username = authentication.getName(); // 현재 로그인한 사용자의 username
+      
+      tb_user user= userService.getList(username);
+      model.addAttribute("userVo", user);
+      System.out.println(user);
+      model.addAttribute("username", username);
+      return "member/mypage";
    }
    
-   @RequestMapping("/list")
-   public String getList(Model model) {
-	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	   String username = authentication.getName(); // 현재 로그인한 사용자의 username
-	   
-	   List<tb_user> list = userService.getList(username);
-	   model.addAttribute("list", list);
-	   model.addAttribute("username", username);
-	   return "member/mypage";
+   @PostMapping("/update")
+   public String update(tb_user vo, RedirectAttributes rttr, HttpSession session) {
+     userService.update(vo);
+      return "redirect:/member/update";
    }
+
 }

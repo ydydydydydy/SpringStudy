@@ -66,18 +66,23 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="../home" class="nav-item nav-link active">Home</a>
-                        <a href="../about" class="nav-item nav-link">About</a>
+                         <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
+                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
+                            </div>
+                        </div>
                         <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="${cpath }/collaboration/request" class="nav-item nav-link">Contact</a>
+                        <a href="${cpath }/news/news" class="nav-item nav-link">News</a>
                     </div>
                     <c:if test="${empty user}">
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
@@ -303,7 +308,7 @@
              // 성공 시의 동작
           },
           error : function(error){
-        	  
+             
           }
        });
        

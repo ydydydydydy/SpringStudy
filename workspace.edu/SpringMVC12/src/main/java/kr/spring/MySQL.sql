@@ -1,6 +1,6 @@
-SELECT * FROM member;
-select * from company;
 select * from tb_user;
+select * from tb_news;
+select * from tb_article;
 -- show full processlist;
 -- kill 13480;
 show tables;

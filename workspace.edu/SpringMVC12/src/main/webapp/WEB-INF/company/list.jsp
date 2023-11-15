@@ -47,13 +47,6 @@
 
 <body>
 
-
-   <!-- 기업검색 테스트 
-      <form action=search>
-      <input type="text" name="companyName">
-      <input type="submit">
-   </form>
-   -->
    
 
 
@@ -79,7 +72,6 @@
                 </button>
                  <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="home" class="nav-item nav-link active">Home</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
                             <div class="dropdown-menu m-0">
@@ -91,12 +83,12 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="${cpath}/collaboration/request" class="nav-item nav-link">Contact</a>
+                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
                     </div>
                     <c:if test="${empty user}">
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
@@ -116,12 +108,10 @@
                             <h1 class="text-white animated slideInDown">List</h1>
                             <hr class="bg-white mx-auto mt-0" style="width: 90px;">
                             <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                                    <li class="breadcrumb-item text-white active" aria-current="page">Project</li>
-                                </ol>
-                            </nav>
+								<ol class="breadcrumb justify-content-center">
+									<li class="breadcrumb-item"><a class="text-white" href="#">Enterprise</a></li>
+								</ol>
+							</nav>
                         </div>
                     </div>
                 </div>
@@ -134,8 +124,8 @@
         <div class="container-xxl py-5">
             <div class="container py-5 px-lg-5">
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title text-secondary justify-content-center"><span></span>Our Enterprise<span></span></p>
-                    <h1 class="text-center mb-5">Enterprise</h1>
+                    <p class="section-title text-secondary justify-content-center"><span></span>Enterprise<span></span></p>
+                    <h1 class="text-center mb-5">Our Enterprise</h1>
                 </div>
                 <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="col-12 text-center">
@@ -309,7 +299,7 @@
 					
 				</div>
                 
-              	
+              	<!--  페이징 -->
 				<div style="text-align: center;">
 						<ul class="pagination" style="display: inline-block;">
 
@@ -355,7 +345,7 @@
 
 					</div>
               
-                
+                <!--  페이징 끝 -->
                 
                 
                 
@@ -514,7 +504,7 @@
         });
 
         function searchCompanies() {
-            var companyName = $('#companySearch').val();
+            var companyName = $(' #companySearch').val();
 
             $.ajax({
                 type: 'GET',

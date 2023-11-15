@@ -79,12 +79,12 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="${cpath}/member/mypage" class="dropdown-item">Our Team</a>
+                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
                         </div>
-                        <a href="${cpath}/collaboration/request" class="nav-item nav-link">Contact</a>
+                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
                     </div>
                     <c:if test="${empty user}">
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
@@ -133,8 +133,8 @@
                         <div class="team-item bg-light rounded">
                             <div class="text-center border-bottom p-4">
                                 <img class="img-fluid rounded-circle mb-4" src="${cpath }/resources/img/team-1.jpg" alt="">
-                                <h5>${vo.username}</h5>
-                                <span>${vo.username}</span>
+                                <h5>${username}</h5>
+                                <span>${userVo.com_name}</span>
                             </div>
                             <div class="d-flex justify-content-center p-4">
                                 <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>

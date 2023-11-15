@@ -21,7 +21,7 @@ public class tb_request { // VO <--- ORM ----> TABLE
 	@Id // PK 의미 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)   // 1씩 증가하면서 넣기 -> auto_incrementr와 같음
 	@Column(nullable = false)
-	private  int req_num;  // 의뢰 번호
+	private  Long req_num;  // 의뢰 번호
 	@ManyToOne
 	@JoinColumn(name = "username", referencedColumnName = "username") // 외래키 설정
 	private tb_user username;  // 회원 이메일
