@@ -25,6 +25,7 @@ public class CompanyController {
    private CompanyService companyService;
    
    
+   
    @GetMapping("/list")
    public String list(Model model, @RequestParam(required = false) String companyName,Pageable pageable, Criteria cri) {
        List<tb_company> list;
@@ -35,10 +36,7 @@ public class CompanyController {
        } else {
            // 검색어가 없는 경우 전체 목록을 가져옴
            list = companyService.getList();
-           Page<tb_company> page = companyService.findPagedData(PageRequest.of(cri.getPage() - 1, cri.getPerPageNum()));
-           list = page.getContent();
-           PageMaker pageMaker = new PageMaker(cri, companyService.totalCount());
-           model.addAttribute("pageMaker", pageMaker);
+          
        }
        
        model.addAttribute("list", list);

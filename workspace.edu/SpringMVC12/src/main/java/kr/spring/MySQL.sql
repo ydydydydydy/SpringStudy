@@ -27,5 +27,3 @@ select * from tb_request;
 
 
 describe tb_request;
-
-select * from tb_user;

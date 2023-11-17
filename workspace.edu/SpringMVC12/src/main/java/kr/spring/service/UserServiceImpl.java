@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
 		vo.setRole(Role.MEMBER);
 		userRepository.save(vo);
 	}
+	 
 
 	@Override
 	public boolean select(String username) {
@@ -40,20 +41,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public tb_user update(tb_user vo) {
-		Optional<tb_user> optionalUser = userRepository.findById(vo.getUsername());
-
-	   if (optionalUser.isPresent()) {
-	        tb_user existingUser = optionalUser.get();
-	        existingUser.setBno(vo.getBno());
-	        existingUser.setIndustry(vo.getIndustry());
-	        existingUser.setCom_name(vo.getCom_name());
-
-	        // 기타 필요한 필드들도 업데이트
-
-	        // 업데이트된 회원 정보를 저장
-	        return userRepository.save(existingUser);
-	} else {
-        return null;
-    }
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

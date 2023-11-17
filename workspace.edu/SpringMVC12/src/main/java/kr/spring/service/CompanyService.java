@@ -16,7 +16,6 @@ public interface CompanyService {
     
 	public long totalCount();
 
-	public List<tb_company> getList(Criteria cri);
 
-	public Page<tb_company> findPagedData(Pageable pageable);
+
 }

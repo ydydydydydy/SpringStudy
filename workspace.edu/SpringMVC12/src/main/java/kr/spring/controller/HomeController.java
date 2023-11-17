@@ -19,5 +19,10 @@ public class HomeController {
 	public String home() {
 		return "index";
 	}
+//  ajax로 불러오기
+   @RequestMapping("/data")
+   public String getData() {
+       return "main";
+   }
 
 }

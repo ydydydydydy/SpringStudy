@@ -63,9 +63,9 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #FF4B2B;
-  background-color: #FF4B2B;
-  color: #FFFFFF;
+  border: 1px solid #fc9a07;
+  background-color: #fc9a07;
+  color: #000000;
   font-size: 12px;
   font-weight: bold;
   padding: 12px 45px;
@@ -206,7 +206,7 @@ input:hover {
 
 .overlay {
   background: #FF416C;
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+  background: -webkit-linear-gradient(to right, #0B0B3B, #FF416C);
   background: linear-gradient(to right, #A4A4A4, #0B0B3B);
   background-repeat: no-repeat;
   background-size: cover;
@@ -300,7 +300,7 @@ footer a {
   border: none;
   background-color: #fc9a07;
   border-radius: 20px;
-  border: 3px solid #0B2161;
+  border: 3px solid #ffffff;
   font-family: 'Montserrat';
   font-weight: bold;
 }
@@ -320,8 +320,7 @@ footer a {
 }
 
 .modal-title {
-  background: linear-gradient(to bottom, rgba(11, 11, 59, 0.9), rgba(11, 11, 59, 0.7)); /* 그라데이션과 투명도 조절 */
-  color: #FFFFFF; /* 텍스트 색상 설정 */
+  color: #000000; /* 텍스트 색상 설정 */
   padding: 10px; /* 내부 여백 설정 */
   font-size: 17px;
 }
@@ -334,36 +333,15 @@ footer a {
 <body>
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+              <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0" align=">
                 <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge2B</h1>
+                    <h1 class="m-0">Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
-               <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto py-0">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
-                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
-                    </div>
-                   
-                </div>
+                
             </nav>
         </div>
 
@@ -566,8 +544,8 @@ footer a {
                    $("#checkMessage").text("사용할 수 있는 이메일 입니다.");
                    $("#checkType").attr("class","modal-content panel-success");
                    $("#join").prop("disabled", false);
-                   $("#join").css("border", "1px solid #FF4B2B");
-                   $("#join").css("background-color", "#FF4B2B");
+                   $("#join").css("border", "1px solid #0B0B3B");
+                   $("#join").css("background-color", "#0B0B3B");
                 }
                 
                 $("#checkModal").modal("show");
@@ -595,8 +573,8 @@ footer a {
           }else{
              $("#passMessage").html("");
              $("#join").prop("disabled", false);
-             $("#join").css("border", "1px solid #FF4B2B");
-             $("#join").css("background-color", "#FF4B2B");
+             $("#join").css("border", "1px solid #fc9a07");
+             $("#join").css("background-color", "#fc9a07");
           }
        }
        
@@ -624,8 +602,8 @@ footer a {
                     $("#checkMessage").text("정상적인 사업자등록번호입니다.");
                        $("#checkType").attr("class","modal-content panel-success");
                        $("#join").prop("disabled", false);
-                       $("#join").css("border", "1px solid #FF4B2B");
-                       $("#join").css("background-color", "#FF4B2B");
+                       $("#join").css("border", "1px solid #fc9a07");
+                       $("#join").css("background-color", "#fc9a07");
                  }
                  $("#checkModal").modal("show");
              },

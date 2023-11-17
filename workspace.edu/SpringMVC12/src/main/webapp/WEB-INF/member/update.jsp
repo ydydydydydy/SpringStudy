@@ -46,15 +46,15 @@
 </head>
 
 <body>
-	<div class="container">
-	  
-	  <div class="panel panel-default">
-	    <div class="panel-body">
-	    
-	    
+   <div class="container">
+     
+     <div class="panel panel-default">
+       <div class="panel-body">
+       
+       
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+              <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="${cpath}/home" class="navbar-brand p-0">
                     <h1 class="m-0">Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
@@ -62,9 +62,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
+                
+                
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="home" class="nav-item nav-link active">Home</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
                             <div class="dropdown-menu m-0">
@@ -76,9 +77,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
+                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
+                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
                             </div>
                         </div>
                         <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
@@ -114,13 +114,13 @@
         
         
         <!-- update start -->
-				<div class="container-xxl py-5">
-					<div class="container py-5 px-lg-5">
-						<div class="wow fadeInUp" data-wow-delay="0.1s">
-							<p class="section-title text-secondary justify-content-center">
-							</p>
-							<h1 class="text-center mb-5">회원정보수정</h1>
-						</div>
+            <div class="container-xxl py-5">
+               <div class="container py-5 px-lg-5">
+                  <div class="wow fadeInUp" data-wow-delay="0.1s">
+                     <p class="section-title text-secondary justify-content-center">
+                     </p>
+                     <h1 class="text-center mb-5">회원정보수정</h1>
+                  </div>
 
     <h2>회원 정보 수정</h2>
 
@@ -128,15 +128,8 @@
         <label for="username">아이디:</label>
         <input type="text" id="username" name="username" value="${userVo.username}" readonly>
         <!-- readonly 속성을 추가하여 수정 불가능하게 만듭니다. -->
-		
-		        <label for="currentPassword">현재 비밀번호:</label>
-        <input type="password" id="currentPassword" name="currentPassword" required>
 
-        <label for="newPassword">새로운 비밀번호:</label>
-        <input type="password" id="newPassword" name="newPassword" required>
-
-        <input type="submit" value="수정">
-		
+      
         <label for="bno">사업자번호:</label>
         <input type="text" id="bno" name="bno" value="${userVo.bno}" required>
 
@@ -153,14 +146,14 @@
 
     <br>
     <a href="${pageContext.request.contextPath}/member/mypage">마이페이지로 돌아가기</a>
-					</div>
-				</div>
-			</div>
-	      </div>
+               </div>
+            </div>
+         </div>
+         </div>
         </div>
         
         <!-- update end -->
-	        <!-- Footer Start -->
+           <!-- Footer Start -->
         <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5 px-lg-5">
                 <div class="row g-5">
@@ -247,47 +240,47 @@
     </div>
     
    
-	
-	
-	 <!-- Modal -->
-	  <div class="modal fade" id="myModal" role="dialog">
-	    <div class="modal-dialog">
-	      <!-- Modal content-->
-	      <div id="checkType" class="modal-content">
-	        <div class="modal-header panel-heading">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">메세지 확인</h4>
-	        </div>
-	        <div class="modal-body">
-	          <p id="checkMessage"></p>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+   
+   
+    <!-- Modal -->
+     <div class="modal fade" id="myModal" role="dialog">
+       <div class="modal-dialog">
+         <!-- Modal content-->
+         <div id="checkType" class="modal-content">
+           <div class="modal-header panel-heading">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h4 class="modal-title">메세지 확인</h4>
+           </div>
+           <div class="modal-body">
+             <p id="checkMessage"></p>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           </div>
+         </div>
+       </div>
+     </div>
   
-	
-		<!-- 회원가입 실패시 띄워줄 모달 -->
-	  <div class="modal fade" id="myMessage" role="dialog">
-	    <div class="modal-dialog">
-	      <!-- Modal content-->
-	      <div id="messageType" class="modal-content">
-	        <div class="modal-header panel-heading">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">${msgType}</h4>
-	        </div>
-	        <div class="modal-body">
-	          <p id="">${msg}</p>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	  
+   
+      <!-- 회원가입 실패시 띄워줄 모달 -->
+     <div class="modal fade" id="myMessage" role="dialog">
+       <div class="modal-dialog">
+         <!-- Modal content-->
+         <div id="messageType" class="modal-content">
+           <div class="modal-header panel-heading">
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+             <h4 class="modal-title">${msgType}</h4>
+           </div>
+           <div class="modal-body">
+             <p id="">${msg}</p>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -301,37 +294,37 @@
 
     <!-- Template Javascript -->
     <script src="${cpath }/resources/js/main.js"></script>
-    		
-	<script type="text/javascript">
-	
-		function passwordCheck(){
-			
-			var memPassword1 = $("#memPassword1").val();
-			var memPassword2 = $("#memPassword2").val();
-			
-			if(memPassword1 != memPassword2){
-				$("#passMessage").html("비밀번호가 서로 일치하지 않습니다.");
-			}else{
-				$("#memPassword").val(memPassword1);
-				$("#passMessage").html("");
-			}
-			
-		}
-		
-		$(document).ready(function(){
-			if(${not empty msgType}){
-				if(${msgType eq "실패메세지"}){
-					$("#messageType").attr("class","modal-content panel-warning");
-				}
-				$("#myMessage").modal("show");
-			}
-			
-		});
-		
-		
-		
-	
-	</script>
-	
+          
+   <script type="text/javascript">
+   
+      function passwordCheck(){
+         
+         var memPassword1 = $("#memPassword1").val();
+         var memPassword2 = $("#memPassword2").val();
+         
+         if(memPassword1 != memPassword2){
+            $("#passMessage").html("비밀번호가 서로 일치하지 않습니다.");
+         }else{
+            $("#memPassword").val(memPassword1);
+            $("#passMessage").html("");
+         }
+         
+      }
+      
+      $(document).ready(function(){
+         if(${not empty msgType}){
+            if(${msgType eq "실패메세지"}){
+               $("#messageType").attr("class","modal-content panel-warning");
+            }
+            $("#myMessage").modal("show");
+         }
+         
+      });
+      
+      
+      
+   
+   </script>
+   
 </body>
 </html>

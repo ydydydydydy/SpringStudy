@@ -32,18 +32,5 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepository.count();
     }
 
-    @Override
-    public List<tb_company> getList(Criteria cri) {
-        Pageable pageable = PageRequest.of(cri.getPage() - 1, cri.getPerPageNum()); // 페이지 번호를 0부터 시작하므로 1을 빼줌
-        Page<tb_company> page = companyRepository.findAll(pageable);
-        return page.getContent(); // getContent()로 실제 데이터를 가져옴
-    }
-
-	@Override
-	public Page<tb_company> findPagedData(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return  companyRepository.findAll(pageable);
-	}
-    
     
 }

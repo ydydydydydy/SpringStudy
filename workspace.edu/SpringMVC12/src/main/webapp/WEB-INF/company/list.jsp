@@ -62,7 +62,7 @@
 
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+               <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="${cpath}/home" class="navbar-brand p-0">
                     <h1 class="m-0">Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
@@ -70,7 +70,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
-                 <div class="collapse navbar-collapse" id="navbarCollapse">
+                
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
@@ -83,9 +85,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
+                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
+                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
                             </div>
                         </div>
                         <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
@@ -142,31 +143,19 @@
                             <li class="mx-2" data-filter=".eight">정보통신</li>
                             <li class="mx-2" data-filter=".nine">광업</li>
                             <li class="mx-2" data-filter=".ten">운수·창고</li>
-                            <li class="mx-2" data-filter=".ten1">건설</li>
-							<li class="mx-2" data-filter=".ten2">전기·가스·증기·공기조절공급</li>
-							<br>
-							<li class="mx-2" data-filter=".ten3">부동산</li>
-							<li class="mx-2" data-filter=".ten4">소프트웨어</li>
-							<li class="mx-2" data-filter=".ten5">공공행정·국방·사회보장행정</li>
-							<li class="mx-2" data-filter=".ten6">서비스업</li>
-							<li class="mx-2" data-filter=".ten7">보건, 사회복지서비스</li>
-							<li class="mx-2" data-filter=".ten8">농업·임업·어업</li>
-							<li class="mx-2" data-filter=".ten9">협회·단체·수리·기타개인서비스</li>
-							<li class="mx-2" data-filter=".twenty">예술·스포츠·여가관련서비스</li>
-							<li class="mx-2" data-filter=".twenty1">수도·하수·폐기물처리·원료재생</li>
-
+							
                         </ul>
               
                  <!-- 기업검색 -->
-                   <form onsubmit="searchCompanies(); return false;" style="margin-bottom: 20px; display: flex; align-items: center;">
-    <input type="text" id="companySearch" name="companyName" style="flex: 1;">
-    <input type="submit" value="검색" style="background-color: #6222cc; color: white; border: 1px solid white; padding: 5px 10px; cursor: pointer; border-radius: 5px;">
-    <button id="resetSearch" class="btn btn-primary" style="margin-left: 5px; padding: 3px 8px;">초기화</button>
-</form>
+						<form onsubmit="searchCompanies(); return false;"style="margin-bottom: 20px; display: flex; align-items: center;">
+							<input type="text" id="companySearch" name="companyName"style="flex: 1;">
+							<button type="submit" class="btn btn-primary" value="검색"style="margin-left: 5px; padding: 3px 8px;">검색</button>
+							<button id="resetSearch" class="btn btn-primary"style="margin-left: 5px; padding: 3px 8px;">초기화</button>
+						</form>
 
 
-                    
-                    </div>
+
+					</div>
                 </div>
                 
                 
@@ -216,49 +205,10 @@
 								<c:set var="portfolioClass" value="ten" />
 								<c:set var="portfolioImage" value="portfolio-10.jpg" />
 							</c:when>
-							<c:when test="${vo.industry == '건설'}">
-								<c:set var="portfolioClass" value="eleven" />
-								<c:set var="portfolioImage" value="portfolio-11.jpg" />
-							</c:when>
+							
 							<c:when test="${vo.industry == '전기·가스·증기·공기조절공급'}">
 								<c:set var="portfolioClass" value="ten2" />
 								<c:set var="portfolioImage" value="portfolio-12.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '부동산'}">
-								<c:set var="portfolioClass" value="ten3" />
-								<c:set var="portfolioImage" value="portfolio-13.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '소프트웨어'}">
-								<c:set var="portfolioClass" value="ten4" />
-								<c:set var="portfolioImage" value="portfolio-14.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '공공행정·국방·사회보장행정'}">
-								<c:set var="portfolioClass" value="ten5" />
-								<c:set var="portfolioImage" value="portfolio-15.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '서비스업'}">
-								<c:set var="portfolioClass" value="ten6" />
-								<c:set var="portfolioImage" value="portfolio-16.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '보건, 사회복지서비스'}">
-								<c:set var="portfolioClass" value="ten7" />
-								<c:set var="portfolioImage" value="portfolio-17.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '농업·임업·어업'}">
-								<c:set var="portfolioClass" value="ten8" />
-								<c:set var="portfolioImage" value="portfolio-18.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '협회·단체·수리·기타개인서비스'}">
-								<c:set var="portfolioClass" value="ten9" />
-								<c:set var="portfolioImage" value="portfolio-19.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '예술·스포츠·여가관련서비스'}">
-								<c:set var="portfolioClass" value="twenty" />
-								<c:set var="portfolioImage" value="portfolio-20.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '수도·하수·폐기물처리·원료재생'}">
-								<c:set var="portfolioClass" value="twenty1" />
-								<c:set var="portfolioImage" value="portfolio-21.jpg" />
 							</c:when>
 							
 						</c:choose>
@@ -274,13 +224,11 @@
 											<img class="img-fluid w-100"
 												src="${cpath}/resources/img/${portfolioImage}" alt="">
 											<div class="portfolio-overlay">
-												<a class="btn btn-square btn-outline-light mx-1"
-													href="${cpath}/resources/img/${portfolioImage}"
-													data-lightbox="portfolio"><i class="fa fa-eye"></i></a> <a
+												<a
 													class="btn btn-square btn-outline-light mx-1" href=""
 													data-industry="${vo.industry}"
 													data-company="${vo.com_name}" data-addr="${vo.com_addr}"
-													data-scale="${vo.com_type}"><i class="fa fa-link"></i></a>
+													data-scale="${vo.com_type}"><i class="fa fa-eye"></i></a>
 											</div>
 										</div>
 
@@ -299,53 +247,7 @@
 					
 				</div>
                 
-              	<!--  페이징 -->
-				<div style="text-align: center;">
-						<ul class="pagination" style="display: inline-block;">
-
-							<!-- 이전버튼처리 -->
-							<c:if test="${pageMaker.prev}">
-								<li class="paginate_button previous"  style="display: inline-block; font-size: 24px;"><a
-									href="?page=${pageMaker.startPage - 1}">◀</a></li>
-							</c:if>
-
-							<!-- 페이지번호 처리 -->
-							<c:forEach var="pageNum" begin="${pageMaker.startPage}"
-								end="${pageMaker.endPage}">
-								<c:choose>
-									<c:when test="${pageMaker.cri.page == pageNum }">
-										<li class="paginate_button active"  style="display: inline-block; font-size: 32px; font-weight: bold;"><a
-											href="?page=${pageNum}">${pageNum}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="paginate_button"  style="display: inline-block; font-size: 24px;"><a href="?page=${pageNum}" style="color: #848484;">${pageNum}</a></li>
-									</c:otherwise>
-								</c:choose>
-								 <!-- 페이지 번호 사이에 공백 추가 -->
-								  &nbsp;
-							</c:forEach>
-							<!-- 다음버튼처리 -->
-							<c:if test="${pageMaker.next}">
-								<li class="paginate_button previous"  style="display: inline-block; font-size: 24px;"><a
-									href="?page=${pageMaker.endPage + 1}">▶</a></li>
-							</c:if>
-
-						</ul>
-
-
-						<form action="${cpath}/company/list" id="pageFrm">
-							<input type="hidden" id="page" name="page"
-								value="${pageMaker.cri.page}"> <input type="hidden"
-								id="perPageNum" name="perPageNum"
-								value="${pageMaker.cri.perPageNum}">
-						</form>
-
-
-
-
-					</div>
               
-                <!--  페이징 끝 -->
                 
                 
                 
@@ -366,6 +268,7 @@
             </div>
       
             <!-- Modal body -->
+             <div id="map" style="width: 100%; height: 400px;"></div>
             <div class="modal-body">
               ${msg}
             </div>
@@ -479,67 +382,84 @@
 <script src="${cpath}/resources/lib/lightbox/js/lightbox.min.js"></script>
 <!-- Template Javascript -->
 <script src="${cpath}/resources/js/main.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6d222eefd3278a8d9470378244c58b31&libraries=services"></script>
 <script>
-    $(document).ready(function() {
-        // 클릭 가능한 아이콘에 대한 클릭 이벤트 처리
-        $('.btn-square').on('click', function(e) {
-            e.preventDefault(); // 기본 클릭 동작 방지
+$(document).ready(function() {
+    var mapVisible = false;
+    var map; // 전역 변수로 맵 객체 선언
+    var infowindow; // 전역 변수로 인포윈도우 객체 선언
 
-            // 클릭한 아이콘의 데이터 얻기
-            var industry = $(this).data('industry');
-            var companyName = $(this).data('company');
-            var addr = $(this).data('addr');
-            var scale = $(this).data('scale');
+    $('.btn-square').on('click', function(e) {
+        e.preventDefault();
+        var industry = $(this).data('industry');
+        var companyName = $(this).data('company');
+        var addr = $(this).data('addr');
+        var scale = $(this).data('scale');
 
-            // 정보를 모달 또는 다른 요소에 표시 (예: 모달 사용)
-            $('#myModal .modal-title').text(companyName);
-            $('#myModal .modal-body').html(
-                "<p><strong>Industry:</strong> " + industry + " </p>" +
-                "<p><strong>Addr:</strong> " + addr + " </p>" +
-                "<p><strong>com_type:</strong> " + scale + " </p>"
-            );
+        $('#myModal .modal-title').text(companyName);
+        $('#myModal .modal-body').html(
+            "<p><strong>Industry:</strong> " + industry + " </p>" +
+            "<p><strong>Addr:</strong> " + addr + " </p>" +
+            "<p><strong>com_type:</strong> " + scale + " </p>"
+        );
 
-            // 모달 열기
-            $('#myModal').modal('show');
-        });
+        $('#myModal').modal('show');
 
-        function searchCompanies() {
-            var companyName = $(' #companySearch').val();
+        if (!map) { // 맵 객체가 없는 경우에만 새로 생성
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667),
+                level: 3
+            };
 
-            $.ajax({
-                type: 'GET',
-                url: '/boot/company/search',
-                data: { companyName: companyName },
-                success: function (data) {
-                    // 서버로부터 받아온 데이터를 출력
-                    console.log(data);
-
-                    // 여기에서 받아온 데이터를 원하는 형태로 DOM에 추가하는 작업을 수행할 수 있습니다.
-                    // 예를 들어, 검색 결과를 동적으로 추가하고 싶은 부분에 다음과 같이 추가합니다.
-                    $('#searchResults').html(data);
-
-                    // 새로고침 시 검색어 초기화
-                    $('#companySearch').val('');
-
-                    // 검색결과 초기화 버튼 추가
-                    $('#searchResults').append('<button id="resetSearch" class="btn btn-primary">검색결과 초기화</button>');
-
-                    // 새로 추가한 버튼에 클릭 이벤트 추가
-                    $('#resetSearch').on('click', function() {
-                        window.location.href = '/boot/company/list';
-                    });
-                },
-                error: function (error) {
-                    console.error('Error during search:', error);
-                }
-            });
+            map = new kakao.maps.Map(container, options);
         }
 
-        // 검색 기능을 위한 AJAX 호출
-        $('#searchButton').on('click', function() {
-            searchCompanies();
+        var geocoder = new kakao.maps.services.Geocoder();
+        geocoder.addressSearch(addr, function(result, status) {
+            try {
+                if (status === kakao.maps.services.Status.OK && result.length > 0) {
+                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                    var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords
+                    });
+
+                    if (!infowindow) {
+                        infowindow = new kakao.maps.InfoWindow({
+                            content: '<div style="width:150px;text-align:center;padding:6px;font-size:13px;">'+companyName+'</div>'
+                        });
+                    } else {
+                        infowindow.close(); // 이미 열린 인포윈도우가 있으면 닫음
+                        infowindow = new kakao.maps.InfoWindow({
+                            content: '<div style="width:150px;text-align:center;padding:6px;font-size:13px;">'+companyName+'</div>'
+                        });
+                    }
+
+                    infowindow.open(map, marker);
+                    map.setCenter(coords);
+
+                    if (!mapVisible) {
+                        document.getElementById('map').style.display = 'block';
+                        mapVisible = true;
+                    }
+                } else {
+                    console.log('해당 주소를 찾을 수 없습니다.');
+                    document.getElementById('map').style.display = 'none';
+                    mapVisible = false;
+                }
+            } catch (error) {
+                console.error('좌표를 가져올 수 없습니다.', error);
+                console.log('result:', result); // result 배열의 내용을 출력
+                document.getElementById('map').style.display = 'none';
+                mapVisible = false;
+            }
         });
+
     });
+});
+
+
 </script>
 
 

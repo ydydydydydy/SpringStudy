@@ -57,7 +57,7 @@
 
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+              <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="${cpath}/home" class="navbar-brand p-0">
                     <h1 class="m-0">Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
@@ -65,9 +65,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
+                
+                
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="home" class="nav-item nav-link active">Home</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
                             <div class="dropdown-menu m-0">
@@ -79,9 +80,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
+                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
+                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
                             </div>
                         </div>
                         <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
@@ -227,7 +227,7 @@
                 </div>
             </div>
         </div>
-        <!-- mypage End -->
+        <!-- Team End -->
         
 
         <!-- Footer Start -->

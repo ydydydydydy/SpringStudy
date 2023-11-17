@@ -15,7 +15,7 @@ public interface CompanyRepository extends JpaRepository<tb_company, Long> {
    @Query("SELECT t FROM tb_company t where t.com_name LIKE %?1%")
    List<tb_company> findCom_NameByContaining(String companyName);
 
-	public Page<tb_company> findAll(Pageable pageable);
+
 	
 	long count();
 }

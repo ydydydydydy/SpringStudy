@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #6222CC;
+    --primary: #0B0B3B;
     --secondary: #FBA504;
     --light: #F6F4F9;
     --dark: #04000B;
@@ -440,7 +440,7 @@ h6,
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(98, 34, 204, .9);
+    background:rgba(11, 11, 59, 0.8);
     transition: .5s;
     opacity: 0;
 }

@@ -64,9 +64,11 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
+                
+                
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                         <div class="nav-item dropdown">
+                        <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
                             <div class="dropdown-menu m-0">
                                 <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
@@ -77,23 +79,23 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
-                                <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
+                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
+                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
                             </div>
                         </div>
-                        <a href="${cpath }/news/news" class="nav-item nav-link">News</a>
+                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
                     </div>
                     <c:if test="${empty user}">
                     <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
                     </c:if>
                     <c:if test="${not empty user}">
-                       <form action="${cpath}/member/logout">
-                      <button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-                   </form>
-                </c:if>
+	                    <form action="${cpath}/member/logout">
+	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
+	    				</form>
+	    			</c:if>
                 </div>
             </nav>
+
 
             <div class="container-xxl bg-primary hero-header">
                 <div class="container px-lg-5">
@@ -147,11 +149,25 @@
                               </div>
                            </div>
                                     <div class="col-12">
-                                        <button onclick="sendMessage()" class="btn btn-primary w-100 py-3" type="button" id="send">Send Message</button>
+                                        <button onclick="askQuestion()" class="btn btn-primary w-100 py-3" type="button" id="send">Send Message</button>
+
                                     </div>
                                 </div>
                             </form>
                         </div>
+                        
+                        <!-- gpt불러와보자 -->
+                        <!-- <form id="questionForm">
+                       <label for="question">원하는 정보를 검색하세요:</label>
+                       <input type="text" id="question" name="question">
+                       <button type="button" onclick="askQuestion()">정보 요청하기</button>
+                   </form> -->
+                   <div id="result">
+                   
+                   </div>
+                        <div id="error"></div>
+                        <!-- gpt불러와보자 -->
+                        
                     </div>
                 </div>
             </div>
@@ -284,6 +300,7 @@
     <script src="${cpath }/resources/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="${cpath }/resources/lib/isotope/isotope.pkgd.min.js"></script>
     <script src="${cpath }/resources/lib/lightbox/js/lightbox.min.js"></script>
+   
 
     <!-- Template Javascript -->
     <script src="${cpath }/resources/js/main.js"></script>
@@ -316,6 +333,36 @@
     }
     
     </script>
+    
+    <!-- gpt실행결과 db저장해보기 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+    function askQuestion() {
+        var question = $('#content').val(); // 사용자의 상담 요청 내용을 가져옴
+        var data = { 'question': question };
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:5000/ask_question',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (data) {
+                var solContent = data.result || data.error;
+
+                // 결과를 서버로 보내서 DB에 저장
+                saveToDatabase(solContent);
+
+                $('#error').text(""); // 성공 시 에러 메시지 초기화
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+                $('#error').text("에러 발생: " + error); // 에러 메시지 표시
+            }
+        });
+    }
+
+    </script>
+    
     
 </body>
 </html>
