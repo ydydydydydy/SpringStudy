@@ -44,5 +44,11 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void delete(String username) {
+	    // username에 해당하는 사용자 정보를 삭제
+	    userRepository.deleteById(username);
+	}
 
 }

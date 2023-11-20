@@ -64,5 +64,21 @@ public class UserController {
      userService.update(vo);
       return "member/update";
    }
+   
+   @GetMapping("/delete")
+   public String delete(Model model, RedirectAttributes rttr) {
+       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       String username = authentication.getName(); // 현재 로그인한 사용자의 username
+       
+       // 회원 삭제를 userService에 위임
+       userService.delete(username);
+       
+       // 세션에서 로그인 정보 삭제
+       SecurityContextHolder.getContext().setAuthentication(null);
+
+       // 회원 탈퇴 후 로그인 페이지로 리다이렉트
+       return "redirect:/member/login";
+   }
+   
 
 }

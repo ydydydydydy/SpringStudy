@@ -122,28 +122,27 @@
                      <h1 class="text-center mb-5">회원정보수정</h1>
                   </div>
 
-    <h2>회원 정보 수정</h2>
+     <h2>회원 정보 수정</h2>
 
-    <form action="${pageContext.request.contextPath}/member/update" method="post">
-        <label for="username">아이디:</label>
-        <input type="text" id="username" name="username" value="${userVo.username}" readonly>
-        <!-- readonly 속성을 추가하여 수정 불가능하게 만듭니다. -->
-
-      
-        <label for="bno">사업자번호:</label>
-        <input type="text" id="bno" name="bno" value="${userVo.bno}" required>
-
-        <label for="industry">업종:</label>
-        <input type="text" id="industry" name="industry" value="${userVo.industry}" required>
-
-        <label for="com_name">기업명:</label>
-        <input type="text" id="com_name" name="com_name" value="${userVo.com_name}" required>
-
-        <!-- 기타 필요한 수정 항목들을 추가 -->
-
-        <input type="submit" value="수정">
-    </form>
-
+	<form:form modelAttribute="userVo" action="${pageContext.request.contextPath}/member/update" method="post" onsubmit="return validatePassword();">
+		<!-- 기존 비밀번호 입력란 -->
+		<label for="password">현재 비밀번호:</label>
+		<input type="password" id="password" name="password" required>
+		<br>
+		
+		<!-- 새로운 비밀번호 입력란 -->
+		<label for="newPassword">새로운 비밀번호:</label>
+		<input type="password" id="newPassword" name="newPassword" required>
+		<br>
+		
+		<!-- 새로운 비밀번호 확인 입력란 -->
+		<label for="confirmPassword">새로운 비밀번호 확인:</label>
+		<input type="password" id="confirmPassword" name="confirmPassword" required>
+		<span id="passwordMismatch" style="color: red;"></span> <!-- 비밀번호 불일치 메시지를 표시할 곳 -->
+		<br>
+		
+		<input type="submit" value="비밀번호 수정">
+	</form:form>
     <br>
     <a href="${pageContext.request.contextPath}/member/mypage">마이페이지로 돌아가기</a>
                </div>
@@ -151,6 +150,7 @@
          </div>
          </div>
         </div>
+        
         
         <!-- update end -->
            <!-- Footer Start -->
@@ -295,36 +295,32 @@
     <!-- Template Javascript -->
     <script src="${cpath }/resources/js/main.js"></script>
           
-   <script type="text/javascript">
-   
-      function passwordCheck(){
-         
-         var memPassword1 = $("#memPassword1").val();
-         var memPassword2 = $("#memPassword2").val();
-         
-         if(memPassword1 != memPassword2){
-            $("#passMessage").html("비밀번호가 서로 일치하지 않습니다.");
-         }else{
-            $("#memPassword").val(memPassword1);
-            $("#passMessage").html("");
-         }
-         
-      }
-      
-      $(document).ready(function(){
-         if(${not empty msgType}){
-            if(${msgType eq "실패메세지"}){
-               $("#messageType").attr("class","modal-content panel-warning");
-            }
-            $("#myMessage").modal("show");
-         }
-         
-      });
-      
-      
-      
-   
-   </script>
+ <script>
+    // 비밀번호와 비밀번호 확인 일치 여부 확인
+    document.getElementById("newPassword").addEventListener("input", function () {
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var mismatchMsg = document.getElementById("passwordMismatch");
+
+        if (newPassword !== confirmPassword) {
+            mismatchMsg.textContent = "비밀번호가 일치하지 않습니다.";
+        } else {
+            mismatchMsg.textContent = "";
+        }
+    });
+
+    document.getElementById("confirmPassword").addEventListener("input", function () {
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var mismatchMsg = document.getElementById("passwordMismatch");
+
+        if (newPassword !== confirmPassword) {
+            mismatchMsg.textContent = "비밀번호가 일치하지 않습니다.";
+        } else {
+            mismatchMsg.textContent = "";
+        }
+    });
+</script>
    
 </body>
 </html>

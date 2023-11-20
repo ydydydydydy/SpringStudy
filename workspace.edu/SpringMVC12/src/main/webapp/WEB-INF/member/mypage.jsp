@@ -136,6 +136,7 @@
                                 <h5>${username}</h5>
                                 <span>${userVo.com_name}</span>
                             </div>
+                                <a href="${pageContext.request.contextPath}/member/delete" onclick="return confirm('정말로 회원을 탈퇴하시겠습니까?')">회원 탈퇴</a>
                             <div class="d-flex justify-content-center p-4">
                                 <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>

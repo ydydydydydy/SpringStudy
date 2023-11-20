@@ -13,4 +13,6 @@ public interface UserService {
 	public tb_user getList(String username);
 
 	public tb_user update(tb_user vo);
+	
+	public void delete(String username);
 }
