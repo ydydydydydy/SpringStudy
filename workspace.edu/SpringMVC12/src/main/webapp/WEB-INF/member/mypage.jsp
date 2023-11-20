@@ -31,17 +31,19 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
+	
     <!-- Libraries Stylesheet -->
     <link href="${cpath }/resources/lib/animate/animate.min.css" rel="stylesheet">
     <link href="${cpath }/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="${cpath }/resources/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+	
     <!-- Customized Bootstrap Stylesheet -->
     <link href="${cpath }/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="${cpath }/resources/css/style.css" rel="stylesheet">
+    
+
 </head>
 
 <body>
@@ -136,7 +138,9 @@
                                 <h5>${username}</h5>
                                 <span>${userVo.com_name}</span>
                             </div>
-                                <a href="${pageContext.request.contextPath}/member/delete" onclick="return confirm('정말로 회원을 탈퇴하시겠습니까?')">회원 탈퇴</a>
+                            	<a href="${pageContext.request.contextPath}/member/update">수정 페이지로 이동</a>
+                            	<br>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#confirmModal">회원 탈퇴</a>
                             <div class="d-flex justify-content-center p-4">
                                 <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -311,6 +315,26 @@
             </div>
         </div>
         <!-- Footer End -->
+        
+	<!-- 회원 탈퇴 모달 -->
+	<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="confirmModalLabel">회원 탈퇴 확인</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <p>기존 비밀번호를 입력하세요.</p>
+	                <input type="password" id="currentPassword" class="form-control" required>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">회원 탈퇴</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 
 
         <!-- Back to Top -->
@@ -331,5 +355,34 @@
 
     <!-- Template Javascript -->
     <script src="${cpath }/resources/js/main.js"></script>
+	    
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        // 회원 탈퇴 버튼 클릭 시
+	        $("#confirmDeleteBtn").click(function() {
+	            var currentPassword = $("#currentPassword").val();
+	
+	            // Ajax 요청
+	            $.ajax({
+	                type: "POST",
+	                url: "${pageContext.request.contextPath}/member/delete",
+	                data: { password: currentPassword },
+	                success: function(response) {
+	                	console.log(response);
+	                    if (response === "success") {
+	                        alert("회원 탈퇴가 완료되었습니다.");
+	                        window.location.href = "${pageContext.request.contextPath}/";
+	                    } else {
+	                        alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
+	                    }
+	                },
+	                error: function() {
+	                    alert("오류가 발생하였습니다. 다시 시도해주세요.");
+	                }
+	            });
+	        });
+	    });
+	</script>
+	
 </body>
 </html>

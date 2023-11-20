@@ -15,4 +15,6 @@ public interface UserService {
 	public tb_user update(tb_user vo);
 	
 	public void delete(String username);
+
+	public int checkPassword(String username, String password);
 }

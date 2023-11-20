@@ -8,12 +8,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.spring.entity.CustomUser;
 import kr.spring.entity.tb_user;
 import kr.spring.service.UserService;
 
@@ -59,26 +62,50 @@ public class UserController {
       return "member/mypage";
    }
    
-   @GetMapping("/update")
+   @PostMapping("/update")
    public String update(tb_user vo, RedirectAttributes rttr, HttpSession session) {
      userService.update(vo);
-      return "member/update";
+      return "redirect:/member/mypage";
    }
    
-   @GetMapping("/delete")
-   public String delete(Model model, RedirectAttributes rttr) {
+   @GetMapping("/update")
+   public String updateForm(Model model) {
+       tb_user authenticatedUser = getAuthenticatedUser();
+       model.addAttribute("userVo", authenticatedUser);
+       return "member/update";
+   }
+   
+   private tb_user getAuthenticatedUser() {
+       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       if (authentication != null && authentication.getPrincipal() instanceof CustomUser) {
+           CustomUser customUser = (CustomUser) authentication.getPrincipal();
+           return customUser.getMember();
+       }
+       return null;
+   }
+
+   @PostMapping("/delete")
+   public @ResponseBody String delete(@RequestParam("password") String password, Model model, RedirectAttributes rttr) {
        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        String username = authentication.getName(); // 현재 로그인한 사용자의 username
-       
+
+       // 비밀번호 확인
+       int check = userService.checkPassword(username, password);
+
+       if (check == 1) { 
+    	   userService.delete(username);
+    	   SecurityContextHolder.getContext().setAuthentication(null);
+    	   return "success";
+       }else {
+    	   return "fail";
+       }
        // 회원 삭제를 userService에 위임
-       userService.delete(username);
-       
+      
+
        // 세션에서 로그인 정보 삭제
-       SecurityContextHolder.getContext().setAuthentication(null);
 
        // 회원 탈퇴 후 로그인 페이지로 리다이렉트
-       return "redirect:/member/login";
+       
    }
-   
 
 }
