@@ -99,12 +99,6 @@ public class UserController {
        }else {
     	   return "fail";
        }
-       // 회원 삭제를 userService에 위임
-      
-
-       // 세션에서 로그인 정보 삭제
-
-       // 회원 탈퇴 후 로그인 페이지로 리다이렉트
        
    }
 

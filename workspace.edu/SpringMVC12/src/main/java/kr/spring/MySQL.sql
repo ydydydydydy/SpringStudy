@@ -24,6 +24,7 @@ select
 SHOW TABLES;
 
 select * from tb_request;
+
 select * from tb_user;
 
 describe tb_request;
