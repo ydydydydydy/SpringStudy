@@ -27,17 +27,17 @@ public class tb_news {
    @Column(nullable = false)
    private String news_id; // 소비층
    @Column(nullable = true)
-   private String news_date; // 기간
+   private String news_date; // 뉴스일자
    @Column(nullable = false)
-   private String news_name; // 방식
+   private String news_name; // 뉴스사
    @Column(nullable = false)
-   private String news_reporter; // 예산
+   private String news_reporter; // 뉴스 기자
    @Column(nullable = false)
-   private String news_title; // 예산
+   private String news_title; // 뉴스 제목
    @Column(nullable = false)
-   private String news_content; // 예산
+   private String news_content; // 뉴스 내용
    @Column(nullable = false)
-   private String news_url; // 예산
+   private String news_url; // 뉴스 url
 
 }
 

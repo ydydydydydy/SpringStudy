@@ -121,29 +121,34 @@
                     <p class="section-title text-secondary justify-content-center"><span></span>Our Services<span></span></p>
                     <h1 class="text-center mb-5">나의 의뢰 내역</h1>
                 </div>
-                
-
-
-
-                <div class="row g-4">
-	                <c:forEach var="vo" items="${req_list}" varStatus="i">
-	                	<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="service-item d-flex flex-column text-center rounded">
-                            <div class="service-icon flex-shrink-0">
-                                <i class="fa fa-search fa-2x"></i>
-                            </div>
-                            <h5 class="mb-3">${vo.req_num }</h5>
-                            <p class="m-0">${vo.req_content }</p>
-                            <p class="m-0"><fmt:formatDate value="${vo.req_at}" pattern="yyyy-MM-dd"/></p>
-                            <p class="m-0">${vo.req_satisfaction }</p>
-                            <p class="m-0">${vo.req_keyword }</p>
-                            <a class="btn btn-square" href="${cpath}/collaboration/result?req_num=${vo.req_num}"><i class="fa fa-arrow-right"></i></a>
-                        </div>
-                    	</div>
-	                
-	                </c:forEach>
-                
-                    
+               
+					
+		<div class="col-lg-5">
+		    <div class="board" id="requestList">
+		        <div class="card-body" >
+		            <table class="table table-bordered table-hover">
+		                <thead>
+		                    <th>번호</th>
+		                    <th>내용</th>
+		                    <th>키워드</th>
+		                    <th>작성일</th>
+		                    <th>만족도</th>
+		                </thead>
+		                <tbody>
+		                    <c:forEach var="vo" items="${req_list}" varStatus="i">
+		                        <tr>
+		                            <td>${vo.req_num}</td>
+		                            <td class="left"><strong><a href="#none;" onclick="fn_compView('314530');">${vo.req_content}</a></strong></td>
+		                            <td>${vo.req_keyword}</td>
+		                            <td><fmt:formatDate value="${vo.req_at}" pattern="yyyy-MM-dd" /></td>
+		                            <td>${vo.req_satisfaction}</td>
+		                        </tr>
+		                    </c:forEach>
+		                </tbody>
+		            </table>
+		        </div>
+		    </div>
+		</div>
                     <!-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item d-flex flex-column text-center rounded">
                             <div class="service-icon flex-shrink-0">
@@ -194,7 +199,6 @@
                             <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div> -->
-                </div>
             </div>
         </div>
         <!-- Service End -->

@@ -12,6 +12,8 @@
 <c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}" />  
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -121,7 +123,7 @@
             <div class="container py-5 px-lg-5">
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
                     <p class="section-title text-secondary justify-content-center"><span></span>Contact Us<span></span></p>
-                    <h1 class="text-center mb-5">Contact For Any Query</h1>
+                    <h1 class="text-center mb-5">의뢰서 작성</h1>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
@@ -129,32 +131,37 @@
                             <p class="text-center mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
                             <form action="${cpath}/collaboration/request" method="post" >
                             
+                            
                                 <div class="requestForm">
                                     <div class="col-12">
                               <div class="form-floating">
                                   <input type="hidden" class="form-control" id="writer" name="username" placeholder="username" value="${user.username}">
                               </div>
                            </div>
-                           
+                           <br>
                            <div class="col-12">
                               <div class="form-floating">
                                  <input type="text" class="form-control" id="subject" name="req_keyword" placeholder="Subject">
                                  <label for="subject">의뢰제목</label>
                               </div>
                            </div>
+                           <br>
                            <div class="col-12">
                               <div class="form-floating">
                                  <textarea class="form-control" name="req_content" placeholder="Leave a message here" id="content" style="height: 500px"></textarea>
                                  <label for="content">상담요청내용</label> <!-- 수정: label을 "content"로 변경 -->
                               </div>
                            </div>
-                                    <div class="col-12">
-                                        <button onclick="askQuestion()" class="btn btn-primary w-100 py-3" type="button" id="send">Send Message</button>
-
-                                    </div>
+                           <br>
+                           <div class="col-12">
+                               <button onclick="askQuestion()" class="btn btn-primary w-100 py-3" type="button" id="send">Send Message</button>
+						   </div>
                                 </div>
+                                
+                                
                             </form>
                         </div>
+                        
                        
                    <div id="result">
                    
