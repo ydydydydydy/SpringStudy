@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
 		vo.setRole(Role.MEMBER);
 		userRepository.save(vo);
 	}
+	 
 
 	@Override
 	public boolean select(String username) {
@@ -39,49 +40,50 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public tb_user update(tb_user vo) {
-	    Optional<tb_user> optionalUser = userRepository.findById(vo.getUsername());
+	   public tb_user update(tb_user vo) {
+	       Optional<tb_user> optionalUser = userRepository.findById(vo.getUsername());
 
-	    if (optionalUser.isPresent()) {
-	        tb_user existingUser = optionalUser.get();
-	        existingUser.setBno(vo.getBno());
-	        existingUser.setIndustry(vo.getIndustry());
-	        existingUser.setCom_name(vo.getCom_name());
-	        existingUser.setPassword(passwordEncoder.encode(vo.getPassword())); // 비밀번호 업데이트
+	       if (optionalUser.isPresent()) {
+	           tb_user existingUser = optionalUser.get();
+	           existingUser.setBno(vo.getBno());
+	           existingUser.setIndustry(vo.getIndustry());
+	           existingUser.setCom_name(vo.getCom_name());
+	           existingUser.setPassword(passwordEncoder.encode(vo.getPassword())); // 비밀번호 업데이트
 
-	        // 기타 필요한 필드들도 업데이트
+	           // 기타 필요한 필드들도 업데이트
 
-	        // 업데이트된 회원 정보를 저장
-	        return userRepository.save(existingUser);
-	    } else {
-	        return null;
-	    }
-	}
-
-	@Override
-	public void delete(String username) {
-		
-	    // username에 해당하는 사용자 정보를 삭제
-	    userRepository.deleteById(username);
-	}
-
-    @Override
-    public int checkPassword(String username, String password) {
-        Optional<tb_user> optionalUser = userRepository.findById(username);
-
-        if (optionalUser.isPresent()) {
-            tb_user existingUser = optionalUser.get();
-            String storedPassword = existingUser.getPassword();
-
-            // 입력받은 비밀번호를 암호화하여 저장된 비밀번호와 비교
-            if (!passwordEncoder.matches(password, storedPassword)) {
-            	return 0;
-            }else {
-            	return 1;
-            }
-        } else {
-        	return 0;
-        }
-    }
+	           // 업데이트된 회원 정보를 저장
+	           return userRepository.save(existingUser);
+	       } else {
+	           return null;
+	       }
+	   }
 	
+	
+	   @Override
+	   public void delete(String username) {
+	      
+	       // username에 해당하는 사용자 정보를 삭제
+	       userRepository.deleteById(username);
+	   }
+
+	    @Override
+	    public int checkPassword(String username, String password) {
+	        Optional<tb_user> optionalUser = userRepository.findById(username);
+
+	        if (optionalUser.isPresent()) {
+	            tb_user existingUser = optionalUser.get();
+	            String storedPassword = existingUser.getPassword();
+
+	            // 입력받은 비밀번호를 암호화하여 저장된 비밀번호와 비교
+	            if (!passwordEncoder.matches(password, storedPassword)) {
+	               return 0;
+	            }else {
+	               return 1;
+	            }
+	        } else {
+	           return 0;
+	        }
+	    }
+
 }

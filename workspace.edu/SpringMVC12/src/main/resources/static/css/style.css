@@ -34,7 +34,9 @@
 h1,
 h2,
 .fw-bold {
-    font-weight: 700 !important;
+    font-weight: 600 !important;
+    color: #2E2E2E;
+    font-size: 35px;
 }
 
 h3,
@@ -95,8 +97,7 @@ h6,
 /*** Navbar ***/
 .navbar .dropdown-toggle::after {
     border: none;
-    content: "\f067";
-    font-family: "Font Awesome 5 Free";
+    font-family: "GmarketSans";
     font-size: 10px;
     font-weight: bold;
     vertical-align: middle;
@@ -107,7 +108,7 @@ h6,
     position: relative;
     margin-right: 25px;
     padding: 35px 0;
-    font-family: 'Jost', sans-serif;
+    font-family: "GmarketSans";
     font-size: 18px;
     font-weight: 500;
     color: var(--light) !important;
@@ -216,7 +217,7 @@ h6,
 /*** Hero Header ***/
 .hero-header {
     margin-bottom: 6rem;
-    padding: 18rem 0;
+    padding: 10rem 0;
     background:
         url(../img/blob-top-left.png),
         url(../img/blob-top-right.png),
@@ -557,7 +558,7 @@ h6,
 .footer .btn.btn-link::before {
     position: relative;
     content: "\f105";
-    font-family: "Font Awesome 5 Free";
+    font-family: "GmarketSans";
     font-weight: 900;
     margin-right: 10px;
 }

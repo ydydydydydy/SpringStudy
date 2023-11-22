@@ -24,7 +24,15 @@ select
 SHOW TABLES;
 
 select * from tb_request;
+ALTER TABLE tb_request ADD COLUMN is_paid BOOLEAN DEFAULT false;
 
-select * from tb_user;
+delete from tb_user where username='admin2@naver.com';
+
+
+UPDATE tb_user
+SET com_name = '인공지능사관학교'
+WHERE username = 'admin@naver.com';
+
+
 
 describe tb_request;

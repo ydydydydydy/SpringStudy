@@ -325,7 +325,23 @@ footer a {
   font-size: 17px;
 }
 
+.form-select.error-border {
+        
+        border-color:red;
+} 
+#bno{
+   margin-right: 10px;
+   width:60%;
+}
+#bnoBtn{
 
+   width:150px;
+   height:45px;
+}
+.form-select {
+    --bs-form-select-bg-icon: none;
+    /* 다른 원하지 않는 스타일을 변경할 수 있습니다. */
+}
 </style>
 <title>Insert title here</title>
 </head>
@@ -333,14 +349,12 @@ footer a {
 <body>
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-              <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge To Be</h1>
+              <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0 justify-content-center">
+                <a href="${cpath}/home" class="navbar-brand p-0" >
+                    <h1 class="m-0" >Bridge To Be</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
+               
                 
             </nav>
         </div>
@@ -349,13 +363,13 @@ footer a {
 
    <div class="container" id="container">
      <div class="form-container sign-up-container">
-         <form action="${cpath}/member/join" method="post" class="was-validated">
+         <form action="${cpath}/member/join" method="post" class="was-validated" id="joinForm">
          <h1>Create Account</h1>
         
-         <input type="email" placeholder="업무용 이메일" name="username" id="username"required/>
+         <input type="email" placeholder="업무용 이메일" name="username" id="username" onkeyup="registerCheck()" required/>
          <div class="valid-feedback"></div>
          <div class="invalid-feedback"></div>
-         <button type="button" onclick="registerCheck()">중복확인</button>
+         <span id="emailMessage"></span>
         
          <input type="password" placeholder="비밀번호" name="password" id="password" onkeyup="passwordCheck()" required/>
          <div class="valid-feedback"></div>
@@ -366,17 +380,20 @@ footer a {
          <span id="passMessage" style="color:red;"></span>
            
          
-         <label for="sel1" class="form-label">업종:</label>
-          <select class="form-select" id="sel1" name="industry">
-            <option>1</option>
+         
+          <select class="form-select" style="border-color:red; --bs-form-select-bg-icon: none; box-shadow:none;" id="sel1" name="industry" onchange="checkSelection()">
+             <option selected>업종을 선택해주세요.</option>
+            <option>1. 제조</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
           </select>
          
-         
+         <div class="d-flex align-items-center">
          <input type="text" placeholder="사업자번호" name="bno" id="bno" required/>
-         <button type="button" onclick="check()">진위여부</button>
+         <button type="button" id="bnoBtn" onclick="businessCheck()">진위여부</button>
+         </div>
+         
          <div class="valid-feedback"></div>
          <div class="invalid-feedback"></div>
          
@@ -384,17 +401,17 @@ footer a {
          <input type="text" placeholder="회사명" name="com_name" required/>
          <div class="valid-feedback"></div>
          <div class="invalid-feedback"></div>
-         <button id="join">Sign Up</button>
+         <button id="join" type="button" onclick="clickEvent()">Sign Up</button>
        </form>
 
      </div>
      <div class="form-container sign-in-container">
      
-     	
+        
        <form action="${cpath}/member/login" method="post">
        
-      	 <h1 style="color:#1E274D;">Login</h1>
-      	 <br>
+          <h1 style="color:#1E274D;">Login</h1>
+          <br>
          <input id="username" name="username" type="email" placeholder="Email" />
          <input id="password" name="password" type="password" placeholder="Password" />
          <a href="#">Forgot your password?</a>
@@ -480,7 +497,7 @@ footer a {
          <div class="overlay-panel overlay-left">
            <h1>Welcome Back!</h1>
            <p>To keep connected with us please login with your personal info</p>
-		   <button class="ghost" id="signIn">Log In</button>
+         <button class="ghost" id="signIn">Log In</button>
          </div>
          <div class="overlay-panel overlay-right">
            <h1>Bridge to we</h1>
@@ -526,6 +543,16 @@ footer a {
 
        });
       
+      let isEmailChecked = false;
+      let isBusinessValid = false;
+      let isPasswordChecked = false;
+      
+      // 모달 표시 함수
+      function showMessage(message) {
+          $("#checkMessage").text(message); // 모달에 메세지 표시
+          $("#checkModal").modal("show"); // 모달 보이기
+      }
+      
       function registerCheck(){
           var username = $("#username").val();
           $.ajax({
@@ -535,28 +562,17 @@ footer a {
              success : function(data){
                 // 중복유무 확인 -> (data=1 사용가능 data=0 사용불가능)
                 if(data){
-                   $("#checkMessage").text("이미 사용중인 이메일 입니다.");
-                   $("#checkType").attr("class","modal-content panel-warning");
-                   $("#join").prop("disabled", true);
-                   $("#join").css("border", "1px solid");
-                   $("#join").css("background-color", "gray");
+                   $("#emailMessage").html("이미 사용중인 이메일 입니다.");
+                   $("#emailMessage").attr('style', 'color: red');
+                   isEmailChecked = false;
                 }else{
-                   $("#checkMessage").text("사용할 수 있는 이메일 입니다.");
-                   $("#checkType").attr("class","modal-content panel-success");
-                   $("#join").prop("disabled", false);
-                   $("#join").css("border", "1px solid #0B0B3B");
-                   $("#join").css("background-color", "#0B0B3B");
+                   $("#emailMessage").html("사용할 수 있는 이메일 입니다.");
+                   $("#emailMessage").attr('style', 'color: green');
+                   isEmailChecked = true;
                 }
-                
-                $("#checkModal").modal("show");
-                
              },
-             
              error : function(){alert("error");}
-             
           });
-
-          
        }
        
        
@@ -564,22 +580,19 @@ footer a {
           var password = $("#password").val();
           var passwordConfrim = $("#passwordConfrim").val();
           
-          
           if(password != passwordConfrim){
              $("#passMessage").html("비밀번호가 서로 일치하지 않습니다.");
-             $("#join").prop("disabled", true);
-             $("#join").css("border", "1px solid");
-             $("#join").css("background-color", "gray");
+             isPasswordChecked = false;
           }else{
              $("#passMessage").html("");
-             $("#join").prop("disabled", false);
-             $("#join").css("border", "1px solid #fc9a07");
-             $("#join").css("background-color", "#fc9a07");
+             isPasswordChecked = true;
+             //check();
           }
        }
        
-       function check(){ // 예시 사업자등록번호 : 6948102044
-          var businessNumber = $("#businessNumber").val();
+       function businessCheck(){ // 예시 사업자등록번호 : 6948102044
+          var businessNumber = $("#bno").val();
+       console.log(businessNumber);
           var data = {
                  "b_no": [businessNumber] // 사업자번호 "xxxxxxx" 로 조회 시,
                 }; 
@@ -591,29 +604,50 @@ footer a {
              contentType: "application/json",
              accept: "application/json",
              success: function(result) {
+                console.log(data);
                  console.log(result["data"][0]["tax_type"]);
                  if(result["data"][0]["tax_type"] == "국세청에 등록되지 않은 사업자등록번호입니다."){
-                    $("#checkMessage").text(result["data"][0]["tax_type"]);
-                       $("#checkType").attr("class","modal-content panel-warning");
-                       $("#join").prop("disabled", true);
-                       $("#join").css("border", "1px solid");
-                       $("#join").css("background-color", "gray");
+                    showMessage(result["data"][0]["tax_type"]);
                  }else{
-                    $("#checkMessage").text("정상적인 사업자등록번호입니다.");
-                       $("#checkType").attr("class","modal-content panel-success");
-                       $("#join").prop("disabled", false);
-                       $("#join").css("border", "1px solid #fc9a07");
-                       $("#join").css("background-color", "#fc9a07");
+                    showMessage("정상적인 사업자등록번호입니다.");
+                       isBusinessValid = true;
                  }
-                 $("#checkModal").modal("show");
              },
              error:function(result){alert("error");console.log(result.responseText); }
-             
            });
-
-           
         }
-        
+       
+       function checkSelection(select) {
+           const sel = document.getElementById('sel1');
+           const selectedIndex = sel.selectedIndex;
+
+           if (selectedIndex === 0) {
+              sel.style.borderColor = 'red'; // 초기 상태로 복원
+              //sel.style.bs-form-select-bg-icon = none;
+           } else {
+              sel.style.borderColor = ''; // 초기 상태로 복원
+           }
+       }
+
+    function clickEvent(){
+       const sel = document.getElementById('sel1'); // select 태그 가져오기
+        const selectedIndex = sel.selectedIndex; // 선택된 옵션의 인덱스 가져오기
+        console.log(selectedIndex);
+        if(selectedIndex === 0){
+           showMessage("업종을 선택해주세요."); // 모달에 업종 선택 메시지 표시
+        }else if (!isBusinessValid) {
+            showMessage("사업자 진위여부를 확인해주세요."); // 모달에 사업자 확인 메세지 표시
+        }else if (!isPasswordChecked) {
+            showMessage("비밀번호를 확인해주세요."); // 모달에 비밀번호 확인 메세지 표시
+        }else if (isEmailChecked && isBusinessValid && isPasswordChecked) { // 첫 번째 옵션 선택 시
+           document.getElementById('joinForm').submit(); 
+        }
+    }
+    
+    
+
+    
+    
    </script>
 
 

@@ -24,9 +24,5 @@ public class HomeController {
    public String getData() {
        return "main";
    }
-	@RequestMapping("/payment")
-	public String payment() {
-		return "payment";
-	}
-
+	
 }

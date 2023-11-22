@@ -14,6 +14,191 @@
 <html lang="en">
 
 <head>
+
+<style>
+.content_wrapper{
+min-height: 400px;
+}
+:root {
+  --background-color: #fff;
+  --selection-color: ;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+html {
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--selection-color);
+  color: white;
+  text-shadow: none;
+}
+
+:root {
+  --background-color: #0B0B3B;
+}
+
+body {
+  overflow: auto;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 650px;
+  display: grid;
+  grid-gap: 20px;
+  margin: auto;
+  grid-template-columns: repeat(6, 1fr);
+  color: white;
+}
+
+.card {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  background: white;
+  margin: 0;
+  grid-column: span 3;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.017), 0 6.7px 5.3px rgba(0, 0, 0, 0.024), 0 12.5px 10px rgba(0, 0, 0, 0.03), 0 22.3px 17.9px rgba(0, 0, 0, 0.036), 0 41.8px 33.4px rgba(0, 0, 0, 0.043), 0 100px 80px rgba(0, 0, 0, 0.06);
+  height: 190px;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  position: relative;
+  
+}
+
+.card:after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-image: url("https://assets.codepen.io/66496/card-smile.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: 0.3s;
+  transition-property: opacity, transform;
+  opacity: 0;
+  transform: translateY(10px);
+  border: 1px solid transparent; /* 왼쪽 테두리 없애기 */
+  
+}
+
+.card__heading,
+.card__text {
+  height: 24px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: var(--background-color);
+  font-size: 14px;
+  padding-left: 6px;
+  padding-right: 6px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px; /* 글자 간격을 조절할 수 있습니다. */
+}
+
+.card__heading {
+  opacity: 0.5;
+  width: fit-content; /* text 길이에 맞게 크기 조절*/
+}
+
+.card__text {
+  opacity: 0.8;
+  margin-top: 10px;
+  
+}
+
+.card.is-active {
+  grid-row: 1;
+  grid-column: 1/span 6;
+  height: 200px;
+  order: 0;
+}
+.card.is-active:after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card.is-inactive {
+  grid-column: span 2;
+}
+
+#mydiv {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease; /* 부드러운 전환 효과를 추가할 수 있습니다. */
+}
+
+#mydiv:hover {
+  background-color: #0B0B61;
+  opacity: 1;
+
+}
+
+#mydiv {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease; /* 부드러운 전환 효과를 추가할 수 있습니다. */
+}
+
+#mydiv:hover {
+  background-color: #0B2161;
+  opacity: 1;
+
+}
+
+#mydiv2 {
+  color: inherit;
+  text-decoration: none;
+  transition: color 3s ease; /* 부드러운 전환 효과를 추가할 수 있습니다. */
+}
+
+#mydiv2:hover {
+  background-color: #0B2161;
+  font-color: #2E2E2E;
+  opacity: 1;
+
+}
+
+</style>
 <meta charset="utf-8">
     <title>DGital - Digital Agency HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,19 +216,19 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-	
+   
     <!-- Libraries Stylesheet -->
     <link href="${cpath }/resources/lib/animate/animate.min.css" rel="stylesheet">
     <link href="${cpath }/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="${cpath }/resources/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-	
+   
     <!-- Customized Bootstrap Stylesheet -->
     <link href="${cpath }/resources/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="${cpath }/resources/css/style.css" rel="stylesheet">
     
-
+   <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
 </head>
 
 <body>
@@ -57,47 +242,7 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0">
-              <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge To Be</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                
-                
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto py-0">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
-                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
-                    </div>
-                    <c:if test="${empty user}">
-                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
-                    </c:if>
-                    <c:if test="${not empty user}">
-	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-	    				</form>
-	    			</c:if>
-                </div>
-            </nav>
+    <%@include file="/WEB-INF/header.jsp"%>
 
             <div class="container-xxl bg-primary hero-header">
                 <div class="container px-lg-5">
@@ -120,120 +265,31 @@
         
 
         <!-- myPage Start -->
-        <div class="container-xxl py-5">
-            <div class="container py-5 px-lg-5">
-                <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title text-secondary justify-content-center"><span></span>my page<span></span></p>
-                    <h1 class="text-center mb-5">dd</h1>
-                </div>
-                
-                
-                
-                
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item bg-light rounded">
-                            <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath }/resources/img/team-1.jpg" alt="">
-                                <h5>${username}</h5>
-                                <span>${userVo.com_name}</span>
-                            </div>
-                            	<a href="${pageContext.request.contextPath}/member/update">수정 페이지로 이동</a>
-                            	<br>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#confirmModal">회원 탈퇴</a>
-                            <div class="d-flex justify-content-center p-4">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item bg-light rounded">
-                            <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath }/resources/img/team-2.jpg" alt="">
-                                <h5>Jessica Brown</h5>
-                                <span>Web Designer</span>
-                            </div>
-                            <div class="d-flex justify-content-center p-4">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item bg-light rounded">
-                            <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath }/resources/img/team-3.jpg" alt="">
-                                <h5>Tony Johnson</h5>
-                                <span>SEO Expert</span>
-                            </div>
-                            <div class="d-flex justify-content-center p-4">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item bg-light rounded">
-                            <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath }/resources/img/team-2.jpg" alt="">
-                                <h5>John Doe</h5>
-                                <span>CEO & Founder</span>
-                            </div>
-                            <div class="d-flex justify-content-center p-4">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item bg-light rounded">
-                            <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath }/resources/img/team-3.jpg" alt="">
-                                <h5>Jessica Brown</h5>
-                                <span>Web Designer</span>
-                            </div>
-                            <div class="d-flex justify-content-center p-4">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item bg-light rounded">
-                            <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath }img/team-1.jpg" alt="">
-                                <h5>Tony Johnson</h5>
-                                <span>SEO Expert</span>
-                            </div>
-                            <div class="d-flex justify-content-center p-4">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+	<div class="content_wrapper">
+      <div class='wrapper'>
+         <div class='card'>
+            <div class='card__heading'>${username}</div>
+            <div class='card__text'>${userVo.com_name}</div>
+         </div>
+         <div class='card'>
+            <div class='card__heading' id="mydiv">
+               <a href="${pageContext.request.contextPath}/member/update" style="color:#FFFFFF;">수정 페이지로 이동</a>
+               <br>
+               
             </div>
+            <div class='card__text' id="mydiv2">
+            	<a href="#" data-bs-toggle="modal" data-bs-target="#confirmModal" style="color:#A4A4A4" >회원 탈퇴</a>
+            </div>
+         </div>
+         <div class='card'>
+            <div class='card__heading' id="mydiv" >신청내역</div>
+            <div class='card__text'></div>
+         </div>
+      </div>
+
+        <!-- Mypage End -->
         </div>
-        <!-- Team End -->
-        
 
         <!-- Footer Start -->
         <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
@@ -297,9 +353,9 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
+                     
+                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
                             Distributed By a <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
@@ -316,25 +372,25 @@
         </div>
         <!-- Footer End -->
         
-	<!-- 회원 탈퇴 모달 -->
-	<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <h5 class="modal-title" id="confirmModalLabel">회원 탈퇴 확인</h5>
-	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	            </div>
-	            <div class="modal-body">
-	                <p>기존 비밀번호를 입력하세요.</p>
-	                <input type="password" id="currentPassword" class="form-control" required>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-	                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">회원 탈퇴</button>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+   <!-- 회원 탈퇴 모달 -->
+   <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="confirmModalLabel">회원 탈퇴 확인</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                   <p>기존 비밀번호를 입력하세요.</p>
+                   <input type="password" id="currentPassword" class="form-control" required>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                   <button type="button" class="btn btn-danger" id="confirmDeleteBtn">회원 탈퇴</button>
+               </div>
+           </div>
+       </div>
+   </div>
 
 
         <!-- Back to Top -->
@@ -355,34 +411,68 @@
 
     <!-- Template Javascript -->
     <script src="${cpath }/resources/js/main.js"></script>
-	    
-	<script type="text/javascript">
-	    $(document).ready(function() {
-	        // 회원 탈퇴 버튼 클릭 시
-	        $("#confirmDeleteBtn").click(function() {
-	            var currentPassword = $("#currentPassword").val();
-	
-	            // Ajax 요청
-	            $.ajax({
-	                type: "POST",
-	                url: "${pageContext.request.contextPath}/member/delete",
-	                data: { password: currentPassword },
-	                success: function(response) {
-	                	console.log(response);
-	                    if (response === "success") {
-	                        alert("회원 탈퇴가 완료되었습니다.");
-	                        window.location.href = "${pageContext.request.contextPath}/";
-	                    } else {
-	                        alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
-	                    }
-	                },
-	                error: function() {
-	                    alert("오류가 발생하였습니다. 다시 시도해주세요.");
-	                }
-	            });
-	        });
-	    });
-	</script>
-	
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/Flip.min.js"></script>
+
+
+   <script type="text/javascript">
+       $(document).ready(function() {
+           // 회원 탈퇴 버튼 클릭 시
+           $("#confirmDeleteBtn").click(function() {
+               var currentPassword = $("#currentPassword").val();
+   
+               // Ajax 요청
+               $.ajax({
+                   type: "POST",
+                   url: "${pageContext.request.contextPath}/member/delete",
+                   data: { password: currentPassword },
+                   success: function(response) {
+                      console.log(response);
+                       if (response === "success") {
+                           alert("회원 탈퇴가 완료되었습니다.");
+                           window.location.href = "${pageContext.request.contextPath}/";
+                       } else {
+                           alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.");
+                       }
+                   },
+                   error: function() {
+                       alert("오류가 발생하였습니다. 다시 시도해주세요.");
+                   }
+               });
+           });
+       });
+       
+       
+       gsap.registerPlugin(Flip);
+
+       const activeClass = "is-active";
+       const inactiveClass = "is-inactive";
+       const cards = document.querySelectorAll(".card");
+
+       cards.forEach((card, idx) => {
+           card.addEventListener("click", () => {
+               const state = Flip.getState(cards);
+               const isCardActive = card.classList.contains(activeClass);
+
+               cards.forEach((otherCard, otherIdx) => {
+                   otherCard.classList.remove(activeClass);
+                   otherCard.classList.remove(inactiveClass);
+                   if (!isCardActive && idx !== otherIdx)
+                       otherCard.classList.add(inactiveClass);
+               });
+
+               if (!isCardActive) {
+                   card.classList.add(activeClass);
+               }
+
+               Flip.from(state, {
+                   duration: 1,
+                   ease: "expo.out",
+                   absolute: true
+               });
+           });
+       });
+   </script>
+   
 </body>
 </html>

@@ -13,8 +13,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
+<style>
+
+#send:hover {
+  background-color: #FFA500; /* 예시로 주황색 배경색을 사용합니다. */
+  color: #000000; /* 예시로 흰색 텍스트 색상을 사용합니다. */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가할 수도 있습니다. */
+  border: 1px solid #A4A4A4;
+  
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -43,9 +52,12 @@
 
     <!-- Template Stylesheet -->
     <link href="${cpath}/resources/css/style.css" rel="stylesheet">
+    <!-- font -->
+   <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
 </head>
 
 <body>
+   
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -57,56 +69,15 @@
 
 
         <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge To Be</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                
-                
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto py-0">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
-                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
-                    </div>
-                    <c:if test="${empty user}">
-                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
-                    </c:if>
-                    <c:if test="${not empty user}">
-	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-	    				</form>
-	    			</c:if>
-                </div>
-            </nav>
+        <%@include file="/WEB-INF/header.jsp"%>
 
 
             <div class="container-xxl bg-primary hero-header">
                 <div class="container px-lg-5">
                     <div class="row g-5 align-items-end">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated slideInDown">A Digital Agency Of Inteligents & Creative People</h1>
-                            <p class="text-white pb-3 animated slideInDown">Tempor rebum no at dolore lorem clita rebum rebum ipsum rebum stet dolor sed justo kasd. Ut dolor sed magna dolor sea diam. Sit diam sit justo amet ipsum vero ipsum clita lorem</p>
-                            <a href="" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Read More</a>
-                            <a href="" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contact Us</a>
+                            <h1 class="text-white mb-4 animated slideInDown">Artificial Intelligence Marketer</h1>
+                            <p class="text-white pb-3 animated slideInDown">소싱 의뢰를 등록 시 정보를 상세하게 기재 해 주세요. 구체적일수록, 정확도가 높아지며 고객님께 적합한 업체가 매칭됩니다.</p>
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
                             <img class="img-fluid animated zoomIn" src="resources/img/hero.png" alt="">
@@ -124,11 +95,11 @@
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
                     <p class="section-title text-secondary justify-content-center"><span></span>Contact Us<span></span></p>
                     <h1 class="text-center mb-5">의뢰서 작성</h1>
+                    <br>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="wow fadeInUp" data-wow-delay="0.3s">
-                            <p class="text-center mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
                             <form action="${cpath}/collaboration/request" method="post" >
                             
                             
@@ -155,16 +126,11 @@
                            <br>
                            <div class="col-12">
                                <button onclick="askQuestion()" class="btn btn-primary w-100 py-3" type="button" id="send">Send Message</button>
-						   </div>
+                     </div>
                                 </div>
-                                
-                                
                             </form>
                         </div>
-                        
-                       
                    <div id="result">
-                   
                    </div>
                         <div id="error"></div>
                         <!-- gpt불러와보자 -->

@@ -17,4 +17,6 @@ public interface UserService {
 	public void delete(String username);
 
 	public int checkPassword(String username, String password);
+	
+	
 }

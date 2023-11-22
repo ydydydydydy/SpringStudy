@@ -56,6 +56,8 @@
 <link href="${cpath}/resources/css/style.css" rel="stylesheet">
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+
+<link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
 <style>
 #myModal .modal-dialog {
   max-width: 50%; /* 모달 창 너비 */
@@ -134,48 +136,7 @@ img{
       </div>
       <!-- Spinner End -->
 
-
-      <!-- Navbar & Hero Start -->
-      <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge To Be</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                
-                
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto py-0">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
-                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
-                    </div>
-                    <c:if test="${empty user}">
-                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
-                    </c:if>
-                    <c:if test="${not empty user}">
-	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-	    				</form>
-	    			</c:if>
-                </div>
-            </nav>
+<%@include file="/WEB-INF/header.jsp"%>
 
          <div class="container-xxl py-5 bg-primary hero-header">
             <div class="container my-5 py-5 px-lg-5">

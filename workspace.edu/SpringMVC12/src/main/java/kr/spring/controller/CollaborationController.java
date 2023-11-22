@@ -2,6 +2,8 @@ package kr.spring.controller;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.spring.entity.tb_request;
 import kr.spring.entity.tb_solution;
@@ -21,6 +24,7 @@ public class CollaborationController {
    
    @Autowired
    private CollaborationService collaborationService;
+   
       
    @RequestMapping("/request")
    public String request() {
@@ -42,13 +46,31 @@ public class CollaborationController {
       model.addAttribute("req_list", list);
       return "collaboration/req_list";
    }
+   
    @RequestMapping("/result")
    public String result(@RequestParam("req_num") tb_request req_num, Model model) {
       List<tb_solution> list = collaborationService.getSolList(req_num);
       tb_request req_content = collaborationService.getReqContent(req_num.getReq_num());
-      
+      model.addAttribute("is_paid",req_content.is_paid());
       model.addAttribute("result_list", list);
       model.addAttribute("req_content", req_content);
       return "collaboration/result";
    }
+   
+   @RequestMapping("/payment")
+   public @ResponseBody String payment(@RequestParam("req_num") Long req_num){
+      tb_request request = collaborationService.getReqContent(req_num);
+      if (request != null) {
+         request.set_paid(true);
+         collaborationService.request(request);
+         return "success";
+      }else {
+         return "fail";
+      }
+   }
+   
+   
+   
+   
+   
 }

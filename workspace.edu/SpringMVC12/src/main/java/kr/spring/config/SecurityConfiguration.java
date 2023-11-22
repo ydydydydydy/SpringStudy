@@ -27,7 +27,7 @@ public class SecurityConfiguration {
 		http.authorizeHttpRequests() // 사용자의 요청을 핸들링
 			.antMatchers("/").permitAll()
 			// "/", "member"하위에 모든 접근을 허용하겠다
-			.antMatchers("/collaboration/**","/member/mypage").authenticated()
+			.antMatchers("/collaboration/**","/member/mypage","/member/update").authenticated()
 			// board로 접근하는 모든 경우는 인증된(로그인한)사용자만 허용한다
 			.and() // 추가
 			.formLogin() // 별도의 로그인 폼을 사용하겠다

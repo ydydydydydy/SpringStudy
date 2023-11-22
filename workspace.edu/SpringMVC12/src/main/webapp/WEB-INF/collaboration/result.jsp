@@ -15,14 +15,13 @@
 
 <head>
      <meta charset="utf-8">
-    <title>DGital - Digital Agency HTML Template</title>
+    <title>Bridge To Be</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
     <link href="resources/img/favicon.ico" rel="icon">
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,6 +41,27 @@
 
     <!-- Template Stylesheet -->
     <link href="${cpath}/resources/css/style.css" rel="stylesheet">
+	<link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <script
+            type="text/javascript"
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+    <!-- iamport.payment.js -->
+    <script
+            type="text/javascript"
+            src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+    ></script>
+    <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<style>
+.blurry-section {
+    filter: blur(15px);
+}
+
+
+    
+</style> 
+
+    
 </head>
 
 <body>
@@ -55,47 +75,7 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0">
-             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge To Be</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                
-                
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto py-0">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
-                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
-                    </div>
-                    <c:if test="${empty user}">
-                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
-                    </c:if>
-                    <c:if test="${not empty user}">
-	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-	    				</form>
-	    			</c:if>
-                </div>
-            </nav>
+       <%@include file="/WEB-INF/header.jsp"%>
 
             <div class="container-xxl py-5 bg-primary hero-header">
                 <div class="container my-5 py-5 px-lg-5">
@@ -104,7 +84,7 @@
                             <h1 class="text-white animated slideInDown">Solution</h1>
                             <hr class="bg-white mx-auto mt-0" style="width: 90px;">
                             <nav aria-label="breadcrumb">
-                            	<h3 class="text-white">의뢰내용: ${req_content.req_content}</h3>
+                               <h3 class="text-white">의뢰내용: ${req_content.req_content}</h3>
                                 <ol class="breadcrumb justify-content-center">
                                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                                     <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
@@ -123,26 +103,28 @@
         <div class="container-xxl py-5">
             <div class="container py-5 px-lg-5">
                 <div class="row g-4">
-        		      <c:forEach var="vo" items="${result_list}" varStatus="i">
+                    <c:forEach var="vo" items="${result_list}" varStatus="i">
                         <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="feature-item bg-light rounded text-center p-4" onclick="scrollToTeamSection()">
                             <i class="fa fa-3x fa-search text-primary mb-4"></i>
                             <h5 class="mb-3">솔루션번호: ${vo.sol_num } </h5>
                             <p class="m-0">의뢰번호: ${vo.req_num.req_num }</p>
+                            <input type="hidden" id="req_num" value="${vo.req_num.req_num}" />
                             <p class="m-0">솔루션: ${vo.sol_content }</p>
                             <p class="m-0">적합도: ${vo.pred_score }</p>
                             <p class="m-0">추천업종: ${vo.reco_industry }</p>
                         </div>
-                    	</div>
-	                </c:forEach>
+                       </div>
+                   </c:forEach>
                 </div>
             </div>
         </div>
         <!-- Feature End -->
 
-
+   <div class="blurry-section">
+    <!-- 블러 처리할 내용 -->
         <!-- About Start -->
-        <div class="container-xxl py-5">
+        <div class="container-xxl py-5" >
             <div class="container py-5 px-lg-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -156,13 +138,13 @@
                                 <p class="mb-2">${vo.reco_industry }</p>
                                 <p class="mb-2">${vo.pred_score } </p>
                             </div>
-                           	<div class="progress">
-					           <c:if test="${i.index % 2 == 0}">
-					               <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
-					           </c:if>
-					           <c:if test="${i.index % 2 != 0}">
-					               <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
-					           </c:if>
+                              <div class="progress">
+                          <c:if test="${i.index % 2 == 0}">
+                              <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
+                          </c:if>
+                          <c:if test="${i.index % 2 != 0}">
+                              <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
+                          </c:if>
                             </div>
                         </div>
                         </c:forEach>
@@ -176,8 +158,11 @@
             </div>
         </div>
         <!-- About End -->
+        </div>
+<input type="hidden" id="username" value="${user.username}"/>
 
-
+        <button type="button" id="paymentButton" onclick="KGpay()" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3" style="display: block; margin: 0 auto;" >결제하기</button>
+<div class="blurry-section">
         <!-- Facts Start -->
         <div class="container-xxl bg-primary fact py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5 px-lg-5">
@@ -265,7 +250,7 @@
             </div>
         </div>
         <!-- Team End -->
-        
+    </div> 
 
         <!-- Footer Start -->
         <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
@@ -329,9 +314,9 @@
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                             &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer authorâs credit link/attribution link/backlink. If you'd like to use the template without the footer authorâs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
+                     
+                     <!--/*** This template is free as long as you keep the footer authorâs credit link/attribution link/backlink. If you'd like to use the template without the footer authorâs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
                             Distributed By a <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
@@ -368,13 +353,83 @@
     <script src="${cpath}/resources/js/main.js"></script>
     
     <script type="text/javascript">
-	    function scrollToTeamSection() {
-	        // team-section 섹션으로 스크롤
-	        document.getElementById('team-section').scrollIntoView({
-	            behavior: 'smooth'
-	        });
-	    }
     
+    $(document).ready(function() {
+        var is_paid = ${is_paid}; // 여기에 is_paid의 상태를 가져와 설정하세요.
+		console.log(is_paid);
+        // is_paid가 true이면 블러 효과 제거
+        if (is_paid) {
+            $('.blurry-section').removeClass('blurry-section');
+            $('#paymentButton').hide();
+        }
+    });
+
+    
+    
+    
+    
+    
+       function scrollToTeamSection() {
+           // team-section 섹션으로 스크롤
+           document.getElementById('team-section').scrollIntoView({
+               behavior: 'smooth'
+           });
+       }
+       function KGpay(username){
+    	   //var username = document.getElementById('username').value;
+    	   var IMP = window.IMP;
+    	   IMP.init("imp71714542");
+    	   IMP.request_pay({
+    	       pg : 'html5_inicis',
+    	       pay_method : 'card',
+    	       merchant_uid: username+'_'+new Date().getTime(), // 상점에서 관리하는 주문 번호를 전달
+    	       name :'Bridge To Be 유료서비스',
+    	       amount : 100,//100이 최소금액
+    	       buyer_email : username,
+    	       buyer_name : username,
+    	      
+    	      
+    	   },function(rsp) {
+    	       if ( rsp.success ) {
+    	       	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+    	       	jQuery.ajax({
+    	       		url: "/collaboration/result", //cross-domain error가 발생하지 않도록 주의해주세요
+    	       		type: 'POST',
+    	       		dataType: 'json',
+    	       		data: {
+    	   	    		imp_uid : rsp.imp_uid,
+    	   	    		merchant_uid : rsp.merchant_uid
+    	   	    		//기타 필요한 데이터가 있으면 추가 전달
+    	       		}
+    	       	}).done(function(data) {
+    	       		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+    	       		if ( everythings_fine ) {
+    	       			var msg = '결제가 완료되었습니다.';
+    	       			msg += '\n고유ID : ' + rsp.imp_uid;
+    	       			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+    	       			msg += '\결제 금액 : ' + rsp.paid_amount;
+    	       			msg += '카드 승인번호 : ' + rsp.apply_num;
+    	       			
+    	       			const form = new FormData();
+    	                   form.append('impuid', rsp.imp_uid)
+    	                   form.append('merchantuid', rsp.merchant_uid)
+    	                   form.append('paidamount', rsp.paid_amount)
+    	                   form.append('applynum', rsp.apply_num)
+    	                   form.append('email', username)
+    	                   
+    	                   console.log(form)
+    	       			alert(msg);
+    	                   
+    	       		} 
+    	       	});
+    	       } else {
+    	           var msg = '결제에 실패하였습니다.';
+    	           msg += "\n"+ rsp.error_msg;
+    	           
+    	           alert(msg);
+    	       }
+    	   });
+    	   }
     </script>
     
 </body>

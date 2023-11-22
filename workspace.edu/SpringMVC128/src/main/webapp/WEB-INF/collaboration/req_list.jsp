@@ -1,0 +1,269 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="cpath" value="${pageContext.request.contextPath}" />
+<!-- Spring Security 관련 태그라이브러리 -->
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!-- 로그인한 계정정보 -->
+<c:set var="user" value="${SPRING_SECURITY_CONTEXT.authentication.principal}" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>DGital - Digital Agency HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+<%--     <link href="${cpath}/resources/lib/animate/animate.min.css" rel="stylesheet"> --%>
+    <link href="${cpath}/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="${cpath}/resources/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="${cpath}/resources/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="${cpath}/resources/css/style.css" rel="stylesheet">
+    <style>
+    
+    </style>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+              <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="${cpath}/home" class="navbar-brand p-0">
+                    <h1 class="m-0">Bridge To Be</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                
+                
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
+                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
+                            </div>
+                        </div>
+                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
+                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
+                            </div>
+                        </div>
+                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
+                    </div>
+                    <c:if test="${empty user}">
+                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
+                    </c:if>
+                    <c:if test="${not empty user}">
+                       <form action="${cpath}/member/logout">
+                      <button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
+                   </form>
+                </c:if>
+                </div>
+            </nav>
+
+            <div class="container-xxl bg-primary hero-header">
+                <div class="container px-lg-5">
+                    <div class="row g-5 align-items-end">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated slideInDown">의뢰내역보기</h1>
+                       </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid animated zoomIn" src="${cpath}/resources/resources/img/hero.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Service Start -->
+        
+            
+                
+                
+
+
+            <!-- 카드 하나 이렇게생김 
+                <div class="row g-4">
+                   <c:forEach var="vo" items="${req_list}" varStatus="i">
+                      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fa fa-search fa-2x"></i>
+                            </div>
+                            <h5 class="mb-3">${vo.req_num }</h5>
+                            <p class="m-0">${vo.req_content }</p>
+                            <p class="m-0"><fmt:formatDate value="${vo.req_at}" pattern="yyyy-MM-dd"/></p>
+                            <p class="m-0">${vo.req_satisfaction }</p>
+                            <p class="m-0">${vo.req_keyword }</p>
+                            <a class="btn btn-square" href="${cpath}/collaboration/result?req_num=${vo.req_num}"><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                       </div>                   
+                   </c:forEach>
+                </div>
+                카드 하나 이렇게생김 -->
+                
+                
+                <!-- 카드틀
+                <div class="col" ontouchstart="this.classList.toggle('hover');">
+            <div class="container">
+               <div class="front" style="background-image: url(https://unsplash.it/503/503/)">
+                  <div class="inner">
+                     <p>Clossyo</p>
+              <span>Lorem ipsum</span>
+                  </div>
+               </div>
+               <div class="back">
+                  <div class="inner">
+                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit quae suscipit c.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+                 -->
+             
+             <!-- 수정한 카드틀 -->
+             
+             
+             
+                 
+                 
+                 <div class="container-xxl py-5">
+                     <div class="container py-5 px-lg-5">
+                       <div class="wow fadeInUp" data-wow-delay="0.1s">
+                             <p class="section-title text-secondary justify-content-center"><span></span>Our Services<span></span></p>
+                             <h1 class="text-center mb-5">나의 의뢰 내역</h1>
+                         </div>
+                         
+                   
+                   
+                   <div class="wrapper_card">
+                    <div class="cols_card">
+                       <c:forEach var="vo" items="${req_list}" varStatus="i">
+                       
+                         <div class="col_card" ontouchstart="this.classList.toggle('hover');" onclick="window.location='${cpath}/collaboration/result?req_num=${vo.req_num}'">
+                           <div class="container_card">
+                             <div class="front_card" style="background-color: #374D9A;">
+                               <div class="inner_card">
+                                 <p>${vo.req_num}</p>
+                                 <p>${vo.req_content}</p>
+                                 <span><fmt:formatDate value="${vo.req_at}" pattern="yyyy-MM-dd"/></span>
+                               </div>
+                             </div>
+                             <div class="back_card">
+                               <div class="inner_card">
+                                 <p>${vo.req_satisfaction}</p>
+                                 <p>${vo.req_keyword}</p>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       
+                       </c:forEach>
+                    </div>
+               </div>
+
+                  </div>
+                   </div>  
+                 
+             
+         
+                      
+             
+             <!-- 수정한 카드틀 -->
+             
+                
+            
+        
+        <!-- Service End -->
+
+        
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+                     
+                     <!--/*** This template is free as long as you keep the footer authorâs credit link/attribution link/backlink. If you'd like to use the template without the footer authorâs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
+                            Distributed By a <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="${cpath}/resources/lib/wow/wow.min.js"></script>
+    <script src="${cpath}/resources/lib/easing/easing.min.js"></script>
+    <script src="${cpath}/resources/lib/waypoints/waypoints.min.js"></script>
+    <script src="${cpath}/resources/lib/counterup/counterup.min.js"></script>
+    <script src="${cpath}/resources/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="${cpath}/resources/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="${cpath}/resources/lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="${cpath}/resources/js/main.js"></script>
+</body>
+
+</html>

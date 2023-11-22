@@ -38,6 +38,9 @@ public class tb_request { // VO <--- ORM ----> TABLE
 	@Column(nullable = true)
 	private String req_keyword;  // 키워드
 	
+	@Column(nullable = false)
+	private boolean is_paid;  // 결제 여부
+
 }
 
 

@@ -43,6 +43,8 @@
 
     <!-- Template Stylesheet -->
     <link href="${cpath}/resources/css/style.css" rel="stylesheet">
+    
+    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
 </head>
 
 <body>
@@ -60,47 +62,7 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0">
-               <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="${cpath}/home" class="navbar-brand p-0">
-                    <h1 class="m-0">Bridge To Be</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                
-                
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto py-0">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">request</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="${cpath}/collaboration/request" class="dropdown-item">신청하기</a>
-                                <a href="${cpath}/collaboration/list" class="dropdown-item">신청내역</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/company/list" class="nav-item nav-link">List</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                               <a href="${cpath}/member/mypage" class="dropdown-item">MyPage</a>
-                                <a href="${cpath}/member/update" class="dropdown-item">회원정보 수정</a>
-                            </div>
-                        </div>
-                        <a href="${cpath}/news/news" class="nav-item nav-link">News</a>
-                    </div>
-                    <c:if test="${empty user}">
-                    <a href="${cpath}/member/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log in</a>
-                    </c:if>
-                    <c:if test="${not empty user}">
-	                    <form action="${cpath}/member/logout">
-	    					<button type="submit" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Log out</button>
-	    				</form>
-	    			</c:if>
-                </div>
-            </nav>
+       <%@include file="/WEB-INF/header.jsp"%>
 
             <div class="container-xxl py-5 bg-primary hero-header">
                 <div class="container my-5 py-5 px-lg-5">
@@ -167,7 +129,7 @@
 						<c:choose>
 							<c:when test="${vo.industry == '제조'}">
 								<c:set var="portfolioClass" value="first" />
-								<c:set var="portfolioImage" value="portfolio-1.jpg" />
+								<c:set var="portfolioImage" value="portfolio-6.jpg" />
 							</c:when>
 							<c:when test="${vo.industry == '전문·과학및기술서비스'}">
 								<c:set var="portfolioClass" value="second" />
@@ -179,7 +141,7 @@
 							</c:when>
 							<c:when test="${vo.industry == '교육서비스'}">
 								<c:set var="portfolioClass" value="four" />
-								<c:set var="portfolioImage" value="portfolio-4.jpg" />
+								<c:set var="portfolioImage" value="portfolio-1.jpg" />
 							</c:when>
 							<c:when test="${vo.industry == '도매·소매'}">
 								<c:set var="portfolioClass" value="five" />
@@ -187,7 +149,7 @@
 							</c:when>
 							<c:when test="${vo.industry == '숙박·음식점'}">
 								<c:set var="portfolioClass" value="six" />
-								<c:set var="portfolioImage" value="portfolio-6.jpg" />
+								<c:set var="portfolioImage" value="portfolio-12.jpg" />
 							</c:when>
 							<c:when test="${vo.industry == '사업시설관리·사업지원및임대서비스'}">
 								<c:set var="portfolioClass" value="seven" />
@@ -195,7 +157,7 @@
 							</c:when>
 							<c:when test="${vo.industry == '정보통신'}">
 								<c:set var="portfolioClass" value="eight" />
-								<c:set var="portfolioImage" value="portfolio-8.jpg" />
+								<c:set var="portfolioImage" value="portfolio-4.jpg" />
 							</c:when>
 							<c:when test="${vo.industry == '광업'}">
 								<c:set var="portfolioClass" value="nine" />
@@ -208,7 +170,7 @@
 							
 							<c:when test="${vo.industry == '전기·가스·증기·공기조절공급'}">
 								<c:set var="portfolioClass" value="ten2" />
-								<c:set var="portfolioImage" value="portfolio-12.jpg" />
+								<c:set var="portfolioImage" value="portfolio-4.jpg" />
 							</c:when>
 							
 						</c:choose>
