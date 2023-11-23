@@ -107,7 +107,7 @@
                             <li class="mx-2" data-filter=".ten">운수·창고</li>
 							
                         </ul>
-              
+              			<br>
                  <!-- 기업검색 -->
 						<form onsubmit="searchCompanies(); return false;"style="margin-bottom: 20px; display: flex; align-items: center;">
 							<input type="text" id="companySearch" name="companyName"style="flex: 1;">
