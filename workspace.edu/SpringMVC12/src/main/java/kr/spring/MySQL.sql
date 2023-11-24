@@ -33,6 +33,8 @@ UPDATE tb_user
 SET com_name = '인공지능사관학교'
 WHERE username = 'admin@naver.com';
 
+describe member;
 
+select * from member;
 
-describe tb_request;
+describe tb_news;
