@@ -14,25 +14,14 @@
 <html lang="en">
 
 <head>
-<style>
-
-#send:hover {
-  background-color: #FFA500; /* 예시로 주황색 배경색을 사용합니다. */
-  color: #000000; /* 예시로 흰색 텍스트 색상을 사용합니다. */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가할 수도 있습니다. */
-  border: 1px solid #A4A4A4;
-  
-}
-</style>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+     <meta charset="utf-8">
+    <title>Bridge To Be</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="${cpath}/resources/img/favicon.ico" rel="icon">
-
+    <link href="resources/img/favicon.ico" rel="icon">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,12 +41,30 @@
 
     <!-- Template Stylesheet -->
     <link href="${cpath}/resources/css/style.css" rel="stylesheet">
-    <!-- font -->
-   <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+	<link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <script
+            type="text/javascript"
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+    <!-- iamport.payment.js -->
+    <script
+            type="text/javascript"
+            src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+    ></script>
+    <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<style>
+.blurry-section {
+    filter: blur(15px);
+}
+
+
+    
+</style> 
+
+    
 </head>
 
 <body>
-   
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -68,294 +75,247 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar & Hero Start -->
-        <%@include file="/WEB-INF/header.jsp"%>
+       <%@include file="/WEB-INF/header.jsp"%>
 
-
-            <div class="container-xxl bg-primary hero-header">
-                <div class="container px-lg-5">
-                    <div class="row g-5 align-items-end">
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated slideInDown">Artificial Intelligence Marketer</h1>
-                            <p class="text-white pb-3 animated slideInDown">소싱 의뢰를 등록 시 정보를 상세하게 기재 해 주세요. 구체적일수록, 정확도가 높아지며 고객님께 적합한 업체가 매칭됩니다.</p>
-                        </div>
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid animated zoomIn" src="resources/img/hero.png" alt="">
+            <div class="container-xxl py-5 bg-primary hero-header">
+                <div class="container my-5 py-5 px-lg-5">
+                
+                    <div class="row g-5 py-5">
+                        <div class="col-12 text-center">
+                            <h1 class="text-white animated slideInDown">Solution</h1>
+                            <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                            <nav aria-label="breadcrumb">
+                               <h3 class="text-white">의뢰내용: ${req_content.req_content}</h3>
+                                
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+  
         <!-- Navbar & Hero End -->
 
 
-        <!-- Contact Start -->
+        <!-- Feature Start -->
         <div class="container-xxl py-5">
             <div class="container py-5 px-lg-5">
-                <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title text-secondary justify-content-center"><span></span>Contact Us<span></span></p>
-                    <h1 class="text-center mb-5">의뢰서 작성</h1>
-                    <br>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="wow fadeInUp" data-wow-delay="0.3s">
-                  <form action="${cpath}/collaboration/request" method="post">
-                     <div class="requestForm">
-                        <div class="col-12">
-                           <div class="form-floating">
-                              <input type="hidden" class="form-control" id="writer"
-                                 name="username" placeholder="username"
-                                 value="${user.username}">
-                           </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                           <div class="form-floating">
-                              <input type="text" class="form-control" id="industry"
-                                 name="industry" placeholder="industry" required> <label
-                                 for="industry">제품 또는 서비스의 업종을 작성해 주세요</label>
-                           </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                           <div class="form-floating">
-                              <input type="text" class="form-control" id="target"
-                                 name="target" placeholder="target" required> <label
-                                 for="target">마케팅 대상(타겟)을 입력해 주세요</label>
-                           </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                           <div class="form-floating">
-                              <textarea class="form-control" name="req_content"
-                                 placeholder="Leave a message here" id="content"
-                                 style="height: 500px" required></textarea>
-                              <label for="content">상담요청내용</label>
-                              <!-- 수정: label을 "content"로 변경 -->
-                           </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                           <button onclick="askQuestion()"
-                              class="btn btn-primary w-100 py-3" type="button" id="send">Send
-                              Message</button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-                   <div id="result">
+             <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title text-secondary justify-content-center"><span></span>RECOMMEND SUMMARY<span></span></p>
                    </div>
-                        <div id="error"></div>
-                        <!-- gpt불러와보자 -->
+                <br>
+                <div class="row g-4">
+                    <c:forEach var="vo" items="${result_list}" varStatus="i">
+                        <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded text-center p-4" onclick="scrollToTeamSection(${i.index})">
+                            <i class="fa fa-3x fa-search text-primary mb-4"></i>
+                            <h5 class="mb-3">솔루션번호: ${vo.sol_num } </h5>
+                            <p class="m-0">의뢰번호: ${vo.req_num.req_num }</p>
+                            <input type="hidden" id="req_num" value="${vo.req_num.req_num}" />
+                            <p class="m-0">솔루션: ${vo.sol_content }</p>
+                            <p class="m-0">추천업종: ${vo.reco_industry }</p>
+                        </div>
+                       </div>
+                   </c:forEach>
+                </div>
+            </div>
+        </div>
+        <!-- Feature End -->
+
+   <div class="blurry-section">
+    <!-- 블러 처리할 내용 -->
+        <!-- About Start -->
+        <div class="container-xxl py-5" >
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <p class="section-title text-secondary">Recommend industry<span></span></p>
+                        <h1 class="mb-5">추천 업종</h1>
+                        <p class="mb-4">AI 매칭을 통한 추천 업종은 고객의 요구사항과 기업의 서비스를 인공지능이 분석하여, 최적화된 세 가지 업종을 추천합니다</p>
                         
+                        <c:forEach var="vo" items="${result_list}" varStatus="i">
+                        <div class="skill mb-4">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-2">${vo.reco_industry }</p>
+                            </div>
+                              <div class="progress">
+                          <%-- <c:if test="${i.index % 2 == 0}">
+                              <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
+                          </c:if>
+                          <c:if test="${i.index % 2 != 0}">
+                              <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
+                          </c:if> --%>
+                            </div>
+                        </div>
+                        </c:forEach>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="${cpath}/resources/img/about.png">
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Contact End -->
+        <!-- About End -->
+        </div>
+<input type="hidden" id="username" value="${user.username}"/>
+
+        <button type="button" id="paymentButton" onclick="KGpay()" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3" style="display: block; margin: 0 auto;" >결제하기</button>
+<div class="blurry-section">
+     
         
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+        <!-- Team Start -->
+        <div class="container-xxl py-5" id="team-section">
             <div class="container py-5 px-lg-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Address<span></span></p>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Career</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Gallery<span></span></p>
-                        <div class="row g-2">
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-1.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-2.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-3.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-4.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-5.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-6.jpg" alt="Image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Newsletter<span></span></p>
-                        <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
-                        <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
-                        </div>
-                    </div>
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title text-secondary justify-content-center"><span></span>RECOMMEND LIST<span></span></p>
+                    <h1 class="text-center mb-5">업종 추천 기업</h1>
                 </div>
-            </div>
-            <div class="container px-lg-5">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-                     
-                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
-                            Distributed By a <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
+                <br>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item bg-light rounded">
+                            <div class="text-center border-bottom p-4">
+                                <img class="img-fluid rounded-circle mb-4" src="${cpath}/resources/img/team-1.jpg" alt="">
+                                <h5 id="company"></h5>
+                                <span>CEO & Founder</span>
                             </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item bg-light rounded">
+                            <div class="text-center border-bottom p-4">
+                                <img class="img-fluid rounded-circle mb-4" src="${cpath}/resources/img/team-2.jpg" alt="">
+                                <h5>Jessica Brown</h5>
+                                <span>Web Designer</span>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="team-item bg-light rounded">
+                            <div class="text-center border-bottom p-4">
+                                <img class="img-fluid rounded-circle mb-4" src="${cpath}/resources/img/team-3.jpg" alt="">
+                                <h5>Tony Johnson</h5>
+                                <span>SEO Expert</span>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
+        <!-- Team End -->
+    </div> 
+
+        
+<%@include file="/WEB-INF/footer.jsp"%>
 
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-    
-    
-    
-    <div class="modal" id="checkModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-      
-            <!-- Modal Header -->
-            <div class="modal-header" id="checkType">
-              <h4 class="modal-title">확인 메세지</h4>
-            </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body" >
-              <p id="checkMessage">요청서 작성 성공</p>
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
-      
-          </div>
-        </div>
       </div>
-    
-    
-    
-    
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="${cpath }/resources/lib/wow/wow.min.js"></script>
-    <script src="${cpath }/resources/lib/easing/easing.min.js"></script>
-    <script src="${cpath }/resources/lib/waypoints/waypoints.min.js"></script>
-    <script src="${cpath }/resources/lib/counterup/counterup.min.js"></script>
-    <script src="${cpath }/resources/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="${cpath }/resources/lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="${cpath }/resources/lib/lightbox/js/lightbox.min.js"></script>
-   
+    <script src="${cpath}/resources/lib/wow/wow.min.js"></script>
+    <script src="${cpath}/resources/lib/easing/easing.min.js"></script>
+    <script src="${cpath}/resources/lib/waypoints/waypoints.min.js"></script>
+    <script src="${cpath}/resources/lib/counterup/counterup.min.js"></script>
+    <script src="${cpath}/resources/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="${cpath}/resources/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="${cpath}/resources/lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="${cpath }/resources/js/main.js"></script>
+    <script src="${cpath}/resources/js/main.js"></script>
     
     <script type="text/javascript">
-    const sendButton = document.getElementById('send');
     
-    function sendMessage(keyword, content) {
-       var username = $("#writer").val();
-
-       $.ajax({
-          url: "${cpath}/collaboration/request", // 수정: 실제 컨트롤러의 URL로 변경
-          type: "post",
-          data: {
-             "username": username,
-             "req_content": content, // 수정: 요청 내용은 req_content로 변경
-             "req_keyword": keyword // 수정: 제목은 키워드로 변경
-          },
-          success: function(data) {
-             // 성공 시의 동작
-          },
-          error : function(error){
-             
-          }
-       });
-       
-        $("#checkModal").modal("show");
-    }
-    
-    </script>
-    
-    <!-- gpt실행결과 db저장해보기 -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-    function askQuestion() {
-       
-       
-       var industry = $('#industry').val();
-       var target = $('#target').val();
-        var content = $('#content').val(); // 사용자의 상담 요청 내용을 가져옴
-        var keyword = "업종: " + industry+ ", 타겟층: " + target;
-        var question = keyword + "상세요청: " + content; 
-        var data = { 'question': question };
-
-        if (industry.trim() === '' || target.trim() === '' || content.trim() === '') {
-            // 필드가 비어있다면 실행하지 않음
-            alert("모든 필드를 입력하세요.");
-            return;
+    $(document).ready(function() {
+        var is_paid = ${is_paid}; // 여기에 is_paid의 상태를 가져와 설정하세요.
+		console.log(is_paid);
+        // is_paid가 true이면 블러 효과 제거
+        if (is_paid) {
+            $('.blurry-section').removeClass('blurry-section');
+            $('#paymentButton').hide();
         }
-        
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:5000/ask_question',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            success: function (data) {
-                var solContent = data.result || data.error;
+    });
 
-                // 결과를 서버로 보내서 DB에 저장
-                sendMessage(keyword, content);
-
-                $('#error').text(""); // 성공 시 에러 메시지 초기화
-            },
-            error: function (xhr, status, error) {
-                console.error('Error:', error);
-                $('#error').text("에러 발생: " + error); // 에러 메시지 표시
-            }
-        });
-    }
     
-
-
+    var resultList = ${result_list};
+    
+    
+    
+       function scrollToTeamSection(idx) {
+           // team-section 섹션으로 스크롤
+           console.log(idx);
+           console.log(resultList[idx]);
+          /*  $('#company').html(`${result_list[idx].company1}`); */
+           
+           document.getElementById('team-section').scrollIntoView({
+               behavior: 'smooth'
+               
+           });
+       }
+       function KGpay(username){
+    	   //var username = document.getElementById('username').value;
+    	   var IMP = window.IMP;
+    	   IMP.init("imp71714542");
+    	   IMP.request_pay({
+    	       pg : 'html5_inicis',
+    	       pay_method : 'card',
+    	       merchant_uid: username+'_'+new Date().getTime(), // 상점에서 관리하는 주문 번호를 전달
+    	       name :'Bridge To Be 유료서비스',
+    	       amount : 100,//100이 최소금액
+    	       buyer_email : username,
+    	       buyer_name : username,
+    	      
+    	      
+    	   },function(rsp) {
+    	       if ( rsp.success ) {
+    	       	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+    	       	jQuery.ajax({
+    	       		url: "/collaboration/result", //cross-domain error가 발생하지 않도록 주의해주세요
+    	       		type: 'POST',
+    	       		dataType: 'json',
+    	       		data: {
+    	   	    		imp_uid : rsp.imp_uid,
+    	   	    		merchant_uid : rsp.merchant_uid
+    	   	    		//기타 필요한 데이터가 있으면 추가 전달
+    	       		}
+    	       	}).done(function(data) {
+    	       		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+    	       		if ( everythings_fine ) {
+    	       			var msg = '결제가 완료되었습니다.';
+    	       			msg += '\n고유ID : ' + rsp.imp_uid;
+    	       			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+    	       			msg += '\결제 금액 : ' + rsp.paid_amount;
+    	       			msg += '카드 승인번호 : ' + rsp.apply_num;
+    	       			
+    	       			const form = new FormData();
+    	                   form.append('impuid', rsp.imp_uid)
+    	                   form.append('merchantuid', rsp.merchant_uid)
+    	                   form.append('paidamount', rsp.paid_amount)
+    	                   form.append('applynum', rsp.apply_num)
+    	                   form.append('email', username)
+    	                   
+    	                   console.log(form)
+    	       			alert(msg);
+    	                   
+    	       		} 
+    	       	});
+    	       } else {
+    	           var msg = '결제에 실패하였습니다.';
+    	           msg += "\n"+ rsp.error_msg;
+    	           
+    	           alert(msg);
+    	       }
+    	   });
+    	   }
     </script>
-    
     
 </body>
+
 </html>

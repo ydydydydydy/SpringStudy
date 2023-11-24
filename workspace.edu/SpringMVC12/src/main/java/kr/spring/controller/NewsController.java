@@ -36,7 +36,6 @@ public class NewsController {
            list = newsService.getList();
            Page<tb_news> page = newsService.findPagedData(PageRequest.of(cri.getPage() - 1, cri.getPerPageNum()));
            list = page.getContent();
-           System.out.print(list);
            PageMaker pageMaker = new PageMaker(cri, newsService.totalCount());
            model.addAttribute("pageMaker", pageMaker);
        

@@ -15,7 +15,7 @@
 
 <head>
 <meta charset="UTF-8">
-    <title>DGital - Digital Agency HTML Template</title>
+    <title>Bridge To Be</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -45,20 +45,54 @@
     
     <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
 <style>
-    .conpx {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+.conpx {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+
+.bordered-div {
+	border: 2px solid #333; /* 테두리의 두께와 색상을 설정합니다. */
+	padding: 10px; /* 내용과 테두리 간격을 조절합니다. */
+	border-radius:4px;
+	
+}
+
+.label-style {
+	margin-top: 10px;
+	color: #848484; /* 폰트 색상을 파란색으로 설정합니다. */
+	font-weight: 3px; /* 폰트를 굵게 설정합니다. (선택 사항) */
+	border-radius:3px;
+	padding:5px;
+}
+
+#modify {
+	border:none;
+	margin-top:7px;
+	background-color:#2D316C;
+	border: 1px solid #2D316C;
+	color:white;
+	border-radius:5px;
+	line-height: 25px;
+	padding-top: 4px;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 부드러운 변화를 위한 transition */
+}
+
+#modify:hover {
+	background-color:#5858FA;
+	border: 3px solid #CEECF5;
+}
+	
 </style>
 </head>
 
 <body>
-   <div class="container">
+   <div class="container container-xxl bg-white p-0">
      
-     <div class="panel panel-default">
-       <div class="panel-body">
+ 
+
        
        
       <%@include file="/WEB-INF/header.jsp"%>
@@ -78,8 +112,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Navbar & Hero End -->
+          <!-- Navbar & Hero End -->
         
         
         <!-- update start -->
@@ -89,129 +122,51 @@
                      <p class="section-title text-secondary justify-content-center">
                      </p>
                      <h1 class="text-center mb-5">회원정보수정</h1>
+                     <br>
+                     <br>
                   </div>
 
-
-    <form action="${pageContext.request.contextPath}/member/update" method="post">
+	<div class="bordered-div" >
+    <form action="${cpath}/member/update" method="post" style="margin:20px;">
     	<input type="hidden" value="${userVo.username}" name="username">
     	<input type="hidden" value="${userVo.bno}" name="bno">
     	<input type="hidden" value="${userVo.industry}" name="industry">
     	<input type="hidden" value="${userVo.com_name}" name="com_name">
-        <label for="username">아이디:</label>
-         <label for="username">${userVo.username}</label>
+        <label for="username" class="label-style">아이디:</label>
+        <label for="username" class="label-style" style="border: 1px solid #A4A4A4;">${userVo.username}</label>
         <!-- readonly 속성을 추가하여 수정 불가능하게 만듭니다. -->
         <br>
         <br>
         <!-- 비밀번호 수정폼 -->
-      <label for="password">비밀번호:</label>
+      <label for="password">비밀번호 : </label>
       <input type="password" id="password" name="password" required>
       <br>
       <br>
       <!-- 비밀번호 확인 입력란 및 메시지 표시 -->
-      <label for="passwordConfirm">비밀번호 확인:</label>
+      <label for="passwordConfirm">비밀번호 확인 : </label>
       <input type="password" id="passwordConfirm" name="passwordConfirm" oninput="passwordCheck()" required>
       <p id="passMessage" style="color:red;"></p>
     
-        <input type="submit" value="수정">
+        <input type="submit" value="  수정  " id="modify" >
     </form>
-    
+    </div>
     
     <br>
-    <a href="${pageContext.request.contextPath}/member/mypage">마이페이지로 돌아가기</a>
+    <a href="${cpath}/member/mypage" style="color:#FAAC58; text-decoration: underline; font-size:15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">마이페이지로 돌아가기</a>
                </div>
             </div>
-         </div>
-         </div>
-        </div>
+
+
+
         
         <!-- update end -->
-           <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5 px-lg-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Address<span></span></p>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Career</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Gallery<span></span></p>
-                        <div class="row g-2">
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-1.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-2.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-3.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-4.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-5.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-6.jpg" alt="Image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Newsletter<span></span></p>
-                        <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
-                        <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container px-lg-5">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-                     
-                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
-                            Distributed By a <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
+          <%@include file="/WEB-INF/footer.jsp"%>
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
     
-   
+   </div>
    
    
     <!-- Modal -->

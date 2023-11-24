@@ -24,17 +24,18 @@ select
 SHOW TABLES;
 
 select * from tb_request;
-ALTER TABLE tb_request ADD COLUMN is_paid BOOLEAN DEFAULT false;
-
-delete from tb_user where username='admin2@naver.com';
+select * from tb_solution;
+ALTER TABLE tb_request ADD COLUMN req_satisfaction BOOLEAN DEFAULT false;
+ALTER TABLE tb_solution ADD COLUMN company3 varchar(100);
+ALTER TABLE tb_solution DROP COLUMN pred_score;
+SELECT MAX(p.req_num) FROM tb_request p WHERE p.username = 'admin@naver.com';
+delete from tb_request where req_num between 35 and 52;
 
 
 UPDATE tb_user
 SET com_name = '인공지능사관학교'
 WHERE username = 'admin@naver.com';
 
-describe member;
 
-select * from member;
 
-describe tb_news;
+describe tb_request;

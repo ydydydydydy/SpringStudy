@@ -29,8 +29,7 @@ public class tb_solution { // VO <--- ORM ----> TABLE
 	@Column(nullable = false)
 	private String sol_content;  // 솔루션 내용
 	
-	@Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0")
-	private double pred_score;  // 적합도
+
 	
 	@Column(nullable = false)
 	private String reco_industry;  // 추천 업종

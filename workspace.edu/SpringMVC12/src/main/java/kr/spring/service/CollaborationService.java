@@ -12,4 +12,6 @@ public interface CollaborationService {
    public List<tb_request> getList(String username);
    public List<tb_solution> getSolList(tb_request req_num);
    public tb_request getReqContent(Long req_num);
+   public Long findLargestPostNumberByUsername(String username);
+
 }

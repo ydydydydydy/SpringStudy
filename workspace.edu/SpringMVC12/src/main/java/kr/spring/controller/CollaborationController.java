@@ -32,9 +32,14 @@ public class CollaborationController {
    }
 
    @PostMapping("/request")
-   public String request(tb_request vo) {
-      collaborationService.request(vo);
-      return "collation/request";
+   public @ResponseBody String request(tb_request vo,Model model) {
+	   collaborationService.request(vo);
+	   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	      String username = authentication.getName(); // 현재 로그인한 사용자의 username
+	      Long req_num = collaborationService.findLargestPostNumberByUsername(username);
+      model.addAttribute("req_num", req_num);
+     System.out.println(req_num);
+      return String.valueOf(req_num);
    }
    
    @RequestMapping("/list")

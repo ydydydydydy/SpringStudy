@@ -21,11 +21,137 @@
   color: #000000; /* 예시로 흰색 텍스트 색상을 사용합니다. */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가할 수도 있습니다. */
   border: 1px solid #A4A4A4;
-  
 }
+#link {color: #E45635;display:block;font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;}
+#link:hover {color: #CCCCCC}
+
+#link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
+
+/** BEGIN CSS **/
+        body {background: #333333;}
+        @keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-moz-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-webkit-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-o-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-moz-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-webkit-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @-o-keyframes rotate-loading {
+            0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+            100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+        }
+
+        @keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+
+        @-moz-keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+
+        @-webkit-keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+
+        @-o-keyframes loading-text-opacity {
+            0%  {opacity: 0}
+            20% {opacity: 0}
+            50% {opacity: 1}
+            100%{opacity: 0}
+        }
+        .loading-container,
+        .loading {
+            height: 100px;
+            position: relative;
+            width: 100px;
+            border-radius: 100%;
+        }
+
+
+        .loading-container { margin: 40px auto }
+
+        .loading {
+            border: 2px solid transparent;
+            border-color: transparent #000000 transparent #000000;
+            -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
+            -moz-transform-origin: 50% 50%;
+            -o-animation: rotate-loading 1.5s linear 0s infinite normal;
+            -o-transform-origin: 50% 50%;
+            -webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+            -webkit-transform-origin: 50% 50%;
+            animation: rotate-loading 1.5s linear 0s infinite normal;
+            transform-origin: 50% 50%;
+        }
+
+        .loading-container:hover .loading {
+            border-color: transparent #E45635 transparent #E45635;
+        }
+        .loading-container:hover .loading,
+        .loading-container .loading {
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #loading-text {
+            -moz-animation: loading-text-opacity 2s linear 0s infinite normal;
+            -o-animation: loading-text-opacity 2s linear 0s infinite normal;
+            -webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
+            animation: loading-text-opacity 2s linear 0s infinite normal;
+            color: #000000;
+            font-family: "Helvetica Neue, "Helvetica", ""arial";
+            font-size: 10px;
+            font-weight: bold;
+            margin-top: 45px;
+            opacity: 0;
+            position: absolute;
+            text-align: center;
+            text-transform: uppercase;
+            top: 0;
+            width: 100px;
+        }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Bridge To Be</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -55,7 +181,9 @@
     <!-- font -->
    <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
 </head>
+<style>
 
+</style>
 <body>
    
     <div class="container-xxl bg-white p-0">
@@ -85,7 +213,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
         <!-- Navbar & Hero End -->
 
 
@@ -93,43 +221,61 @@
         <div class="container-xxl py-5">
             <div class="container py-5 px-lg-5">
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title text-secondary justify-content-center"><span></span>Contact Us<span></span></p>
+                    <p class="section-title text-secondary justify-content-center"><span></span>Request Form<span></span></p>
                     <h1 class="text-center mb-5">의뢰서 작성</h1>
                     <br>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="wow fadeInUp" data-wow-delay="0.3s">
-                            <form action="${cpath}/collaboration/request" method="post" >
-                            
-                            
-                                <div class="requestForm">
-                                    <div class="col-12">
-                              <div class="form-floating">
-                                  <input type="hidden" class="form-control" id="writer" name="username" placeholder="username" value="${user.username}">
-                              </div>
+                  <form action="${cpath}/collaboration/request" method="post">
+                     <div class="requestForm">
+                        <div class="col-12">
+                           <div class="form-floating">
+                              <input type="hidden" class="form-control" id="writer"
+                                 name="username" placeholder="username"
+                                 value="${user.username}">
                            </div>
-                           <br>
-                           <div class="col-12">
-                              <div class="form-floating">
-                                 <input type="text" class="form-control" id="subject" name="req_keyword" placeholder="Subject">
-                                 <label for="subject">의뢰제목</label>
-                              </div>
-                           </div>
-                           <br>
-                           <div class="col-12">
-                              <div class="form-floating">
-                                 <textarea class="form-control" name="req_content" placeholder="Leave a message here" id="content" style="height: 500px"></textarea>
-                                 <label for="content">상담요청내용</label> <!-- 수정: label을 "content"로 변경 -->
-                              </div>
-                           </div>
-                           <br>
-                           <div class="col-12">
-                               <button onclick="askQuestion()" class="btn btn-primary w-100 py-3" type="button" id="send">Send Message</button>
-                     </div>
-                                </div>
-                            </form>
                         </div>
+                        <br>
+                        <div class="col-12">
+                           <div class="form-floating">
+                              <input type="text" class="form-control" id="industry"
+                                 name="industry" placeholder="industry" required> <label
+                                 for="industry">제품 또는 서비스의 업종을 작성해 주세요</label>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="col-12">
+                           <div class="form-floating">
+                              <input type="text" class="form-control" id="target"
+                                 name="target" placeholder="target" required> <label
+                                 for="target">마케팅 대상(타겟)을 입력해 주세요</label>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="col-12">
+                           <div class="form-floating">
+                              <textarea class="form-control" name="req_content"
+                                 placeholder="Leave a message here" id="content"
+                                 style="height: 500px" required></textarea>
+                              <label for="content">상담요청내용</label>
+                              <!-- 수정: label을 "content"로 변경 -->
+                           </div>
+                        </div>
+                        <br>
+									<div class="col-12">
+										<button onclick="sendMessage()"
+											class="btn btn-primary w-100 py-3" type="button" id="send">Send
+											Message</button>
+										<div class="loading-container" id="loading-container" style="display:none";>
+											<div class="loading"></div>
+											<div id="loading-text">loading</div>
+										</div>
+									</div>
+								</div>
+                  </form>
+               </div>
                    <div id="result">
                    </div>
                         <div id="error"></div>
@@ -142,117 +288,14 @@
         <!-- Contact End -->
         
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5 px-lg-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Address<span></span></p>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Career</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Gallery<span></span></p>
-                        <div class="row g-2">
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-1.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-2.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-3.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-4.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-5.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath }/resources/img/portfolio-6.jpg" alt="Image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Newsletter<span></span></p>
-                        <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
-                        <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container px-lg-5">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-                     
-                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br> 
-                            Distributed By a <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-
+       <%@include file="/WEB-INF/footer.jsp"%>
+       </div>
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
     
     
-    
-    <div class="modal" id="checkModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-      
-            <!-- Modal Header -->
-            <div class="modal-header" id="checkType">
-              <h4 class="modal-title">확인 메세지</h4>
-            </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body" >
-              <p id="checkMessage">요청서 작성 성공</p>
-            </div>
-      
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
-      
-          </div>
-        </div>
-      </div>
-    
+ 
     
     
     
@@ -276,48 +319,66 @@
     const sendButton = document.getElementById('send');
     
     function sendMessage() {
-       var username = $("#writer").val();
-       var subject = $("#subject").val();
-       var content = $("#content").val();
+    	document.getElementById('send').style.display = 'none';
+        document.getElementById('loading-container').style.display = 'block';
+       
+       var industry = $('#industry').val();
+        var target = $('#target').val();
+         var content = $('#content').val(); // 사용자의 상담 요청 내용을 가져옴
+         var keyword = "업종: " + industry+ ", 타겟층: " + target;
+         var question = keyword + ", 상세요청: " + content;
+         
 
+         if (industry.trim() === '' || target.trim() === '' || content.trim() === '') {
+             // 필드가 비어있다면 실행하지 않음
+             alert("모든 필드를 입력하세요.");
+             return;
+         }
+         
+         
+       var username = $("#writer").val();
+      
        $.ajax({
           url: "${cpath}/collaboration/request", // 수정: 실제 컨트롤러의 URL로 변경
           type: "post",
           data: {
              "username": username,
              "req_content": content, // 수정: 요청 내용은 req_content로 변경
-             "req_keyword": subject // 수정: 제목은 키워드로 변경
+             "req_keyword": keyword // 수정: 제목은 키워드로 변경
           },
           success: function(data) {
              // 성공 시의 동작
+             askQuestion(question, data);
+             
           },
           error : function(error){
              
           }
        });
        
-        $("#checkModal").modal("show");
+       
     }
     
+   
     </script>
     
     <!-- gpt실행결과 db저장해보기 -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-    function askQuestion() {
-        var question = $('#content').val(); // 사용자의 상담 요청 내용을 가져옴
-        var data = { 'question': question };
-
+    function askQuestion(question, req_num) {
+       var data = { 'question': question, 'req_num': req_num };
+       console.log(data);
         $.ajax({
             type: 'POST',
             url: 'http://localhost:5000/ask_question',
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (data) {
+               
+               window.location.href = '${cpath}/collaboration/result?req_num='+req_num;
                 var solContent = data.result || data.error;
-
                 // 결과를 서버로 보내서 DB에 저장
-                saveToDatabase(solContent);
+              
 
                 $('#error').text(""); // 성공 시 에러 메시지 초기화
             },
@@ -327,6 +388,8 @@
             }
         });
     }
+    
+
 
     </script>
     

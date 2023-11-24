@@ -27,7 +27,7 @@
          <nav
             class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0 navsize">
             <a href="${cpath}/home" class="navbar-brand p-0">
-               <!-- <img src="img/logo.png" alt="Logo"> -->
+              <img src="${cpath}/resources/img/logo.png" alt="Logo" style="width: 110px;">
             </a>
             <button class="navbar-toggler" type="button"
                data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

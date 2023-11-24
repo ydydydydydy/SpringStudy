@@ -16,7 +16,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DGital - Digital Agency HTML Template</title>
+    <title>Bridge To Be</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -45,6 +45,111 @@
     <link href="${cpath}/resources/css/style.css" rel="stylesheet">
     
     <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
+    <style>
+    @import url("https://rsms.me/inter/inter.css");
+:root {
+   --color-light: white;
+   --color-dark: #212121;
+   --color-signal: #fab700;
+   --color-background: var(--color-light);
+   --color-text: var(--color-dark);
+   --color-accent: var(--color-signal);
+   --size-bezel: .5rem;
+   --size-radius: 4px;
+   line-height: 1.4;
+   font-family: 'Inter', sans-serif;
+   font-size: calc(.6rem + .4vw);
+   color: var(--color-text);
+   background: var(--color-background);
+   font-weight: 300;
+   padding: 0 calc(var(--size-bezel) * 3);
+}
+
+h1, h2, h3 {
+   font-weight: 900;
+}
+
+mark {
+   background: var(--color-accent);
+   color: var(--color-text);
+   font-weight: bold;
+   padding: 0 0.2em;
+}
+
+.card {
+   background: var(--color-background);
+   padding: calc(4 * var(--size-bezel));
+   margin-top: calc(4 * var(--size-bezel));
+   border-radius: var(--size-radius);
+   border: 3px solid var(--color-shadow, currentColor);
+   box-shadow: 0.5rem 0.5rem 0 var(--color-shadow, currentColor);
+}
+
+.card--inverted {
+   --color-background: var(--color-dark);
+   color: var(--color-light);
+   --color-shadow: var(--color-accent);
+}
+
+.card--accent {
+   --color-background: var(--color-signal);
+   --color-accent: var(--color-light);
+   color: var(--color-dark);
+}
+
+.card *:first-child {
+   margin-top: 0;
+}
+/* 
+.l-design-widht {
+   max-width: 40rem;
+   padding: 1rem;
+} */
+
+.input {
+
+   position: relative;
+    width: 600px;
+}
+
+.input__label {
+   position: absolute;
+   left: 0;
+   top: 0;
+   padding: calc(var(--size-bezel) * 0.95) calc(var(--size-bezel) * .5);
+   margin: calc(var(--size-bezel) * 0.85 + 4px) calc(var(--size-bezel) * .5);
+   background: pink;
+   white-space: nowrap;
+   transform: translate(0, 0);
+   transform-origin: 0 0;
+   background: var(--color-background);
+   transition: transform 120ms ease-in;
+   font-weight: bold;
+   line-height: 1;
+   opacity: .6;
+}
+
+.input__field {
+   box-sizing: border-box;
+   display: block;
+   width: 100%;
+   border: 2.5px solid currentColor;
+   padding: calc(var(--size-bezel) ) var(--size-bezel);
+   color: currentColor;
+   background: transparent;
+   border-radius: var(--size-radius);
+}
+
+.input__field:focus + .input__label, .input__field:not(:placeholder-shown) + .input__label {
+   transform: translate(0.25rem, -92%) scale(0.9);
+   color: var(--color-accent);
+}
+
+.hidden {
+   display: none;
+}
+    
+ </style>
 </head>
 
 <body>
@@ -71,15 +176,15 @@
                             <h1 class="text-white animated slideInDown">List</h1>
                             <hr class="bg-white mx-auto mt-0" style="width: 90px;">
                             <nav aria-label="breadcrumb">
-								<ol class="breadcrumb justify-content-center">
-									<li class="breadcrumb-item"><a class="text-white" href="#">Enterprise</a></li>
-								</ol>
-							</nav>
+                        <ol class="breadcrumb justify-content-center">
+                           <li class="breadcrumb-item"><a class="text-white" href="#">Enterprise</a></li>
+                        </ol>
+                     </nav>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
         <!-- Navbar & Hero End -->
 
 
@@ -105,15 +210,18 @@
                             <li class="mx-2" data-filter=".eight">정보통신</li>
                             <li class="mx-2" data-filter=".nine">광업</li>
                             <li class="mx-2" data-filter=".ten">운수·창고</li>
-							
+                     
                         </ul>
-              			<br>
+              <br>
                  <!-- 기업검색 -->
-						<form onsubmit="searchCompanies(); return false;"style="margin-bottom: 20px; display: flex; align-items: center;">
-							<input type="text" id="companySearch" name="companyName"style="flex: 1;">
-							<button type="submit" class="btn btn-primary" value="검색"style="margin-left: 5px; padding: 3px 8px;">검색</button>
-							<button id="resetSearch" class="btn btn-primary"style="margin-left: 5px; padding: 3px 8px;">초기화</button>
-						</form>
+						<form onsubmit="searchCompanies(); return false;" style="margin-bottom: 20px; display: flex; align-items: center;">
+    <label class="input" style="flex: 1;">
+        <input class="input__field" type="text" id="companySearch" name="companyName" placeholder=" ">
+        <span class="input__label">기업 이름을 입력하세요</span>
+    </label>
+    <button type="submit" class="btn btn-primary" style="margin-left: 5px; padding: 3px 8px;">검색</button>
+    <button id="resetSearch" class="btn btn-primary" style="margin-left: 5px; padding: 3px 8px;">초기화</button>
+</form>
 
 
 
@@ -123,91 +231,90 @@
                 
                 <div class="row g-4 portfolio-container">
 
-					<c:forEach var="vo" items="${list}" varStatus="i">
-						<c:set var="portfolioClass" value="" />
-						<c:set var="portfolioImage" value="" />
-						<c:choose>
-							<c:when test="${vo.industry == '제조'}">
-								<c:set var="portfolioClass" value="first" />
-								<c:set var="portfolioImage" value="portfolio-6.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '전문·과학및기술서비스'}">
-								<c:set var="portfolioClass" value="second" />
-								<c:set var="portfolioImage" value="portfolio-2.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '금융·보험'}">
-								<c:set var="portfolioClass" value="third" />
-								<c:set var="portfolioImage" value="portfolio-3.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '교육서비스'}">
-								<c:set var="portfolioClass" value="four" />
-								<c:set var="portfolioImage" value="portfolio-1.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '도매·소매'}">
-								<c:set var="portfolioClass" value="five" />
-								<c:set var="portfolioImage" value="portfolio-5.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '숙박·음식점'}">
-								<c:set var="portfolioClass" value="six" />
-								<c:set var="portfolioImage" value="portfolio-12.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '사업시설관리·사업지원및임대서비스'}">
-								<c:set var="portfolioClass" value="seven" />
-								<c:set var="portfolioImage" value="portfolio-7.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '정보통신'}">
-								<c:set var="portfolioClass" value="eight" />
-								<c:set var="portfolioImage" value="portfolio-4.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '광업'}">
-								<c:set var="portfolioClass" value="nine" />
-								<c:set var="portfolioImage" value="portfolio-9.jpg" />
-							</c:when>
-							<c:when test="${vo.industry == '운수·창고'}">
-								<c:set var="portfolioClass" value="ten" />
-								<c:set var="portfolioImage" value="portfolio-10.jpg" />
-							</c:when>
-							
-							<c:when test="${vo.industry == '전기·가스·증기·공기조절공급'}">
-								<c:set var="portfolioClass" value="ten2" />
-								<c:set var="portfolioImage" value="portfolio-4.jpg" />
-							</c:when>
-							
-						</c:choose>
-						<!-- 나머지 산업 분야에 대한 설정 추가 -->
-						<!-- ... -->
-						<c:set var="portfolioItemHTML">
-							<c:if test="${not empty portfolioClass}">
-								<div
-									class="col-lg-4 col-md-6 portfolio-item ${portfolioClass} wow fadeInUp"
-									data-wow-delay="0.1s">
-									<div class="rounded overflow-hidden">
-										<div class="position-relative overflow-hidden">
-											<img class="img-fluid w-100"
-												src="${cpath}/resources/img/${portfolioImage}" alt="">
-											<div class="portfolio-overlay">
-												<a
-													class="btn btn-square btn-outline-light mx-1" href=""
-													data-industry="${vo.industry}"
-													data-company="${vo.com_name}" data-addr="${vo.com_addr}"
-													data-scale="${vo.com_type}"><i class="fa fa-eye"></i></a>
-											</div>
-										</div>
+               <c:forEach var="vo" items="${list}" varStatus="i">
+                  <c:set var="portfolioClass" value="" />
+                  <c:set var="portfolioImage" value="" />
+                  <c:choose>
+                     <c:when test="${vo.industry == '제조'}">
+                        <c:set var="portfolioClass" value="first" />
+                        <c:set var="portfolioImage" value="portfolio-6.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '전문·과학및기술서비스'}">
+                        <c:set var="portfolioClass" value="second" />
+                        <c:set var="portfolioImage" value="portfolio-2.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '금융·보험'}">
+                        <c:set var="portfolioClass" value="third" />
+                        <c:set var="portfolioImage" value="portfolio-3.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '교육서비스'}">
+                        <c:set var="portfolioClass" value="four" />
+                        <c:set var="portfolioImage" value="portfolio-1.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '도매·소매'}">
+                        <c:set var="portfolioClass" value="five" />
+                        <c:set var="portfolioImage" value="portfolio-5.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '숙박·음식점'}">
+                        <c:set var="portfolioClass" value="six" />
+                        <c:set var="portfolioImage" value="portfolio-12.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '사업시설관리·사업지원및임대서비스'}">
+                        <c:set var="portfolioClass" value="seven" />
+                        <c:set var="portfolioImage" value="portfolio-7.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '정보통신'}">
+                        <c:set var="portfolioClass" value="eight" />
+                        <c:set var="portfolioImage" value="portfolio-4.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '광업'}">
+                        <c:set var="portfolioClass" value="nine" />
+                        <c:set var="portfolioImage" value="portfolio-9.jpg" />
+                     </c:when>
+                     <c:when test="${vo.industry == '운수·창고'}">
+                        <c:set var="portfolioClass" value="ten" />
+                        <c:set var="portfolioImage" value="portfolio-10.jpg" />
+                     </c:when>
+                     
+                     <c:when test="${vo.industry == '전기·가스·증기·공기조절공급'}">
+                        <c:set var="portfolioClass" value="ten2" />
+                        <c:set var="portfolioImage" value="portfolio-4.jpg" />
+                     </c:when>
+                     
+                  </c:choose>
+                  <!-- 나머지 산업 분야에 대한 설정 추가 -->
+                  <!-- ... -->
+                  <c:set var="portfolioItemHTML">
+                     <c:if test="${not empty portfolioClass}">
+                        <div
+                           class="col-lg-4 col-md-6 portfolio-item ${portfolioClass} fadeInUp">
+                           <div class="rounded overflow-hidden">
+                              <div class="position-relative overflow-hidden">
+                                 <img class="img-fluid w-100" style="width: 100%; height: 280px; object-fit: cover;"
+                                    src="${cpath}/resources/img/${portfolioImage}" alt="">
+                                 <div class="portfolio-overlay">
+                                    <a
+                                       class="btn btn-square btn-outline-light mx-1" href=""
+                                       data-industry="${vo.industry}"
+                                       data-company="${vo.com_name}" data-addr="${vo.com_addr}"
+                                       data-scale="${vo.com_type}"><i class="fa fa-eye"></i></a>
+                                 </div>
+                              </div>
 
-										<div class="bg-light p-4">
-											<p class="text-primary fw-medium mb-2">${vo.industry}</p>
-											<h5 class="lh-base mb-0">${vo.com_name}</h5>
-										</div>
-									</div>
-								</div>
-							</c:if>
-						</c:set>
+                              <div class="bg-light p-4">
+                                 <p class="text-primary fw-medium mb-2">${vo.industry}</p>
+                                 <h5 class="lh-base mb-0">${vo.com_name}</h5>
+                              </div>
+                           </div>
+                        </div>
+                     </c:if>
+                  </c:set>
 
- 				${portfolioItemHTML}
-					</c:forEach>
+             ${portfolioItemHTML}
+               </c:forEach>
 
-					
-				</div>
+               
+            </div>
                 
               
                 
@@ -247,91 +354,12 @@
         <!-- Projects End -->
 
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5 px-lg-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Address<span></span></p>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Career</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Gallery<span></span></p>
-                        <div class="row g-2">
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath}/resources/img/portfolio-1.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath}/resources/img/portfolio-2.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath}/resources/img/portfolio-3.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath}/resources/img/portfolio-4.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath}/resources/img/portfolio-5.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="${cpath}/resources/img/portfolio-6.jpg" alt="Image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <p class="section-title text-white h5 mb-4">Newsletter<span></span></p>
-                        <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
-                        <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container px-lg-5">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-                     
-                     <!--/*** This template is free as long as you keep the footer authorâs credit link/attribution link/backlink. If you'd like to use the template without the footer authorâs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
+      <%@include file="/WEB-INF/footer.jsp"%>
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-
+</div>
     <!-- JavaScript Libraries -->
    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -344,8 +372,18 @@
 <script src="${cpath}/resources/lib/lightbox/js/lightbox.min.js"></script>
 <!-- Template Javascript -->
 <script src="${cpath}/resources/js/main.js"></script>
+<script src="${cpath}/resources/js/main.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6d222eefd3278a8d9470378244c58b31&libraries=services"></script>
 <script>
+window.onload = function() {
+    // 페이지 로드 시, 검색어 초기화
+    document.getElementById('companySearch').value = '';
+
+ // 초기화 버튼 클릭 시, 검색어 초기화
+    resetSearch.addEventListener('click', function() {
+        companySearch.value = '';
+    });
+};
 $(document).ready(function() {
     var mapVisible = false;
     var map; // 전역 변수로 맵 객체 선언
@@ -420,7 +458,18 @@ $(document).ready(function() {
 
     });
 });
+let timer;
 
+document.addEventListener('input', e => {
+  const el = e.target;
+
+  if( el.matches('[data-color]') ) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      document.documentElement.style.setProperty(`--color-${el.dataset.color}`, el.value);
+    }, 100)
+  }
+});
 
 </script>
 
