@@ -262,6 +262,8 @@ body {
   border: 1px solid transparent;
 }
 
+
+
 </style>
 <meta charset="utf-8">
     <title>DGital - Digital Agency HTML Template</title>
@@ -312,10 +314,8 @@ body {
                 <div class="container px-lg-5">
                     <div class="row g-5 align-items-end">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated slideInDown">A Digital Agency Of Inteligents & Creative People</h1>
-                            <p class="text-white pb-3 animated slideInDown">Tempor rebum no at dolore lorem clita rebum rebum ipsum rebum stet dolor sed justo kasd. Ut dolor sed magna dolor sea diam. Sit diam sit justo amet ipsum vero ipsum clita lorem</p>
-                            <a href="" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Read More</a>
-                            <a href="" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contact Us</a>
+                            <h1 class="text-white mb-4 animated slideInDown">Membership Page</h1>
+                            <p class="text-white pb-3 animated slideInDown"></p>
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
                             <img class="img-fluid animated zoomIn" src="${cpath }resources/img/hero.png" alt="">
@@ -333,29 +333,40 @@ body {
    <div class="content_wrapper" id="mycard">
       <div class='wrapper'>
       
-         <div class='card' id="card1">
+         <div class='card' id="card1" style="width:315px;">
             <div class='card__heading'>${username}</div>
             <div class='card__text'>${userVo.com_name}</div>
          </div>
          
-         <div class='card' id="card2">
-            <div class='card__heading' id="mydiv">
+         <div class='card' id="card2" style="width:315px;">
+            <div class='card__heading' id="mydiv" >
                <a href="${pageContext.request.contextPath}/member/update" style="color:#FFFFFF;">수정 페이지로 이동</a>
-               <br>
             </div>
             <div class='card__text' id="mydiv2">
                <a href="#" data-bs-toggle="modal" data-bs-target="#confirmModal" style="color:#A4A4A4" >회원 탈퇴</a>
             </div>
          </div>
          
-         <div class='card' id="card3">
-            <div class='card__heading' id="mydiv" >신청내역</div>
-            <div class='card__text'></div>
-         </div>
+		<div class='card' id="card3" style="width:650px;">
+		   <div class='card__heading' id="mydiv">신청내역</div>
+		   <c:if test="${not empty request}">
+		   	<div class='card__text' style="color:#FFFFFF;">
+		      <c:if test="${not empty request}">
+			    <c:set var="lastIndex" value="${fn:length(request) - 1}" />
+			    <c:if test="${lastIndex ge 0}">
+			        <a href="${pageContext.request.contextPath}/collaboration/result?req_num=${request[lastIndex].req_num}" style="color:#FFFFFF;">${request[lastIndex].req_keyword}</a>
+			    </c:if>
+			</c:if>
+		    </div>  
+		      <div class='card__text'>${request[2].req_content}</div>
+		   </c:if>
+		   <c:if test="${empty request}">
+		      <div class='card__text'>신청 내역이 없습니다.</div>
+		   </c:if>
+		</div>
       </div>
-
+   </div>
         <!-- Mypage End -->
-        </div>
 
    
         

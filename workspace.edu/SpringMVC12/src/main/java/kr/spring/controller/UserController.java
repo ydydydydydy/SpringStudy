@@ -1,5 +1,7 @@
 package kr.spring.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.spring.entity.CustomUser;
+import kr.spring.entity.tb_request;
 import kr.spring.entity.tb_user;
+import kr.spring.service.CollaborationService;
 import kr.spring.service.UserService;
 
 @Controller
@@ -24,6 +28,9 @@ public class UserController {
    
    @Autowired
    private UserService userService;
+   @Autowired
+   private CollaborationService collaborationService;
+
    
    @PostMapping("/join")
    public String join(tb_user vo, RedirectAttributes rttr, HttpSession session) {
@@ -52,6 +59,8 @@ public class UserController {
    public String mypage(tb_user vo, Model model) {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       String username = authentication.getName(); // 현재 로그인한 사용자의 username
+      List<tb_request> requestList = collaborationService.getRequestsByUsername(username);
+      model.addAttribute("request", requestList);
       
       tb_user user= userService.getList(username);
       model.addAttribute("userVo", user);
