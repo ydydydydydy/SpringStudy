@@ -72,13 +72,14 @@ body {
 }
 
 .wrapper {
-  width: 100%;
-  max-width: 650px;
-  display: grid;
-  grid-gap: 20px;
-  margin: auto;
-  grid-template-columns: repeat(6, 1fr);
-  color: white;
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    grid-gap: 20px;
+    margin: auto;
+    grid-template-columns: repeat(6, 1fr);
+    color: white;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -119,11 +120,11 @@ body {
 
 .card__heading,
 .card__text {
-  height: 24px;
+  height: 27px;
   width: 100%;
   border-radius: 4px;
   background-color: var(--background-color);
-  font-size: 14px;
+  font-size: 16px;
   padding-left: 6px;
   padding-right: 6px;
   display: flex;
@@ -358,7 +359,7 @@ body {
 			    </c:if>
 			</c:if>
 		    </div>  
-		      <div class='card__text'>${request[2].req_content}</div>
+		      <div class='card__text'>${request[lastIndex].req_content}</div>
 		   </c:if>
 		   <c:if test="${empty request}">
 		      <div class='card__text'>신청 내역이 없습니다.</div>
