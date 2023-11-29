@@ -49,9 +49,15 @@ public class CollaborationServiceImpl implements CollaborationService {
 	public Long findLargestPostNumberByUsername(String username) {
         return collaborationRepository.findMaxPostNumberByUsername(username);
     }
-	
-    @Override
-    public List<tb_request> getRequestsByUsername(String username) {
-        return collaborationRepository.findByUsernameUsername(username);
-    }
+
+	   @Override
+	    public List<tb_request> getRequestsByUsername(String username) {
+	        return collaborationRepository.findByUsernameUsername(username);
+	    }
+
+	@Override
+	public void remove(Long req_num) {
+		collaborationRepository.deleteById(req_num);
+		
+	}
 }

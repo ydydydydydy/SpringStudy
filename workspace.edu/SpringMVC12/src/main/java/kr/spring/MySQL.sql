@@ -28,6 +28,8 @@ select * from tb_solution;
 ALTER TABLE tb_request ADD COLUMN req_satisfaction BOOLEAN DEFAULT false;
 ALTER TABLE tb_solution ADD COLUMN company3 varchar(100);
 ALTER TABLE tb_solution DROP COLUMN pred_score;
+ALTER TABLE tb_request DROP COLUMN req_satisfaction;
+
 SELECT MAX(p.req_num) FROM tb_request p WHERE p.username = 'admin@naver.com';
 delete from tb_request where req_num between 35 and 52;
 
@@ -36,6 +38,15 @@ UPDATE tb_user
 SET com_name = '인공지능사관학교'
 WHERE username = 'admin@naver.com';
 
+UPDATE tb_solution
+SET reco_industry='화장품'
+WHERE sol_num=1;
+
+
+UPDATE tb_request
+SET is_paid=false
+WHERE req_num  between 66 and 146;
 
 
 describe tb_request;
+commit;

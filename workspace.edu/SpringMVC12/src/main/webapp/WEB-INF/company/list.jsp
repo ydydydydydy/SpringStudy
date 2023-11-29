@@ -51,7 +51,6 @@
    --color-light: white;
    --color-dark: #212121;
    --color-signal: #fab700;
-   --color-background: var(--color-light);
    --color-text: var(--color-dark);
    --color-accent: var(--color-signal);
    --size-bezel: .5rem;

@@ -32,8 +32,6 @@ public class tb_request { // VO <--- ORM ----> TABLE
 	@Column(insertable = false, updatable = false, columnDefinition = "datetime default now()")
 	private Date req_at;  // 의뢰 날짜
 	
-	
-	
 	@Column(nullable = true)
 	private String req_keyword;  // 키워드
 	

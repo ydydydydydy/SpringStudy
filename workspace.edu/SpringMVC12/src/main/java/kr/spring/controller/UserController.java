@@ -28,9 +28,9 @@ public class UserController {
    
    @Autowired
    private UserService userService;
+   
    @Autowired
    private CollaborationService collaborationService;
-
    
    @PostMapping("/join")
    public String join(tb_user vo, RedirectAttributes rttr, HttpSession session) {

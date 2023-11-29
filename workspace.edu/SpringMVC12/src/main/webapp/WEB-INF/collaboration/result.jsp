@@ -57,8 +57,15 @@
     filter: blur(15px);
 }
 
-
-    
+#market_pre{
+width:100%;
+overflow-x:hidden;
+overflow-y:auto;
+ white-space: pre-wrap; /* 줄 바꿈 허용 */
+ font-family: "GmarketSans";
+ font-size:17px;
+}
+ 
 </style> 
 
     
@@ -86,6 +93,7 @@
                             <hr class="bg-white mx-auto mt-0" style="width: 90px;">
                             <nav aria-label="breadcrumb">
                                <h3 class="text-white">의뢰내용: ${req_content.req_content}</h3>
+                             
                                 
                             </nav>
                         </div>
@@ -94,32 +102,26 @@
             </div>
   
         <!-- Navbar & Hero End -->
-
-
-        <!-- Feature Start -->
-        <div class="container-xxl py-5">
+  <div class="container-xxl py-5">
             <div class="container py-5 px-lg-5">
+                     <h6 style="color:#A4A4A4; text-align: center;">${req_content.req_keyword}</h6>
              <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title text-secondary justify-content-center"><span></span>RECOMMEND SUMMARY<span></span></p>
+                    <p class="section-title text-secondary justify-content-center"><span></span>Trend<span></span></p>
                    </div>
                 <br>
-                <div class="row g-4">
-                    <c:forEach var="vo" items="${result_list}" varStatus="i">
-                        <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="feature-item bg-light rounded text-center p-4" onclick="scrollToTeamSection(${i.index})">
-                            <i class="fa fa-3x fa-search text-primary mb-4"></i>
-                            <h5 class="mb-3">솔루션번호: ${vo.sol_num } </h5>
-                            <p class="m-0">의뢰번호: ${vo.req_num.req_num }</p>
-                            <input type="hidden" id="req_num" value="${vo.req_num.req_num}" />
-                            <p class="m-0">솔루션: ${vo.sol_content }</p>
-                            <p class="m-0">추천업종: ${vo.reco_industry }</p>
+                <div class="row g-4" >
+                        <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s"style="width: 100%;">
+                        <div class="feature-item bg-light rounded text-center p-4" >
+                   
+                            <pre id="market_pre"class="mb-3"> ${result_list[0].marketing_cases} </pre>
+                         
                         </div>
                        </div>
-                   </c:forEach>
                 </div>
             </div>
         </div>
-        <!-- Feature End -->
+
+      
 
    <div class="blurry-section">
     <!-- 블러 처리할 내용 -->
@@ -130,26 +132,31 @@
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                         <p class="section-title text-secondary">Recommend industry<span></span></p>
                         <h1 class="mb-5">추천 업종</h1>
-                        <p class="mb-4">AI 매칭을 통한 추천 업종은 고객의 요구사항과 기업의 서비스를 인공지능이 분석하여, 최적화된 세 가지 업종을 추천합니다</p>
+                        <p class="mb-4" style="color:#A4A4A4;">AI 매칭을 통한 추천 업종은 고객의 요구사항과 기업의 서비스를 인공지능이 분석하여, 최적화된 세 가지 업종을 추천합니다</p>
                         
                         <c:forEach var="vo" items="${result_list}" varStatus="i">
                         <div class="skill mb-4">
-                            <div class="d-flex justify-content-between">
+                            <%-- <div class="d-flex justify-content-between">
                                 <p class="mb-2">${vo.reco_industry }</p>
-                            </div>
-                              <div class="progress">
-                          <%-- <c:if test="${i.index % 2 == 0}">
-                              <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div> --%>
+                              <%-- <div class="progress">
+                           <c:if test="${i.index % 2 == 0}">
+                              <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"></div>
                           </c:if>
                           <c:if test="${i.index % 2 != 0}">
-                              <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="${vo.pred_score}" aria-valuemin="0" aria-valuemax="100"></div>
-                          </c:if> --%>
-                            </div>
+                              <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                          </c:if> 
+                            </div> --%>
                         </div>
-                        </c:forEach>
-
+                        
+                    
+                         <p class="mb-2" >${vo.reco_industry} : ${vo.sol_content }</p>  
+                  
+                    
+                    
+                    </c:forEach>
                     </div>
-                    <div class="col-lg-6">
+<div class="col-lg-6">
                         <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="${cpath}/resources/img/about.png">
                     </div>
                 </div>
@@ -161,24 +168,54 @@
 
         <button type="button" id="paymentButton" onclick="KGpay()" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3" style="display: block; margin: 0 auto;" >결제하기</button>
 <div class="blurry-section">
-     
+       <!-- Feature Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+             <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title text-secondary justify-content-center"><span></span>RECOMMEND SUMMARY<span></span></p>
+                   </div>
+                <br>
+                <div class="row g-4">
+                    <c:forEach var="vo" items="${result_list}" varStatus="i">
+                        <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded text-center p-4" onclick="scrollToTeamSection(event,${i.index})"data-company1="${vo.company1}"
+             data-company2="${vo.company2}"
+             data-company3="${vo.company3}"
+             data-industry="${vo.reco_industry}"
+             data-solution1="${vo.sol_content}"
+             >
+                        <%-- <div id="company1" data-companies="${result_list[i.index].company1}"></div>
+                        <div id="company2" data-companies="${result_list[i.index].company2}"></div>
+                        <div id="company3" data-companies="${result_list[i.index].company3}"></div> --%>
+                            <i class="fa fa-3x fa-search text-primary mb-4"></i>
+                            <h5 class="mb-3">추천업종: ${vo.reco_industry } </h5>
+                           
+                            <input type="hidden" id="req_num" value="${vo.req_num.req_num}" />
+                         
+                        </div>
+                       </div>
+                   </c:forEach>
+                </div>
+            </div>
+        </div>
+        <!-- Feature End -->
         
 
         <!-- Team Start -->
         <div class="container-xxl py-5" id="team-section">
             <div class="container py-5 px-lg-5">
                 <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title text-secondary justify-content-center"><span></span>RECOMMEND LIST<span></span></p>
-                    <h1 class="text-center mb-5">업종 추천 기업</h1>
+                    <p class="section-title text-secondary justify-content-center"id="title_name"><span></span>RECOMMEND LIST<span></span></p>
+                    <h1 class="text-center mb-5">추천 기업</h1>
                 </div>
                 <br>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item bg-light rounded">
                             <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath}/resources/img/team-1.jpg" alt="">
-                                <h5 id="company"></h5>
-                                <span>CEO & Founder</span>
+                               
+                                <h5 id="company">${result_list[0].company1}</h5>
+                                <span></span>
                             </div>
                             
                         </div>
@@ -186,9 +223,9 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="team-item bg-light rounded">
                             <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath}/resources/img/team-2.jpg" alt="">
-                                <h5>Jessica Brown</h5>
-                                <span>Web Designer</span>
+                              
+                                <h5 id="company_2">${result_list[0].company2}</h5>
+                                <span></span>
                             </div>
                            
                         </div>
@@ -196,9 +233,9 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="team-item bg-light rounded">
                             <div class="text-center border-bottom p-4">
-                                <img class="img-fluid rounded-circle mb-4" src="${cpath}/resources/img/team-3.jpg" alt="">
-                                <h5>Tony Johnson</h5>
-                                <span>SEO Expert</span>
+                               
+                                <h5 id="company_3">${result_list[0].company3}</h5>
+                               <span></span>
                             </div>
                             
                         </div>
@@ -242,78 +279,71 @@
             $('#paymentButton').hide();
         }
     });
-
-    
-    var resultList = ${result_list};
-    
-    
-    
-       function scrollToTeamSection(idx) {
+         
+       function scrollToTeamSection(event,idx) {
            // team-section 섹션으로 스크롤
-           console.log(idx);
-           console.log(resultList[idx]);
-          /*  $('#company').html(`${result_list[idx].company1}`); */
+            const clickedElement = event.currentTarget;
+		    const company1 = clickedElement.dataset.company1;
+		    const company2 = clickedElement.dataset.company2;
+		    const company3 = clickedElement.dataset.company3;
+		    const industry = clickedElement.dataset.industry;
            
-           document.getElementById('team-section').scrollIntoView({
-               behavior: 'smooth'
-               
-           });
+		  
+			$('#company').html(company1);
+			$('#company_2').html(company2);
+			$('#company_3').html(company3);
+			$('#company_3').html(company3);
+			$('#title_name').html("<span></span><span></span>"+industry+"<span></span><span></span>");
+           
+         
        }
+       
+       
+       
        function KGpay(username){
-    	   //var username = document.getElementById('username').value;
-    	   var IMP = window.IMP;
-    	   IMP.init("imp71714542");
-    	   IMP.request_pay({
-    	       pg : 'html5_inicis',
-    	       pay_method : 'card',
-    	       merchant_uid: username+'_'+new Date().getTime(), // 상점에서 관리하는 주문 번호를 전달
-    	       name :'Bridge To Be 유료서비스',
-    	       amount : 100,//100이 최소금액
-    	       buyer_email : username,
-    	       buyer_name : username,
-    	      
-    	      
-    	   },function(rsp) {
-    	       if ( rsp.success ) {
-    	       	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-    	       	jQuery.ajax({
-    	       		url: "/collaboration/result", //cross-domain error가 발생하지 않도록 주의해주세요
-    	       		type: 'POST',
-    	       		dataType: 'json',
-    	       		data: {
-    	   	    		imp_uid : rsp.imp_uid,
-    	   	    		merchant_uid : rsp.merchant_uid
-    	   	    		//기타 필요한 데이터가 있으면 추가 전달
-    	       		}
-    	       	}).done(function(data) {
-    	       		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-    	       		if ( everythings_fine ) {
-    	       			var msg = '결제가 완료되었습니다.';
-    	       			msg += '\n고유ID : ' + rsp.imp_uid;
-    	       			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-    	       			msg += '\결제 금액 : ' + rsp.paid_amount;
-    	       			msg += '카드 승인번호 : ' + rsp.apply_num;
-    	       			
-    	       			const form = new FormData();
-    	                   form.append('impuid', rsp.imp_uid)
-    	                   form.append('merchantuid', rsp.merchant_uid)
-    	                   form.append('paidamount', rsp.paid_amount)
-    	                   form.append('applynum', rsp.apply_num)
-    	                   form.append('email', username)
-    	                   
-    	                   console.log(form)
-    	       			alert(msg);
-    	                   
-    	       		} 
-    	       	});
-    	       } else {
-    	           var msg = '결제에 실패하였습니다.';
-    	           msg += "\n"+ rsp.error_msg;
-    	           
-    	           alert(msg);
-    	       }
-    	   });
-    	   }
+           var IMP = window.IMP;
+           IMP.init("imp22805075");
+           var username = document.getElementById('username').value;
+
+           IMP.request_pay({
+                  pg : 'html5_inicis',
+                  pay_method : 'card',
+                  merchant_uid: username+'_'+new Date().getTime(),
+                  name :'Bridge To Be 유료서비스',
+                  amount : 100,
+                  buyer_email : username,
+                  buyer_name : username
+              }, function(rsp) {
+                  if (rsp.success) {
+                      $.ajax({
+                          url: "${cpath}/collaboration/payment",
+                          type: 'POST',
+                          data: {"req_num": `${req_content.req_num}`},
+                          success: function (data) {
+                             alert(data);
+                              var msg = '결제가 완료되었습니다.';
+                              msg += '\n고유ID : ' + rsp.imp_uid;
+                              msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                              msg += '\결제 금액 : ' + rsp.paid_amount;
+                              msg += '카드 승인번호 : ' + rsp.apply_num;
+   
+                              alert(msg);
+                        location.reload();
+                          },
+                          error: function(error) {
+                             alert("전송실패"+error);
+                              console.log("결제 정보 전송 실패", error);
+                          }
+                      });
+                  } else {
+                      var msg = '결제에 실패하였습니다.';
+                      msg += "\n" + rsp.error_msg;
+   
+                      alert(msg);
+                  }
+              }
+          );
+       }
     </script>
     
 </body>

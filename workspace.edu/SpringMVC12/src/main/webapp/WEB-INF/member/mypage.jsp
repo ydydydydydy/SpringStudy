@@ -27,7 +27,7 @@ min-height: 400px;
 html,
 body {
   min-height: 100vh;
-  background-color: var(--background-color);
+
 }
 
 
@@ -311,19 +311,17 @@ body {
 
     <%@include file="/WEB-INF/header.jsp"%>
 
-            <div class="container-xxl bg-primary hero-header">
-                <div class="container px-lg-5">
-                    <div class="row g-5 align-items-end">
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="text-white mb-4 animated slideInDown">Membership Page</h1>
-                            <p class="text-white pb-3 animated slideInDown"></p>
-                        </div>
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid animated zoomIn" src="${cpath }resources/img/hero.png" alt="">
-                        </div>
-                    </div>
-                </div>
+             <div class="container-xxl py-5 bg-primary hero-header">
+            <div class="container my-5 py-5 px-lg-5">
+               <div class="row g-5 py-5">
+                  <div class="col-12 text-center">
+                     <h1 class="text-white animated slideInDown">My Page</h1>
+                     
+                  </div>
+               </div>
             </div>
+         </div>
+      <!-- Navbar & Hero End -->
 
         <!-- Navbar & Hero End -->
 
@@ -341,30 +339,30 @@ body {
          
          <div class='card' id="card2" style="width:315px;">
             <div class='card__heading' id="mydiv" >
-               <a href="${pageContext.request.contextPath}/member/update" style="color:#FFFFFF;">수정 페이지로 이동</a>
+               <a href="${cpath}/member/update" style="color:#FFFFFF;">수정 페이지로 이동</a>
             </div>
             <div class='card__text' id="mydiv2">
                <a href="#" data-bs-toggle="modal" data-bs-target="#confirmModal" style="color:#A4A4A4" >회원 탈퇴</a>
             </div>
          </div>
          
-		<div class='card' id="card3" style="width:650px;">
-		   <div class='card__heading' id="mydiv">신청내역</div>
-		   <c:if test="${not empty request}">
-		   	<div class='card__text' style="color:#FFFFFF;">
-		      <c:if test="${not empty request}">
-			    <c:set var="lastIndex" value="${fn:length(request) - 1}" />
-			    <c:if test="${lastIndex ge 0}">
-			        <a href="${pageContext.request.contextPath}/collaboration/result?req_num=${request[lastIndex].req_num}" style="color:#FFFFFF;">${request[lastIndex].req_keyword}</a>
-			    </c:if>
-			</c:if>
-		    </div>  
-		      <div class='card__text'>${request[lastIndex].req_content}</div>
-		   </c:if>
-		   <c:if test="${empty request}">
-		      <div class='card__text'>신청 내역이 없습니다.</div>
-		   </c:if>
-		</div>
+      <div class='card' id="card3" style="width:650px;">
+         <div class='card__heading' id="mydiv"><a href="${cpath}/collaboration/list" style="color:#FFFFFF;">최근 의뢰내역</a></div>
+         <c:if test="${not empty request}">
+            <div class='card__text' style="color:#FFFFFF;">
+            <c:if test="${not empty request}">
+             <c:set var="lastIndex" value="${fn:length(request) - 1}" />
+             <c:if test="${lastIndex ge 0}">
+                 <a href="${cpath}/collaboration/result?req_num=${request[lastIndex].req_num}" style="color:#FFFFFF;">${request[lastIndex].req_keyword}</a>
+             </c:if>
+         </c:if>
+          </div>  
+           <div class='card__text'>${fn:substring(request[lastIndex].req_content, 0, 42)}...</div>
+         </c:if>
+         <c:if test="${empty request}">
+            <div class='card__text'>신청 내역이 없습니다.</div>
+         </c:if>
+      </div>
       </div>
    </div>
         <!-- Mypage End -->
@@ -390,12 +388,12 @@ body {
            </div>
        </div>
    </div>
-<%@include file="/WEB-INF/footer.jsp"%>
 
+<%@include file="/WEB-INF/footer.jsp"%>
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
-    </div>
+    
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

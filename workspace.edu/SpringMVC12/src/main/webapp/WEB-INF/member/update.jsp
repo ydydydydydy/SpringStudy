@@ -46,45 +46,45 @@
     <link href="https://webfontworld.github.io/gmarket/GmarketSans.css" rel="stylesheet">
 <style>
 .conpx {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
 }
 
 
 .bordered-div {
-	border: 2px solid #333; /* 테두리의 두께와 색상을 설정합니다. */
-	padding: 10px; /* 내용과 테두리 간격을 조절합니다. */
-	border-radius:4px;
-	
+   border: 2px solid #333; /* 테두리의 두께와 색상을 설정합니다. */
+   padding: 10px; /* 내용과 테두리 간격을 조절합니다. */
+   border-radius:4px;
+   
 }
 
 .label-style {
-	margin-top: 10px;
-	color: #848484; /* 폰트 색상을 파란색으로 설정합니다. */
-	font-weight: 3px; /* 폰트를 굵게 설정합니다. (선택 사항) */
-	border-radius:3px;
-	padding:5px;
+   margin-top: 10px;
+   color: #848484; /* 폰트 색상을 파란색으로 설정합니다. */
+   font-weight: 3px; /* 폰트를 굵게 설정합니다. (선택 사항) */
+   border-radius:3px;
+   padding:5px;
 }
 
 #modify {
-	border:none;
-	margin-top:7px;
-	background-color:#2D316C;
-	border: 1px solid #2D316C;
-	color:white;
-	border-radius:5px;
-	line-height: 25px;
-	padding-top: 4px;
-	transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 부드러운 변화를 위한 transition */
+   border:none;
+   margin-top:7px;
+   background-color:#2D316C;
+   border: 1px solid #2D316C;
+   color:white;
+   border-radius:5px;
+   line-height: 25px;
+   padding-top: 4px;
+   transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 부드러운 변화를 위한 transition */
 }
 
 #modify:hover {
-	background-color:#5858FA;
-	border: 3px solid #CEECF5;
+   background-color:#5858FA;
+   border: 3px solid #CEECF5;
 }
-	
+   
 </style>
 </head>
 
@@ -97,19 +97,17 @@
        
       <%@include file="/WEB-INF/header.jsp"%>
 
-            <div class="container-xxl bg-primary hero-header">
-                <div class="container px-lg-5">
-                    <div class="row g-5 align-items-end">
-                        <div class="col-lg-6 text-center text-lg-start">
-
-
-                        </div>
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <img class="img-fluid animated zoomIn" src="${cpath }resources/img/hero.png" alt="">
-                        </div>
-                    </div>
-                </div>
+            
+             <div class="container-xxl py-5 bg-primary hero-header">
+            <div class="container my-5 py-5 px-lg-5">
+               <div class="row g-5 py-5">
+                  <div class="col-12 text-center">
+                     <h1 class="text-white animated slideInDown">Edit Profile</h1>
+                     
+                  </div>
+               </div>
             </div>
+         </div>
           <!-- Navbar & Hero End -->
         
         
@@ -124,12 +122,12 @@
                      <br>
                   </div>
 
-	<div class="bordered-div" >
+   <div class="bordered-div" >
     <form action="${cpath}/member/update" method="post" style="margin:20px;">
-    	<input type="hidden" value="${userVo.username}" name="username">
-    	<input type="hidden" value="${userVo.bno}" name="bno">
-    	<input type="hidden" value="${userVo.industry}" name="industry">
-    	<input type="hidden" value="${userVo.com_name}" name="com_name">
+       <input type="hidden" value="${userVo.username}" name="username">
+       <input type="hidden" value="${userVo.bno}" name="bno">
+       <input type="hidden" value="${userVo.industry}" name="industry">
+       <input type="hidden" value="${userVo.com_name}" name="com_name">
         <label for="username" class="label-style">아이디:</label>
         <label for="username" class="label-style" style="border: 1px solid #A4A4A4;">${userVo.username}</label>
         <!-- readonly 속성을 추가하여 수정 불가능하게 만듭니다. -->

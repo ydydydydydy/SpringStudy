@@ -29,7 +29,14 @@ public class tb_solution { // VO <--- ORM ----> TABLE
 	@Column(nullable = false)
 	private String sol_content;  // 솔루션 내용
 	
-
+	@Column
+	private String company1;  // 추천 업종
+	
+	@Column
+	private String company2;
+	
+	@Column
+	private String company3;
 	
 	@Column(nullable = false)
 	private String reco_industry;  // 추천 업종
@@ -37,6 +44,12 @@ public class tb_solution { // VO <--- ORM ----> TABLE
 	@Column(insertable = false, updatable = false, columnDefinition = "datetime default now()")
 	private Date created_at;  // 생성일자
 	
+	 @Column
+	   private String marketing_strategy; // 마케팅 전략
+	   
+	   @Column
+	   private String marketing_cases; // 마케팅 사례
+
 }
 
 

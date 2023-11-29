@@ -348,7 +348,7 @@
           },
           success: function(data) {
              // 성공 시의 동작
-             askQuestion(question, data);
+             askQuestion(industry,question, data);
              
           },
           error : function(error){
@@ -365,30 +365,53 @@
     <!-- gpt실행결과 db저장해보기 -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-    function askQuestion(question, req_num) {
-       var data = { 'question': question, 'req_num': req_num };
-       console.log(data);
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:5000/ask_question',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            success: function (data) {
-               
-               window.location.href = '${cpath}/collaboration/result?req_num='+req_num;
-                var solContent = data.result || data.error;
-                // 결과를 서버로 보내서 DB에 저장
-              
+    function askQuestion(industry, question, req_num) {
+        var data = {'industry':industry, 'question': question, 'req_num': req_num };
+        console.log(data);
+         $.ajax({
+             type: 'POST',
+             url: 'http://localhost:5000/ask_question',
+             contentType: 'application/json',
+             data: JSON.stringify(data),
+             success: function (data) {
+                console.log(data);
+                if(data=="success"){
+                   window.location.href = '${cpath}/collaboration/result?req_num='+req_num;
+                }
+                else{
+                   removeReq_num(req_num);
+                   alert("결과제공실패");
+                   document.getElementById('send').style.display = 'block';
+                     document.getElementById('loading-container').style.display = 'none';
+                }
 
-                $('#error').text(""); // 성공 시 에러 메시지 초기화
-            },
-            error: function (xhr, status, error) {
-                console.error('Error:', error);
-                $('#error').text("에러 발생: " + error); // 에러 메시지 표시
-            }
-        });
-    }
-    
+             },
+             error: function (xhr, status, error) {
+                removeReq_num(req_num);
+                alert("에러발생");
+                document.getElementById('send').style.display = 'block';
+                 document.getElementById('loading-container').style.display = 'none';
+             }
+         });
+     }
+     
+     
+     function removeReq_num(req_num){
+        console.log(req_num);
+        $.ajax({
+             type: 'GET',
+             url: '${cpath}/collaboration/remove',
+             contentType: 'application/json',
+             data: {"req_num":req_num},
+             success: function (data) {
+                console.log("삭제 성공");
+             },
+             error: function(error){
+                 console.log("삭제 실패",error);
+             }
+         });
+     }
+     
 
 
     </script>
