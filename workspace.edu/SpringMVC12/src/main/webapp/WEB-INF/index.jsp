@@ -16,6 +16,141 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<style>
+@import
+	url('https://fonts.googleapis.com/css?family=Noto+Serif|Playfair+Display|Roboto:300,400,700')
+	;
+
+@import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+/* reset.css by hyejin */
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form,
+	fieldset, p, button, table, th, td, input {
+	margin: 0;
+	padding: 0;
+}
+
+input, fieldset, img, iframe {
+	border: 0;
+}
+
+ul, ol {
+  display: flex;
+  justify-content: flex-end; /* 리스트 아이템을 오른쪽으로 정렬 */
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+}
+
+a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+}
+
+.hidden {
+	display: none !important;
+}
+
+button {
+	border: none;
+	background: none;
+	cursor: pointer;
+	outline: none;
+}
+
+button:disabled, button:disabled:hover {
+	cursor: default;
+}
+
+/* style */
+body {
+	background: #000;
+}
+
+h1 {
+	color: #fff;
+}
+
+ul {
+	overflow: hidden;
+}
+
+li {
+	padding: 15px;
+	width: 220px
+	background: #fff;
+	text-align: center;
+	list-style-type: none; /* 마커를 비활성화 */
+}
+}
+
+li:nth-child(2) .card-cover {
+	background-image:
+		url('https://cdnimg.melon.co.kr/cm/album/images/100/10/416/10010416_org.jpg');
+}
+
+li:nth-child(3) .card-cover {
+	background-image:
+		url('https://cdnimg.melon.co.kr/cm/album/images/100/00/581/10000581_org.jpg');
+}
+
+li:nth-child(4) .card-cover {
+	background-image:
+		url('https://cdnimg.melon.co.kr/cm/album/images/026/57/056/2657056_org.jpg');
+}
+
+.card-header {
+  width: 220px;
+}
+
+.card-cover {
+  width: 100%;
+  height: 200px;
+  background-image: url('https://cdnimg.melon.co.kr/cm/album/images/100/16/426/10016426_org.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease; /* 추가: 호버 효과를 자연스럽게 만들기 위한 트랜지션 */
+
+  &:hover {
+    transform: scale(1.1); /* 추가: 확대 효과 */
+  }
+}
+
+.album-info {
+	padding: 10px;
+}
+
+.album-title {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.album-date {
+	font-size: 12px;
+}
+
+::marker {
+   display: none;
+   
+}
+</style>
+
+
 <meta charset="utf-8">
 <title>Bridge To Be</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -109,9 +244,7 @@
                      <div class="swiper-button-prev"></div>
                      <div class="swiper-pagination"></div>
                    </div>
-                   
                
-                   
                    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                
                    <!-- Initialize Swiper -->
@@ -139,7 +272,63 @@
                
             </div>
          </div>
-            <div class="container-xxl py-5">
+         
+         
+         
+		<h1>리스트 가로 배열 기본형</h1>
+		<ul>
+		  <li><a href="javascript:;" target="_blank">1</a></li>
+		  <li><a href="javascript:;" target="_blank">2</a></li>
+		  <li><a href="javascript:;" target="_blank">3</a></li>
+		  <li><a href="javascript:;" target="_blank">4</a></li>
+		</ul>
+		
+		<br><br><br><br>
+		
+		<h1>   최근 주목할 news</h1>
+		<ul>
+		  <li>
+		    <div class="card-header">
+		      <div class="card-cover"></div>
+		      <div class="album-info">
+		        <p class="album-title">앨범1</p>
+		        <p class="album-date">2017.02.16.</p>
+		      </div>
+		    </div>
+		  </li>
+		  <li>
+		    <div class="card-header">
+		      <div class="card-cover"></div>
+		      <div class="album-info">
+		        <p class="album-title">앨범2</p>
+		        <p class="album-date">2017.02.16.</p>
+		      </div>
+		    </div>
+		  </li>
+		  <li>
+		    <div class="card-header">
+		      <div class="card-cover"></div>
+		      <div class="album-info">
+		        <p class="album-title">앨범3</p>
+		        <p class="album-date">2017.02.16.</p>
+		      </div>
+		    </div>
+		  </li>
+		  <li>
+		    <div class="card-header">
+		      <div class="card-cover"></div>
+		      <div class="album-info">
+		        <p class="album-title">앨범4</p>
+		        <p class="album-date">2017.02.16.</p>
+		      </div>
+		    </div>
+		  </li>
+		</ul>
+               
+    
+    
+         
+       <div class="container-xxl py-5">
          <div class="container py-5 px-lg-5">
             <div class="row g-4">
                <div class="col-lg-4" data-wow-delay="0.1s">
