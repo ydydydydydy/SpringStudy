@@ -25,19 +25,19 @@ public class tb_news {
    private String news_num; // 뉴스번호
    
    @Column(nullable = false)
-   private String news_id; // 소비층
+   private String news_id;
    @Column(nullable = true)
-   private String news_date; // 기간
+   private String news_date;
    @Column(nullable = false)
-   private String news_name; // 방식
+   private String news_name;
    @Column(nullable = false)
-   private String news_reporter; // 예산
+   private String news_reporter;
    @Column(nullable = false)
-   private String news_title; // 예산
+   private String news_title;
    @Column(nullable = false)
-   private String news_content; // 예산
+   private String news_content;
    @Column(nullable = false)
-   private String news_url; // 예산
+   private String news_url;
 
 }
 

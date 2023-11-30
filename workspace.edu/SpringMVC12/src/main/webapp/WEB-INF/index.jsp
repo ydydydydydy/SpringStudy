@@ -287,25 +287,25 @@ li:nth-child(4) .card-cover {
 		
 		<h1>   최근 주목할 news</h1>
 		<ul>
-		  <li>
-		    <div class="card-header">
-		      <div class="card-cover"></div>
-		      <div class="album-info">
-		        <p class="album-title">앨범1</p>
-		        <p class="album-date">2017.02.16.</p>
-		      </div>
-		    </div>
-		  </li>
-		  <li>
-		    <div class="card-header">
-		      <div class="card-cover"></div>
-		      <div class="album-info">
-		        <p class="album-title">앨범2</p>
-		        <p class="album-date">2017.02.16.</p>
-		      </div>
-		    </div>
-		  </li>
-		  <li>
+			<li>
+				<div class="card-header">
+				    <div class="card-cover">${news.news_url}</div>
+				    <div class="album-info">
+				        <p class="album-title">${news[lastIndex].news_title}</p>
+				        <p class="album-date">${news[lastIndex].news_content}</p>
+				    </div>
+				</div>
+			</li>
+			<li>
+				<div class="card-header">
+					<div class="card-cover"></div>
+					<div class="album-info">
+						<p class="album-title">앨범2</p>
+						<p class="album-date">2017.02.16.</p>
+					</div>
+				</div>
+			</li>
+			<li>
 		    <div class="card-header">
 		      <div class="card-cover"></div>
 		      <div class="album-info">
