@@ -50,3 +50,5 @@ WHERE req_num  between 66 and 146;
 
 describe tb_request;
 commit;
+
+select * from tb_news;

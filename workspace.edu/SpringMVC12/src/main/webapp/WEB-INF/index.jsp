@@ -99,29 +99,30 @@ li {
 }
 }
 
+
 li:nth-child(2) .card-cover {
-	background-image:
-		url('https://cdnimg.melon.co.kr/cm/album/images/100/10/416/10010416_org.jpg');
+	
 }
 
 li:nth-child(3) .card-cover {
-	background-image:
-		url('https://cdnimg.melon.co.kr/cm/album/images/100/00/581/10000581_org.jpg');
+	
 }
 
 li:nth-child(4) .card-cover {
-	background-image:
-		url('https://cdnimg.melon.co.kr/cm/album/images/026/57/056/2657056_org.jpg');
+
 }
 
 .card-header {
-  width: 220px;
+  width: 250px;
+  height:620px;
+  border: 1px solid #848484;
+  line-height: 2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card-cover {
   width: 100%;
   height: 200px;
-  background-image: url('https://cdnimg.melon.co.kr/cm/album/images/100/16/426/10016426_org.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -137,11 +138,17 @@ li:nth-child(4) .card-cover {
 }
 
 .album-title {
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'GmarketSans', sans-serif;
+	color: #0B0B3B;
+	font-weight: 600;
+	margin-top: 4px;
+	margin-bottom:10px;
+	height:90px;
 }
 
 .album-date {
 	font-size: 12px;
+	margin-bottom: 8px;
 }
 
 ::marker {
@@ -208,11 +215,7 @@ li:nth-child(4) .card-cover {
 <%@include file="/WEB-INF/header.jsp"%>
    
 
-         <div class="container-xxl bg-primary hero-header" style="
-    padding-bottom: 150px;
-    padding-top: 150px;
-    margin-bottom: 0px;
-">
+         <div class="container-xxl bg-primary hero-header" style=" padding-bottom: 150px; padding-top: 150px; margin-bottom: 0px;">
             <div class="container px-lg-5">
                <div class="row g-5 align-items-end">
                   <div class="col-lg-6 text-center text-lg-start">
@@ -273,62 +276,114 @@ li:nth-child(4) .card-cover {
             </div>
          </div>
          
-         
-         
-		<h1>리스트 가로 배열 기본형</h1>
 		<ul>
-		  <li><a href="javascript:;" target="_blank">1</a></li>
-		  <li><a href="javascript:;" target="_blank">2</a></li>
-		  <li><a href="javascript:;" target="_blank">3</a></li>
-		  <li><a href="javascript:;" target="_blank">4</a></li>
-		</ul>
-		
-		<br><br><br><br>
-		
-		<h1>   최근 주목할 news</h1>
-		<ul>
-			<li>
-				<div class="card-header">
-				    <div class="card-cover">${news.news_url}</div>
-				    <div class="album-info">
-				        <p class="album-title">${news[lastIndex].news_title}</p>
-				        <p class="album-date">${news[lastIndex].news_content}</p>
-				    </div>
-				</div>
-			</li>
-			<li>
-				<div class="card-header">
-					<div class="card-cover"></div>
-					<div class="album-info">
-						<p class="album-title">앨범2</p>
-						<p class="album-date">2017.02.16.</p>
-					</div>
-				</div>
-			</li>
-			<li>
-		    <div class="card-header">
-		      <div class="card-cover"></div>
-		      <div class="album-info">
-		        <p class="album-title">앨범3</p>
-		        <p class="album-date">2017.02.16.</p>
-		      </div>
-		    </div>
-		  </li>
-		  <li>
-		    <div class="card-header">
-		      <div class="card-cover"></div>
-		      <div class="album-info">
-		        <p class="album-title">앨범4</p>
-		        <p class="album-date">2017.02.16.</p>
-		      </div>
-		    </div>
-		  </li>
-		</ul>
-               
-    
-    
-         
-       <div class="container-xxl py-5">
+		<h1><li style="font-size: 33px; padding:0px; margin-top: 50px; text-align: right; color:#0B0B3B;">
+		최근  주목할
+		<br>
+		 news
+		</li>
+		</h1>
+	    <li>
+	        <div class="card-header" style="background-color:#FFFFFF; border-radius: 0px 0px 0 0; border-bottom: 1px solid #000000;">
+	            <div class="card-cover" id="dynamicImage4" style="background-image: url('https://www.bigkinds.or.kr/resources/images/${newsVo[lastIndex].news_id}/${newsVo[lastIndex].news_date}/${newsVo[lastIndex].news_num}.01.jpg');">
+	            	
+	            </div>
+	            <div class="album-info">
+	                <p class="album-title">
+	                    <c:out value="${newsVo[lastIndex].news_title}" />
+	                </p>
+	                <p class="album-date">
+	                    <c:set var="content" value="${newsVo[lastIndex].news_content}" />
+	                    <c:choose>
+	                        <c:when test="${fn:length(content) > 200}">
+	                            <c:set var="shortenedContent" value="${fn:substring(content, 0, 200)}" />
+	                            <c:out value="${shortenedContent} ..." />
+	                            <!-- 추가적인 스타일이나 더 많은 내용을 표시할 수 있도록 처리 -->
+	                        </c:when>
+	                        <c:otherwise>
+	                            <c:out value="${content}" />
+	                        </c:otherwise>
+	                    </c:choose>
+	                </p>
+	            </div>
+	        </div>
+	    </li>
+	    
+	    <li>
+        <div class="card-header" style="background-color:#FFFFFF; border-radius: 0px 0px 0 0; border-bottom: 1px solid #000000;">
+            <div class="card-cover"  style="background-image: url('https://www.bigkinds.or.kr/resources/images/${newsVo[lastIndex-1].news_id}/${newsVo[lastIndex-1].news_date}/${newsVo[lastIndex-1].news_num}.01.jpg');">
+            </div>
+            <div class="album-info">
+                <p class="album-title">
+                    <c:out value="${newsVo[lastIndex-1].news_title}" />
+                </p>
+                <p class="album-date">
+                    <c:set var="content" value="${newsVo[lastIndex-1].news_content}" />
+                    <c:choose>
+                        <c:when test="${fn:length(content) > 200}">
+                            <c:set var="shortenedContent" value="${fn:substring(content, 0, 200)}" />
+                            <c:out value="${shortenedContent} ..." />
+                        </c:when>
+                        <c:otherwise>
+                            <c:out value="${content}" />
+                        </c:otherwise>
+                    </c:choose>
+                </p>
+            </div>
+        </div>
+    	</li>
+		<li>
+        <div class="card-header" style="background-color:#FFFFFF; border-radius: 0px 0px 0 0; border-bottom: 1px solid #000000;">
+           <div class="card-cover"  style="background-image: url('https://www.bigkinds.or.kr/resources/images/${newsVo[lastIndex-2].news_id}/${newsVo[lastIndex-2].news_date}/${newsVo[lastIndex-2].news_num}.01.jpg');">
+            </div>
+            <div class="album-info">
+                <p class="album-title">
+                    <c:out value="${newsVo[lastIndex-2].news_title}" />
+                </p>
+                <p class="album-date">
+                    <c:set var="content" value="${newsVo[lastIndex-2].news_content}" />
+                    <c:choose>
+                        <c:when test="${fn:length(content) > 200}">
+                            <c:set var="shortenedContent" value="${fn:substring(content, 0, 200)}" />
+                            <c:out value="${shortenedContent} ..." />
+                        </c:when>
+                        <c:otherwise>
+                            <c:out value="${content}" />
+                        </c:otherwise>
+                    </c:choose>
+                </p>
+            </div>
+        </div>
+    	</li>
+	    <li>
+        <div class="card-header" style="background-color:#FFFFFF; border-radius: 0px 0px 0 0; border-bottom: 1px solid #000000;">
+            <div class="card-cover"  style="background-image: url('https://www.bigkinds.or.kr/resources/images/${newsVo[lastIndex-3].news_id}/${newsVo[lastIndex-3].news_date}/${newsVo[lastIndex-3].news_num}.01.jpg');">
+            </div>
+            <div class="album-info">
+                <p class="album-title">
+                    <c:out value="${newsVo[lastIndex-3].news_title}" />
+                </p>
+                <p class="album-date">
+                    <c:set var="content" value="${newsVo[lastIndex-3].news_content}" />
+                    <c:choose>
+                        <c:when test="${fn:length(content) > 200}">
+                            <c:set var="shortenedContent" value="${fn:substring(content, 0, 200)}" />
+                            <c:out value="${shortenedContent} ..." />
+                        </c:when>
+                        <c:otherwise>
+                            <c:out value="${content}" />
+                        </c:otherwise>
+                    </c:choose>
+                </p>
+            </div>
+        </div>
+    	</li>
+</ul>
+
+
+
+
+		<div class="container-xxl py-5">
          <div class="container py-5 px-lg-5">
             <div class="row g-4">
                <div class="col-lg-4" data-wow-delay="0.1s">
@@ -548,4 +603,6 @@ li:nth-child(4) .card-cover {
       
    
 </body>
+
+
 </html>
